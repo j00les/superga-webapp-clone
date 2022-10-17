@@ -22,7 +22,7 @@ Target:
 - [x] Looping List of Data di dalam React
 - [x] Lifecycle component menggunakan useEffect
 - [x] Membuat server (json-server)
-- [ ] Membuat react app untuk client-user (Styling)
+- [x] Membuat react app untuk client-user (Styling)
 - [x] Membuat react app untuk client-admin (CRUD)
 - [x] Menentukan Thema Aplikasi
 - [x] Menentukan Design dan pemilihan CSS Framework
@@ -31,8 +31,9 @@ Target:
 
 ...
 
-> contoh: Hari ini saya belajar React Component. Saya memahami bagaimana cara React bekerja. Lifecycle yang sudah saya coba adalah componentDidMount yang digunakan untuk fetch data dst. Namun saya belum mencoba menggunakan onSubmit dikarenakan data yang didapat belum sesuai.
-> Pada tugas ini, saya memilih Tema A dengan mengambil referensi dari B. Saya juga akan menggunakan CSS Framework yaitu Tailwind CSS
+> Hari ini saya belajar react functional component. mempelajari state menggunaka useState mencoba mengirim data menggunakan props mencoba fetch data dan mencoba lifecycle component. namun sebagian besar waktu hari ini saya gunakan untuk menyusun layout.
+
+> Pada tugas ini, saya memilih Tema Product dengan mengambil referensi dari https://superga.id/. Saya juga akan menggunakan CSS Framework yaitu Tailwind CSS
 
 ## W1D2
 
