@@ -1,7 +1,7 @@
 # P3-Challenge-1
 
-- Tema Aplikasi: ...
-- CSS Framework: ...
+- Tema Aplikasi: Movie Synopsis
+- CSS Framework: Tailwind CSS
 
 Struktur Folder:
 
@@ -13,9 +13,9 @@ Struktur Folder:
 
 Target:
 
-- [ ] Lecture - React Intro
-- [ ] React: Class Component vs Function Component
-- [ ] Mempelajari State menggunakan useState
+- [x] Lecture - React Intro
+- [x] React: Class Component vs Function Component
+- [x] Mempelajari State menggunakan useState
 - [ ] Mengirim Props baik berupa sebuah state atau function
 - [ ] Event Handling (onClick, onChange, onSubmit)
 - [ ] Conditional Rendering di dalam React
