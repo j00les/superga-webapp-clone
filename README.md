@@ -1,6 +1,6 @@
 # P3-Challenge-1
 
-- Tema Aplikasi: Movie Synopsis
+- Tema Aplikasi: Brand Showcase
 - CSS Framework: Tailwind CSS
 
 Struktur Folder:
