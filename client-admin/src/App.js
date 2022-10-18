@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import SideBar from './components/SideBar';
 import TableProduct from './components/TableProduct';
-import RegisterForm from './components/RegisterForm';
+import TableCategory from './components/TableCategory';
+import ModalForm from './components/ModalForm';
 import ModalButton from './components/ModalButton';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   const [products, setProduct] = useState([]);
@@ -38,12 +40,15 @@ function App() {
           </div>
           <TableProduct products={products} />
         </div>
-        <RegisterForm />
+        <ModalForm />
       </section>
       <LoginPage />
+
+      <TableCategory />
+
+      <RegisterPage />
     </>
   );
 }
-// }
 
 export default App;

@@ -1,6 +1,6 @@
-import TableRowProduct from './TableRowProduct';
+import TableRowCategory from './TableRowCategory';
 
-const TableProduct = ({ products }) => {
+const TableCategory = () => {
   return (
     <div className="overflow-auto">
       <table className="table w-full">
@@ -18,11 +18,11 @@ const TableProduct = ({ products }) => {
           </tr>
         </thead>
         <tbody>
-          <TableRowProduct products={products} />
+          <TableRowCategory />
         </tbody>
       </table>
     </div>
   );
 };
 
-export default TableProduct;
+export default TableCategory;

@@ -13,15 +13,11 @@ const RegisterForm = () => {
 
   //ambil value
   const handleChange = e => {
-    // setContactInfo({ ...contactInfo, [event.target.name]: event.target.value });
-    const obj = {
-      ...formInput,
-    };
-
-    console.log(obj);
-    console.log(e.target.name, e.target.value);
+    /*  spread the current state to PRESERVE the previous state
+     This way, the previous data is not lost while we update the input state.*/
     setForm({ ...formInput, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     console.log(formInput);
@@ -118,7 +114,8 @@ const RegisterForm = () => {
             </div>
 
             <div className="float float-right mt-5 mr-2">
-              <Button />
+              <Button type="submit" />
+              <Button type="button" />
             </div>
           </form>
         </label>
