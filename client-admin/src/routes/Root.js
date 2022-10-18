@@ -1,8 +1,5 @@
 import SideBar from '../components/SideBar';
-import ModalButton from '../components/ModalButton';
 import ModalForm from '../components/ModalForm';
-import TableProduct from '../components/TableProduct';
-import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 const Root = () => {

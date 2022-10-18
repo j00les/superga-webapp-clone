@@ -1,4 +1,4 @@
-const TableRowCategory = () => {
+const RowCategory = () => {
   return (
     <>
       <tr>
@@ -22,4 +22,4 @@ const TableRowCategory = () => {
   );
 };
 
-export default TableRowCategory;
+export default RowCategory;

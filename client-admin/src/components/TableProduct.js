@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import ModalButton from './ModalButton';
-import TableRowProduct from './TableRowProduct';
+import RowProduct from './RowProduct';
 
 const TableProduct = () => {
   const [products, setProduct] = useState([]);
@@ -43,7 +43,7 @@ const TableProduct = () => {
             </tr>
           </thead>
           <tbody>
-            <TableRowProduct products={products} />
+            <RowProduct products={products} />
           </tbody>
         </table>
       </div>
