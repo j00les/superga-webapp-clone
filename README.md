@@ -39,16 +39,16 @@ Target:
 
 Target:
 
-- [ ] Lecture - Custom Hooks
-- [ ] Rules of Hooks
-- [ ] Lecture - React-Router
-- [ ] Membuat router user-side (min: home, detail)
-- [ ] Membuat router admin-side (min: login, add admin, CRUD main entitas, CRUD another entitas)
-- [ ] Membuat privateRoute untuk admin
+- [x] Lecture - Custom Hooks
+- [x] Rules of Hooks
+- [x] Lecture - React-Router
+- [x] Membuat router user-side (min: home, detail)
+- [x] Membuat router admin-side (min: login, add admin, CRUD main entitas, CRUD another entitas)
+- [x] Membuat privateRoute untuk admin
 
 **Report:**
 
-...
+> Hari ini saya belajar custom hooks dan react router. semua sudah dicoba, masih butuh pembiasaan dengan struktur dan syntax nya.
 
 ## W1D3
 

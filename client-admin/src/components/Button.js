@@ -2,9 +2,9 @@ const Button = props => {
   return (
     <button
       type={props.type}
-      className={props.type === 'submit' ? 'btn-primary' : 'btn-error'}
+      className={props.type === 'submit' ? 'btn btn-primary' : 'btn btn-error'}
     >
-      Button
+      {props.type === 'submit' ? 'submit' : 'cancel'}
     </button>
   );
 };

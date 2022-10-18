@@ -1,4 +1,4 @@
-import TableRowCategory from './TableRowCategory';
+import TableRowCategory from './RowCategory';
 
 const TableCategory = () => {
   return (
