@@ -1,4 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+
 const LoginPage = () => {
+  //programmatic
+  const navigate = useNavigate();
+
+  const loginHandler = () => {
+    localStorage.setItem('access_token', '111');
+    navigate('/');
+  };
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -32,13 +42,15 @@ const LoginPage = () => {
                 className="input input-bordered"
               />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
+                <a href="/#" className="label-text-alt link link-hover">
                   Forgot password?
                 </a>
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button onClick={loginHandler} className="btn btn-primary">
+                Login
+              </button>
             </div>
           </div>
         </div>
