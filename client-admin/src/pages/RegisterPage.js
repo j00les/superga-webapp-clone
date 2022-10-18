@@ -1,13 +1,14 @@
+import Button from '../components/Button';
+
 const RegisterPage = () => {
   return (
     <>
       <h1>Register</h1>
-      {/* <form className="">
+      <form className="">
         <div id="name-container w-full">
           <div className="flex grow flex-col w-full" id="form-input">
             Name
             <input
-              value=""
               name="name"
               type="text"
               placeholder="Type here"
@@ -21,7 +22,6 @@ const RegisterPage = () => {
             <div className="flex flex-col" id="form-input">
               Price
               <input
-                value=""
                 type="text"
                 name="price"
                 placeholder="Type here"
@@ -34,7 +34,6 @@ const RegisterPage = () => {
             <div className="flex flex-col" id="form-input">
               Main Image
               <input
-                value=""
                 type="text"
                 name="mainImg"
                 placeholder="Type here"
@@ -47,7 +46,6 @@ const RegisterPage = () => {
           Category
           <select
             name="category"
-            value=""
             className="select select-bordered uppercase w-full max-w-s"
           >
             <option disabled defaultValue>
@@ -62,7 +60,6 @@ const RegisterPage = () => {
             Description
             <textarea
               name="description"
-              value=""
               className="textarea textarea-bordered"
               placeholder="Description.."
             ></textarea>
@@ -70,7 +67,6 @@ const RegisterPage = () => {
           <div className="flex w-full flex-col " id="form-input">
             Image
             <input
-              value=""
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full max-w-s"
@@ -79,11 +75,11 @@ const RegisterPage = () => {
           </div>
         </div>
 
-        {/* <div className="float float-right mt-5 mr-2">
-      <Button type="submit" />
-      <Button type="cancel" />
-    </div> */}
-      {/* </form>  */}
+        <div className="float float-right mt-5 mr-2">
+          <Button type="submit" />
+          <Button type="cancel" />
+        </div>
+      </form>
     </>
   );
 };
