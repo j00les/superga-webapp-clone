@@ -1,4 +1,4 @@
-const TableRow = ({ products }) => {
+const TableRowProduct = ({ products }) => {
   return (
     <>
       {products?.map((el, i) => (
@@ -26,4 +26,4 @@ const TableRow = ({ products }) => {
   );
 };
 
-export default TableRow;
+export default TableRowProduct;
