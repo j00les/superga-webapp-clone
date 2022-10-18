@@ -1,5 +1,11 @@
-const NavBar = () => {
-  return (
+const NavBar = () => (
+  <>
+    <div className="navbar bg-neutral text-neutral-content">
+      <a className="btn btn-ghost normal-case text-xl">
+        SHOP NOW! WE DELIVER EVERYDAY, 7 DAYS A WEEK
+      </a>
+    </div>
+    {/* bawah */}
     <div className="navbar bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
@@ -19,26 +25,13 @@ const NavBar = () => {
               />
             </svg>
           </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a href="/#">Homepage</a>
-            </li>
-            <li>
-              <a href="/#">Portfolio</a>
-            </li>
-            <li>
-              <a href="/#">About</a>
-            </li>
-          </ul>
         </div>
       </div>
       <div className="navbar-center">
-        <a href="/#" className="btn btn-ghost normal-case text-xl">
-          daisyUI
-        </a>
+        <img
+          src="
+          https://cdn.shopify.com/s/files/1/0421/7887/1458/files/output-onlinepngtools-removebg-preview_180x.png?v=1613765226"
+        />
       </div>
       <div className="navbar-end">
         <button className="btn btn-ghost btn-circle">
@@ -78,7 +71,7 @@ const NavBar = () => {
         </button>
       </div>
     </div>
-  );
-};
+  </>
+);
 
 export default NavBar;
