@@ -1,6 +1,6 @@
 const NavBar = () => (
   <>
-    <div className="navbar bg-neutral text-neutral-content">
+    <div className="navbar text-center bg-neutral text-neutral-content">
       <a className="btn btn-ghost normal-case text-xl">
         SHOP NOW! WE DELIVER EVERYDAY, 7 DAYS A WEEK
       </a>
