@@ -11,7 +11,6 @@ const Root = () => {
         {/* <TableProduct products={products} /> */}
         <Outlet />
       </div>
-      <ModalForm />
     </section>
   );
 };

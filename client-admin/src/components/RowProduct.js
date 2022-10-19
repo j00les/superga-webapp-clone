@@ -1,4 +1,15 @@
+import { useDispatch } from 'react-redux';
+import { deleteProduct, fetchProducts } from '../store/middlewares';
+import ModalButton from './ModalButton';
+
 const RowProduct = ({ products }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = e => {
+    dispatch(deleteProduct(e.target.id));
+    fetchProducts();
+  };
+
   return (
     <>
       {products?.map((el, i) => (
@@ -17,8 +28,14 @@ const RowProduct = ({ products }) => {
             <button className="btn">Show</button>
           </td>
           <td>
-            <button className="btn">edit</button>
-            <button className="btn">delete</button>
+            <ModalButton getId={el.id} />
+            {/* <button id={el.id} onClick={e => console.log(e.target.id)}>
+              aldkj
+            </button> */}
+
+            <button id={el.id} onClick={e => handleDelete(e)} className="btn">
+              delete
+            </button>
           </td>
         </tr>
       ))}

@@ -4,6 +4,7 @@ import LoginPage from '../pages/LoginPage';
 import RegisterForm from '../components/RegisterForm';
 import TableProduct from '../components/TableProduct';
 import TableCategory from '../components/TableCategory';
+import ModalForm from '../components/ModalForm';
 
 import Root from './Root';
 
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
         path: '/',
         element: <TableProduct />,
       },
+
+      {
+        path: 'add',
+        element: <ModalForm />,
+      },
       {
         path: 'categories',
         element: <TableCategory />,
@@ -39,6 +45,11 @@ const router = createBrowserRouter([
     },
     element: <LoginPage />,
   },
+
+  // {
+  //   path: '/add-product',
+  //   element: <ModalForm />,
+  // },
 ]);
 
 export default router;

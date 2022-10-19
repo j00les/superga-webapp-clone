@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../store/middlewares';
 import ModalButton from './ModalButton';
+import ModalForm from './ModalForm';
 import RowProduct from './RowProduct';
 
 const TableProduct = () => {
@@ -38,6 +39,8 @@ const TableProduct = () => {
           </tbody>
         </table>
       </div>
+
+      <ModalForm />
     </>
   );
 };

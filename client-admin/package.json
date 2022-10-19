@@ -9,11 +9,14 @@
     "daisyui": "^2.31.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
+    "sweetalert2": "^11.6.0",
+    "sweetalert2-react-content": "^5.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
