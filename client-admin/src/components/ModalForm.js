@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createProduct, fetchCategories } from '../store/middlewares';
 import Button from './Button';
 
-const RegisterForm = () => {
+// import { createAction } from '../store/actions/product';
+
+const ModalForm = () => {
+  const categories = useSelector(state => state.categories);
+  const dispatch = useDispatch();
+
   const [formInput, setForm] = useState({
     name: '',
     price: 0,
@@ -20,10 +27,12 @@ const RegisterForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(formInput);
+    dispatch(createProduct(formInput));
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, []);
 
   return (
     <>
@@ -82,11 +91,14 @@ const RegisterForm = () => {
                 value={formInput.category}
                 className="select select-bordered uppercase w-full max-w-s"
               >
-                <option disabled defaultValue>
-                  select category
+                <option hidden={true} defaultValue={true}>
+                  --select category--
                 </option>
-                <option>Han Solo</option>
-                <option>Greedo</option>
+                {categories.map((el, i) => (
+                  <option value={el.id} key={i}>
+                    {el.name}
+                  </option>
+                ))}
               </select>
             </div>
             <div id="name-container">
@@ -124,4 +136,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default ModalForm;

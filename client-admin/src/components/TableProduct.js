@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import fetchProducts from '../store/middlewares';
+import { fetchProducts } from '../store/middlewares';
 import ModalButton from './ModalButton';
 import RowProduct from './RowProduct';
 
