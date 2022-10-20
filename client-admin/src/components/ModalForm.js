@@ -5,10 +5,11 @@ import {
   createProduct,
   fetchCategories,
   fetchProducts,
+  updateProduct,
 } from '../store/middlewares';
 import Button from './Button';
 import { toast, Toaster } from 'react-hot-toast';
-import { clearProductState, updateProduct } from '../store/actions/product';
+import { clearProductState } from '../store/actions/product';
 
 const ModalForm = () => {
   const categories = useSelector(state => state.categories);
@@ -35,20 +36,19 @@ const ModalForm = () => {
     setForm({ ...formInput, [e.target.name]: e.target.value });
   };
 
-  const handleCreate = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    dispatch(createProduct(formInput));
-    toast.success('Product successfully created!');
-    modalElement.checked = false;
-    fetchProducts();
-  };
 
-  const handleUpdate = e => {
-    e.preventDefault();
-    dispatch(updateProduct(formInput));
-    toast.success('Product successfully updated!');
+    if (Object.keys(productById).length > 0) {
+      dispatch(updateProduct(productById.id, formInput));
+      dispatch(clearProductState());
+      toast.success('Product successfully updated!');
+    } else {
+      dispatch(createProduct(formInput));
+      toast.success('Product successfully created!');
+    }
+
     modalElement.checked = false;
-    fetchProducts();
   };
 
   const handleCancelButton = () => {
@@ -62,11 +62,17 @@ const ModalForm = () => {
 
   useEffect(() => {
     //watch product by id dan kondisiin, lantas set form state by product by id
-
-    console.log(formInput);
-    // console.log(Object.keys(productById).length);
     if (Object.keys(productById).length > 0) {
-      setForm({ ...productById });
+      setForm({ ...formInput, ...productById });
+    } else {
+      setForm({
+        name: '',
+        price: 0,
+        mainImg: '',
+        category: '',
+        description: '',
+        image: '',
+      });
     }
   }, [productById]);
 
@@ -80,12 +86,7 @@ const ModalForm = () => {
       />
       <label htmlFor="my-modal-4" className={'modal cursor-pointer'}>
         <label className="modal-box w-3/4 relative" htmlFor="">
-          {/* add */}
-          {/* {Object.keys(productById).length === 0 && ( */}
-          <form
-            onSubmit={productById ? handleCreate : handleUpdate}
-            className=""
-          >
+          <form onSubmit={handleSubmit} className="">
             Name
             <div id="name-container w-full">
               <div className="flex grow flex-col w-full" id="form-input">

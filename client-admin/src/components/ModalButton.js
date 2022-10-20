@@ -16,7 +16,7 @@ const ModalButton = props => {
       id={props?.getId}
       onClick={e => handleGetById(e)}
       htmlFor="my-modal-4"
-      className="btn modal-button"
+      className="btn btn-sm btn-primary modal-button"
     >
       {props.getId ? 'Edit' : 'Add'}
     </label>

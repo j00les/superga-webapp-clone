@@ -6,6 +6,8 @@ import {
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
   CLEAR_PRODUCT_STATE,
+  DELETE_CATEGORY,
+  CREATE_CATEGORY,
 } from '../action_types';
 
 const productLoaded = data => {
@@ -29,14 +31,13 @@ const createProductAction = data => {
 };
 
 const getById = data => {
-  console.log(data);
   return {
     type: PRODUCT_BY_ID,
     payload: data,
   };
 };
 
-const updateProduct = data => {
+const updateProductAction = data => {
   return {
     type: UPDATE_PRODUCT,
     payload: data,
@@ -57,12 +58,29 @@ const categoryLoaded = data => {
   };
 };
 
+const createCategoryAction = data => {
+  console.log(data);
+  return {
+    type: CREATE_CATEGORY,
+    payload: data,
+  };
+};
+
+const deleteCategoryAction = id => {
+  return {
+    type: DELETE_CATEGORY,
+    payload: id,
+  };
+};
+
 export {
   productLoaded,
   createProductAction,
   categoryLoaded,
   getById,
-  updateProduct,
+  updateProductAction,
   deleteProductAction,
   clearProductState,
+  createCategoryAction,
+  deleteCategoryAction,
 };

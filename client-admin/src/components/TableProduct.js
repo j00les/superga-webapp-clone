@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../store/middlewares';
 import ModalButton from './ModalButton';
 import ModalForm from './ModalForm';
+import { ModalImage } from './ModalImage';
 import RowProduct from './RowProduct';
 
 const TableProduct = () => {
@@ -18,9 +19,9 @@ const TableProduct = () => {
       <div>
         <ModalButton />
       </div>
-      <div className="overflow-auto">
+      <div className="overflow-scroll">
         {/* table-normal .... */}
-        <table className="table  table-compact">
+        <table className="table w-full table-auto table-normal">
           <thead>
             <tr>
               <th></th>
@@ -31,7 +32,7 @@ const TableProduct = () => {
               <th>Category</th>
               <th>Author</th>
               <th>Images</th>
-              <th>Action</th>
+              <th className="text-center">Action</th>
             </tr>
           </thead>
 
@@ -42,6 +43,7 @@ const TableProduct = () => {
       </div>
 
       <ModalForm />
+      <ModalImage />
     </>
   );
 };

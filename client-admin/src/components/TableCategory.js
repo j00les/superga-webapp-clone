@@ -1,27 +1,31 @@
-import TableRowCategory from './RowCategory';
+import { ModalCategory } from './ModalCategory';
+import { ModalCategoryButton } from './ModalCategoryButton';
+import RowCategory from './RowCategory';
 
 const TableCategory = () => {
   return (
-    <div className="overflow-auto">
-      <table className="table w-full">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Main Image</th>
-            <th>Category</th>
-            <th>Author</th>
-            <th>Images</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <TableRowCategory />
-        </tbody>
-      </table>
-    </div>
+    <>
+      <div>
+        <ModalCategoryButton />
+      </div>
+      <div className="overflow-auto">
+        <table className="table w-full">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>created at</th>
+              <th>updated at</th>
+              <th>action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <RowCategory />
+          </tbody>
+        </table>
+        <ModalCategory />
+      </div>
+    </>
   );
 };
 

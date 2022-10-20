@@ -7,7 +7,7 @@ const Root = () => {
     <section className="grid h-screen  grid-cols-6 grid-rows-2">
       <SideBar />
 
-      <div className="flex flex-col col-start-2 col-end-7 row-start-1 row-end-3 mx-4">
+      <div className="flex flex-col col-start-2 col-end-7 px-4 row-start-1 row-end-3 mx-4">
         {/* <TableProduct products={products} /> */}
         <Outlet />
       </div>

@@ -1,22 +1,27 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteProduct, fetchProducts } from '../store/middlewares';
 import ModalButton from './ModalButton';
+import { ModalImageButton } from './ModalImageButton';
 
 const RowProduct = ({ products }) => {
   const dispatch = useDispatch();
 
   const handleDelete = e => {
     dispatch(deleteProduct(e.target.id));
-    fetchProducts();
   };
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
 
   return (
     <>
       {products?.map((el, i) => (
-        <tr className="border border-red-700" key={i}>
+        <tr key={i}>
           <th>{i + 1}</th>
           <td>{el.name}</td>
-          <td className="">{el.description}</td>
+          <td className="whitespace-normal">{el.description}</td>
           <td>{el.price}</td>
           <td>
             <img src={el.mainImg} alt="" />
@@ -24,16 +29,15 @@ const RowProduct = ({ products }) => {
           <td>{el.category}</td>
           <td>{el.author}</td>
           <td>
-            {/* modal for image */}
-            <button className="btn">Show</button>
+            <ModalImageButton />
           </td>
           <td>
             <ModalButton getId={el.id} />
-            {/* <button id={el.id} onClick={e => console.log(e.target.id)}>
-              aldkj
-            </button> */}
-
-            <button id={el.id} onClick={e => handleDelete(e)} className="btn">
+            <button
+              id={el.id}
+              onClick={e => handleDelete(e)}
+              className="btn ml-2 btn-sm btn-error"
+            >
               delete
             </button>
           </td>
