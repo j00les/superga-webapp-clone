@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import {
   categoryLoaded,
   createProductAction,
@@ -112,25 +113,34 @@ const updateProduct = (id, data) => {
 };
 
 const deleteProduct = id => {
-  // const formData = data;
-  console.log(id);
   return async dispatch => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${id}`, {
-        method: 'delete',
-        mode: 'cors',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes please!',
+        cancelButtonText: 'Nope',
       });
+      if (result.isConfirmed) {
+        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
 
-      if (!response.ok) throw new Error("Can't fetch data");
+        const response = await fetch(`http://localhost:3000/products/${id}`, {
+          method: 'delete',
+          mode: 'cors',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
-      // const data = await response.json();
-      // console.log(data);
+        if (!response.ok) throw new Error("Can't fetch data");
 
-      dispatch(deleteProductAction(id));
+        dispatch(deleteProductAction(id));
+      }
     } catch (err) {
       console.log(err);
     }

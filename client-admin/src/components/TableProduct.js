@@ -19,7 +19,8 @@ const TableProduct = () => {
         <ModalButton />
       </div>
       <div className="overflow-auto">
-        <table className="table w-full">
+        {/* table-normal .... */}
+        <table className="table  table-compact">
           <thead>
             <tr>
               <th></th>

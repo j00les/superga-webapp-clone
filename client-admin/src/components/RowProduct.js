@@ -13,10 +13,10 @@ const RowProduct = ({ products }) => {
   return (
     <>
       {products?.map((el, i) => (
-        <tr key={i}>
+        <tr className="border border-red-700" key={i}>
           <th>{i + 1}</th>
           <td>{el.name}</td>
-          <td>{el.description}</td>
+          <td className="">{el.description}</td>
           <td>{el.price}</td>
           <td>
             <img src={el.mainImg} alt="" />

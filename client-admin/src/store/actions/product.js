@@ -5,12 +5,19 @@ import {
   PRODUCT_BY_ID,
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
+  CLEAR_PRODUCT_STATE,
 } from '../action_types';
 
 const productLoaded = data => {
   return {
     type: FETCH_PRODUCTS,
     payload: data,
+  };
+};
+
+const clearProductState = () => {
+  return {
+    type: CLEAR_PRODUCT_STATE,
   };
 };
 
@@ -39,7 +46,7 @@ const updateProduct = data => {
 const deleteProductAction = id => {
   return {
     type: DELETE_PRODUCT,
-    payload: { id },
+    payload: id,
   };
 };
 
@@ -57,4 +64,5 @@ export {
   getById,
   updateProduct,
   deleteProductAction,
+  clearProductState,
 };

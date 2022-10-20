@@ -8,7 +8,7 @@ import {
 } from '../store/middlewares';
 import Button from './Button';
 import { toast, Toaster } from 'react-hot-toast';
-import { updateProduct } from '../store/actions/product';
+import { clearProductState, updateProduct } from '../store/actions/product';
 
 const ModalForm = () => {
   const categories = useSelector(state => state.categories);
@@ -47,18 +47,28 @@ const ModalForm = () => {
   const handleUpdate = e => {
     e.preventDefault();
     dispatch(updateProduct(formInput));
-    toast.success('Product successfully created!');
+    toast.success('Product successfully updated!');
     modalElement.checked = false;
     fetchProducts();
   };
 
   const handleCancelButton = () => {
     modalElement.checked = false;
+    dispatch(clearProductState());
   };
 
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
+
+  useEffect(() => {
+    //watch product by id dan kondisiin, lantas set form state by product by id
+    // console.log(Object.keys(productById).length);
+
+    if (Object.keys(productById).length > 0) {
+      setForm({ ...productById });
+    }
+  }, [productById]);
 
   return (
     <>
@@ -71,190 +81,99 @@ const ModalForm = () => {
       <label htmlFor="my-modal-4" className={'modal cursor-pointer'}>
         <label className="modal-box w-3/4 relative" htmlFor="">
           {/* add */}
-          {Object.keys(productById).length === 0 && (
-            <form onSubmit={handleCreate} className="">
-              <div id="name-container w-full">
-                <div className="flex grow flex-col w-full" id="form-input">
-                  <input
-                    onChange={handleChange}
-                    value={formInput.name}
-                    name="name"
-                    type="text"
-                    placeholder="Type here"
-                    className="input  input-bordered w-full max-w-s"
-                  />
-                </div>
-              </div>
-              <div id="inner-container" className="flex gap-5">
-                <div className="flex flex-col" id="left-side">
-                  <div className="flex flex-col" id="form-input">
-                    Price
-                    <input
-                      onChange={handleChange}
-                      value={formInput.price}
-                      type="text"
-                      name="price"
-                      placeholder="Type here"
-                      className="input input-bordered w-full max-w-xs"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-col" id="right-side">
-                  <div className="flex flex-col" id="form-input">
-                    Main Image
-                    <input
-                      onChange={handleChange}
-                      value={formInput.mainImg}
-                      type="text"
-                      name="mainImg"
-                      placeholder="Type here"
-                      className="input input-bordered w-full max-w-xs"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col w-full" id="form-input">
-                Category
-                <select
-                  name="category"
+          {/* {Object.keys(productById).length === 0 && ( */}
+          <form
+            onSubmit={productById ? handleCreate : handleUpdate}
+            className=""
+          >
+            Name
+            <div id="name-container w-full">
+              <div className="flex grow flex-col w-full" id="form-input">
+                <input
                   onChange={handleChange}
-                  value={formInput.category}
-                  className="select select-bordered uppercase w-full max-w-s"
-                >
-                  <option hidden={true} value={true}>
-                    --select category--
+                  value={formInput?.name}
+                  name="name"
+                  type="text"
+                  placeholder="Type here"
+                  className="input  input-bordered w-full max-w-s"
+                />
+              </div>
+            </div>
+            <div id="inner-container" className="flex gap-5">
+              <div className="flex flex-col" id="left-side">
+                <div className="flex flex-col" id="form-input">
+                  Price
+                  <input
+                    onChange={handleChange}
+                    value={formInput?.price}
+                    type="text"
+                    name="price"
+                    placeholder="Type here"
+                    className="input input-bordered w-full max-w-xs"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col" id="right-side">
+                <div className="flex flex-col" id="form-input">
+                  Main Image
+                  <input
+                    onChange={handleChange}
+                    value={formInput?.mainImg}
+                    type="text"
+                    name="mainImg"
+                    placeholder="Type here"
+                    className="input input-bordered w-full max-w-xs"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col w-full" id="form-input">
+              Category
+              <select
+                name="category"
+                onChange={handleChange}
+                value={formInput?.category}
+                className="select select-bordered uppercase w-full max-w-s"
+              >
+                <option hidden={true} value={true}>
+                  --select category--
+                </option>
+                {categories?.map((el, i) => (
+                  <option value={el.id} key={i}>
+                    {el.name}
                   </option>
-                  {categories.map((el, i) => (
-                    <option value={el.id} key={i}>
-                      {el.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div id="name-container">
-                <div className="flex w-full flex-col" id="form-input">
-                  Description
-                  <textarea
-                    name="description"
-                    onChange={handleChange}
-                    value={formInput.description}
-                    className="textarea textarea-bordered"
-                    placeholder="Description.."
-                  ></textarea>
-                </div>
-                <div className="flex w-full flex-col " id="form-input">
-                  Image
-                  <input
-                    value={formInput.image}
-                    onChange={handleChange}
-                    type="text"
-                    placeholder="Type here"
-                    className="input input-bordered w-full max-w-s"
-                    name="image"
-                  />
-                </div>
-              </div>
-              <div className="float float-right mt-5 mr-2">
-                <Button type="submit" />
-                <Button handleCancel={handleCancelButton} type="button" />
-              </div>
-            </form>
-          )}
-
-          {/* update*/}
-          {Object.keys(productById).length > 0 && (
-            <form onSubmit={handleUpdate} className="">
-              update
-              <div id="name-container w-full">
-                <div className="flex grow flex-col w-full" id="form-input">
-                  Name
-                  <input
-                    onChange={handleChange}
-                    value={productById.name}
-                    name="name"
-                    type="text"
-                    placeholder="Type here"
-                    className="input  input-bordered w-full max-w-s"
-                  />
-                </div>
-              </div>
-              <div id="inner-container" className="flex gap-5">
-                <div className="flex flex-col" id="left-side">
-                  <div className="flex flex-col" id="form-input">
-                    Price
-                    <input
-                      onChange={handleChange}
-                      value={productById.price}
-                      type="text"
-                      name="price"
-                      placeholder="Type here"
-                      className="input input-bordered w-full max-w-xs"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-col" id="right-side">
-                  <div className="flex flex-col" id="form-input">
-                    Main Image
-                    <input
-                      onChange={handleChange}
-                      value={productById.mainImg}
-                      type="text"
-                      name="mainImg"
-                      placeholder="Type here"
-                      className="input input-bordered w-full max-w-xs"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col w-full" id="form-input">
-                Category
-                <select
-                  name="category"
+                ))}
+              </select>
+            </div>
+            <div id="name-container">
+              <div className="flex w-full flex-col" id="form-input">
+                Description
+                <textarea
+                  name="description"
                   onChange={handleChange}
-                  value={productById.category}
-                  className="select select-bordered uppercase w-full max-w-s"
-                >
-                  <option hidden={true} value={true}>
-                    --select category--
-                  </option>
-                  {categories.map((el, i) => (
-                    <option value={el.id} key={i}>
-                      {el.name}
-                    </option>
-                  ))}
-                </select>
+                  value={formInput?.description}
+                  className="textarea textarea-bordered"
+                  placeholder="Description.."
+                ></textarea>
               </div>
-              <div id="name-container">
-                <div className="flex w-full flex-col" id="form-input">
-                  Description
-                  <textarea
-                    name="description"
-                    onChange={handleChange}
-                    value={productById.description}
-                    className="textarea textarea-bordered"
-                    placeholder="Description.."
-                  ></textarea>
-                </div>
-                <div className="flex w-full flex-col " id="form-input">
-                  Image
-                  <input
-                    value={productById.image}
-                    onChange={handleChange}
-                    type="text"
-                    placeholder="Type here"
-                    className="input input-bordered w-full max-w-s"
-                    name="image"
-                  />
-                </div>
+              <div className="flex w-full flex-col " id="form-input">
+                Image
+                <input
+                  value={formInput?.image}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-s"
+                  name="image"
+                />
               </div>
-              <div className="float float-right mt-5 mr-2">
-                <Button type="submit" />
-                <Button handleCancel={handleCancelButton} type="button" />
-              </div>
-            </form>
-          )}
+            </div>
+            <div className="float float-right mt-5 mr-2">
+              <Button type="submit" />
+              <Button handleCancel={handleCancelButton} type="button" />
+            </div>
+          </form>
         </label>
       </label>
 

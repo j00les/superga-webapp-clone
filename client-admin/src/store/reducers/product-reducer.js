@@ -4,6 +4,7 @@ import {
   FETCH_CATEGORIES,
   PRODUCT_BY_ID,
   DELETE_PRODUCT,
+  CLEAR_PRODUCT_STATE,
 } from '../action_types';
 
 const initial = {
@@ -34,34 +35,23 @@ export default function productReducer(state = initial, action) {
       };
 
     case DELETE_PRODUCT:
-      // console.log(typeof payload);
-      console.log(payload);
-      // console.log(state.products);
-      const filtered = state.products.filter(product =>
-        console.log(product.id)
-      );
-      console.log(filtered);
+      const filtered = state.products.filter(el => el.id !== +payload);
 
-      // const obj = {
-      //   ...state,
-      //   products: [...state.products],
-      // };
-      // console.log(obj);
       return {
         ...state,
+        products: filtered,
       };
 
     case PRODUCT_BY_ID:
-      // const obj = {
-      //   ...state,
-      //   productById: payload,
-      //   // products: [...state.products, payload],
-      // };
-      // console.log(obj);
       return {
         ...state,
         productById: payload,
-        // products: [...state.products, payload],
+      };
+
+    case CLEAR_PRODUCT_STATE:
+      return {
+        ...state,
+        productById: {},
       };
     default:
       return state;

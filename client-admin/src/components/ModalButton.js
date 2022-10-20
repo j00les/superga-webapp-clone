@@ -9,9 +9,6 @@ const ModalButton = props => {
     if (e.target.id) {
       dispatch(getProductById(e.target.id));
     }
-    // else {
-    //   console.log(e);
-    // }
   };
 
   return (
@@ -21,7 +18,7 @@ const ModalButton = props => {
       htmlFor="my-modal-4"
       className="btn modal-button"
     >
-      Add
+      {props.getId ? 'Edit' : 'Add'}
     </label>
   );
 };
