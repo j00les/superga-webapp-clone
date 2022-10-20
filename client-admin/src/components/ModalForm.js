@@ -1,24 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import {
-  createProduct,
-  fetchCategories,
-  fetchProducts,
-  updateProduct,
-} from '../store/middlewares';
-import Button from './Button';
 import { toast, Toaster } from 'react-hot-toast';
-import { clearProductState } from '../store/actions/product';
+import { clearProductState } from '../store/actions/action-product';
+import { createProduct, updateProduct } from '../store/middlewares/product';
+import Button from './Button';
+import { fetchCategories } from '../store/middlewares/category';
 
 const ModalForm = () => {
-  const categories = useSelector(state => state.categories);
+  const { category } = useSelector(state => state);
+  const { product } = useSelector(state => state);
+
   const dispatch = useDispatch();
   const ref = useRef();
 
   //get input element
   const modalElement = ref.current;
-  const productById = useSelector(state => state.productById);
 
   const [formInput, setForm] = useState({
     name: '',
@@ -39,8 +35,8 @@ const ModalForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (Object.keys(productById).length > 0) {
-      dispatch(updateProduct(productById.id, formInput));
+    if (Object.keys(product.productById).length > 0) {
+      dispatch(updateProduct(product.productById.id, formInput));
       dispatch(clearProductState());
       toast.success('Product successfully updated!');
     } else {
@@ -62,8 +58,8 @@ const ModalForm = () => {
 
   useEffect(() => {
     //watch product by id dan kondisiin, lantas set form state by product by id
-    if (Object.keys(productById).length > 0) {
-      setForm({ ...formInput, ...productById });
+    if (Object.keys(product.productById).length > 0) {
+      setForm({ ...formInput, ...product.productById });
     } else {
       setForm({
         name: '',
@@ -74,7 +70,7 @@ const ModalForm = () => {
         image: '',
       });
     }
-  }, [productById]);
+  }, [product.productById]);
 
   return (
     <>
@@ -140,7 +136,7 @@ const ModalForm = () => {
                 <option hidden={true} value={true}>
                   --select category--
                 </option>
-                {categories?.map((el, i) => (
+                {category?.categories?.map((el, i) => (
                   <option value={el.id} key={i}>
                     {el.name}
                   </option>

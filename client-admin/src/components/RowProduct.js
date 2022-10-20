@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteProduct, fetchProducts } from '../store/middlewares';
+import { deleteProduct, fetchProducts } from '../store/middlewares/product';
 import ModalButton from './ModalButton';
 import { ModalImageButton } from './ModalImageButton';
 

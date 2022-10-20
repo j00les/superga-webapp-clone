@@ -1,14 +1,11 @@
 import {
   FETCH_PRODUCTS,
   CREATE_PRODUCT,
-  FETCH_CATEGORIES,
   PRODUCT_BY_ID,
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
   CLEAR_PRODUCT_STATE,
-  DELETE_CATEGORY,
-  CREATE_CATEGORY,
-} from '../action_types';
+} from '../action_types/type-product';
 
 const productLoaded = data => {
   return {
@@ -51,36 +48,11 @@ const deleteProductAction = id => {
   };
 };
 
-const categoryLoaded = data => {
-  return {
-    type: FETCH_CATEGORIES,
-    payload: data,
-  };
-};
-
-const createCategoryAction = data => {
-  console.log(data);
-  return {
-    type: CREATE_CATEGORY,
-    payload: data,
-  };
-};
-
-const deleteCategoryAction = id => {
-  return {
-    type: DELETE_CATEGORY,
-    payload: id,
-  };
-};
-
 export {
   productLoaded,
   createProductAction,
-  categoryLoaded,
   getById,
   updateProductAction,
   deleteProductAction,
   clearProductState,
-  createCategoryAction,
-  deleteCategoryAction,
 };

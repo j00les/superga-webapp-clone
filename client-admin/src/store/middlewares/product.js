@@ -1,14 +1,11 @@
 import Swal from 'sweetalert2';
 import {
-  categoryLoaded,
-  createCategoryAction,
   createProductAction,
-  deleteCategoryAction,
   deleteProductAction,
   getById,
   productLoaded,
   updateProductAction,
-} from '../actions/product';
+} from '../actions/action-product';
 
 const fetchProducts = () => {
   return async dispatch => {
@@ -21,24 +18,6 @@ const fetchProducts = () => {
       const data = await response.json();
 
       dispatch(productLoaded(data));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-
-const fetchCategories = () => {
-  return async dispatch => {
-    try {
-      const response = await fetch('http://localhost:3000/categories', {
-        method: 'get',
-      });
-
-      if (!response.ok) throw new Error("Can't fetch data");
-
-      const data = await response.json();
-
-      dispatch(categoryLoaded(data));
     } catch (err) {
       console.log(err);
     }
@@ -120,67 +99,6 @@ const updateProduct = (id, data) => {
   };
 };
 
-//delete category
-const deleteCategory = id => {
-  return async dispatch => {
-    try {
-      const result = await Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes please!',
-        cancelButtonText: 'Nope',
-      });
-      if (result.isConfirmed) {
-        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
-
-        const response = await fetch(`http://localhost:3000/categories/${id}`, {
-          method: 'delete',
-          mode: 'cors',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        if (!response.ok) throw new Error("Can't fetch data");
-
-        dispatch(deleteCategoryAction(id));
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-
-const createCategory = data => async dispatch => {
-  const formData = { data };
-  console.log(typeof formData);
-  try {
-    const response = await fetch('http://localhost:3000/categories', {
-      method: 'post',
-      mode: 'cors',
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    // console.log(response);
-    if (!response.ok) throw new Error("Can't fetch data");
-
-    // const data = await response.json();
-
-    dispatch(createCategoryAction(data));
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 const deleteProduct = id => {
   return async dispatch => {
     try {
@@ -220,9 +138,6 @@ export {
   getProductById,
   fetchProducts,
   createProduct,
-  deleteCategory,
-  fetchCategories,
-  createCategory,
   deleteProduct,
   updateProduct,
 };

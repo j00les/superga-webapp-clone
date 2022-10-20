@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCategory, fetchCategories } from '../store/middlewares';
+import { deleteCategory, fetchCategories } from '../store/middlewares/category';
 
 const RowCategory = () => {
-  const categories = useSelector(state => state.categories);
+  const { category } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const handleDelete = id => {
@@ -19,7 +19,7 @@ const RowCategory = () => {
 
   return (
     <>
-      {categories?.map((el, i) => (
+      {category.categories?.map((el, i) => (
         <tr key={i}>
           <th>{i + 1}</th>
           <td>{el.name}</td>

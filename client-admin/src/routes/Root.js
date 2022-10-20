@@ -1,5 +1,4 @@
 import SideBar from '../components/SideBar';
-import ModalForm from '../components/ModalForm';
 import { Outlet } from 'react-router-dom';
 
 const Root = () => {

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { getProductById } from '../store/middlewares';
+import { getProductById } from '../store/middlewares/product';
 
 const ModalButton = props => {
   const dispatch = useDispatch();

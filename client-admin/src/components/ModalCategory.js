@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { createCategory } from '../store/middlewares';
+import { createCategory } from '../store/middlewares/category';
 import Button from './Button';
 
 export const ModalCategory = () => {

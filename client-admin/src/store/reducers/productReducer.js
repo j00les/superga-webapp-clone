@@ -1,18 +1,14 @@
 import {
   FETCH_PRODUCTS,
   CREATE_PRODUCT,
-  FETCH_CATEGORIES,
   PRODUCT_BY_ID,
   DELETE_PRODUCT,
   CLEAR_PRODUCT_STATE,
   UPDATE_PRODUCT,
-  DELETE_CATEGORY,
-  CREATE_CATEGORY,
-} from '../action_types';
+} from '../action_types/type-product';
 
 const initial = {
   products: [],
-  categories: [],
   productById: {},
 };
 
@@ -25,23 +21,10 @@ export default function productReducer(state = initial, action) {
         products: payload,
       };
 
-    case FETCH_CATEGORIES:
-      return {
-        ...state,
-        categories: payload,
-      };
-
     case CREATE_PRODUCT:
       return {
         ...state,
         products: [...state.products, payload],
-      };
-
-    case CREATE_CATEGORY:
-      console.log(payload);
-      return {
-        ...state,
-        categories: [...state.categories, payload],
       };
 
     case DELETE_PRODUCT:
@@ -50,13 +33,6 @@ export default function productReducer(state = initial, action) {
       return {
         ...state,
         products: filtered,
-      };
-
-    case DELETE_CATEGORY:
-      const filteredCat = state.categories.filter(el => el.id !== +payload);
-      return {
-        ...state,
-        products: filteredCat,
       };
 
     case PRODUCT_BY_ID:

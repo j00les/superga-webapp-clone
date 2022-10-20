@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from '../store/middlewares';
+import { fetchProducts } from '../store/middlewares/product';
 import ModalButton from './ModalButton';
 import ModalForm from './ModalForm';
 import { ModalImage } from './ModalImage';
@@ -8,7 +8,8 @@ import RowProduct from './RowProduct';
 
 const TableProduct = () => {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.products);
+  const { product } = useSelector(state => state);
+  // console.log(products);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -37,7 +38,7 @@ const TableProduct = () => {
           </thead>
 
           <tbody>
-            <RowProduct products={products} />
+            <RowProduct products={product.products} />
           </tbody>
         </table>
       </div>
