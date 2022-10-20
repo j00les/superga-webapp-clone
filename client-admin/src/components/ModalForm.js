@@ -28,7 +28,6 @@ const ModalForm = () => {
     image: '',
   });
 
-  //ambil value
   const handleChange = e => {
     /*  spread the current state to PRESERVE the previous state
      This way, the previous data is not lost while we update the input state.*/
@@ -63,8 +62,9 @@ const ModalForm = () => {
 
   useEffect(() => {
     //watch product by id dan kondisiin, lantas set form state by product by id
-    // console.log(Object.keys(productById).length);
 
+    console.log(formInput);
+    // console.log(Object.keys(productById).length);
     if (Object.keys(productById).length > 0) {
       setForm({ ...productById });
     }
