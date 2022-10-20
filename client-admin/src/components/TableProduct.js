@@ -1,34 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../store/middlewares';
 import ModalButton from './ModalButton';
+import ModalForm from './ModalForm';
 import RowProduct from './RowProduct';
 
 const TableProduct = () => {
-  const [products, setProduct] = useState([]);
-  const fetchProduct = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/products', {
-        method: 'get',
-      });
-
-      if (!response.ok) throw new Error("Can't fetch data");
-
-      const data = await response.json();
-      setProduct(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const dispatch = useDispatch();
+  const products = useSelector(state => state.products);
 
   useEffect(() => {
-    fetchProduct();
-  }, []);
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
   return (
     <>
       <div>
         <ModalButton />
       </div>
       <div className="overflow-auto">
-        <table className="table w-full">
+        {/* table-normal .... */}
+        <table className="table  table-compact">
           <thead>
             <tr>
               <th></th>
@@ -42,11 +34,14 @@ const TableProduct = () => {
               <th>Action</th>
             </tr>
           </thead>
+
           <tbody>
             <RowProduct products={products} />
           </tbody>
         </table>
       </div>
+
+      <ModalForm />
     </>
   );
 };
