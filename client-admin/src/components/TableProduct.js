@@ -1,5 +1,3 @@
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from './Header';
@@ -8,6 +6,8 @@ import ModalForm from './ModalForm';
 import { ModalImage } from './ModalImage';
 import RowProduct from './RowProduct';
 import { fetchProducts } from '../store/actions/action-product';
+
+// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 const TableProduct = () => {
   const dispatch = useDispatch();
@@ -24,9 +24,8 @@ const TableProduct = () => {
         <ModalButton />
       </div>
 
-      {/* <Skeleton /> */}
       <div className="overflow-scroll">
-        {(
+        {
           <table className="table w-full">
             <thead>
               <tr>
@@ -46,7 +45,7 @@ const TableProduct = () => {
               <RowProduct products={product.products} />
             </tbody>
           </table>
-        ) || <Skeleton count={10} />}
+        }
       </div>
 
       <ModalForm />

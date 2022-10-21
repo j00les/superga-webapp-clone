@@ -45,11 +45,6 @@ const router = createBrowserRouter([
     },
     element: <LoginPage />,
   },
-
-  // {
-  //   path: '/add-product',
-  //   element: <ModalForm />,
-  // },
 ]);
 
 export default router;

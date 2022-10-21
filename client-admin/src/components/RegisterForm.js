@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from './Button';
+import { Header } from './Header';
 
 const RegisterPage = () => {
   const [input, setInput] = useState({
@@ -39,8 +40,8 @@ const RegisterPage = () => {
 
   return (
     <>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit} className="">
+      <Header view="register" />
+      <form onSubmit={handleSubmit} className="my-5">
         <div id="name-container w-full">
           <div className="flex grow flex-col w-full" id="form-input">
             Username
@@ -53,54 +54,48 @@ const RegisterPage = () => {
               className="input  input-bordered w-full max-w-s"
             />
           </div>
-        </div>
-
-        <div className="flex flex-col" id="left-side">
-          <div className="flex flex-col" id="form-input">
+          <div className="flex grow flex-col w-full" id="form-input">
             Email
             <input
               value={input.email}
               onChange={handleChange}
-              type="text"
               name="email"
+              type="text"
               placeholder="Type here"
-              className="input input-bordered w-full max-w-xs"
+              className="input  input-bordered w-full max-w-s"
             />
           </div>
-        </div>
-
-        <div className="flex flex-col" id="right-side">
-          <div className="flex flex-col" id="form-input">
+          <div className="flex grow flex-col w-full" id="form-input">
             Password
             <input
               value={input.password}
               onChange={handleChange}
-              type="password"
               name="password"
+              type="text"
               placeholder="Type here"
-              className="input input-bordered w-full max-w-xs"
+              className="input  input-bordered w-full max-w-s"
             />
           </div>
-          <div className="flex flex-col" id="form-input">
+          <div className="flex grow flex-col w-full" id="form-input">
             Phone
             <input
               value={input.phoneNumber}
               onChange={handleChange}
-              type="phone"
               name="phoneNumber"
+              type="text"
               placeholder="Type here"
-              className="input input-bordered w-full max-w-xs"
+              className="input  input-bordered w-full max-w-s"
             />
           </div>
-          <div className="flex flex-col" id="form-input">
+          <div className="flex grow flex-col w-full" id="form-input">
             Address
             <input
               value={input.address}
               onChange={handleChange}
-              type="text"
               name="address"
+              type="text"
               placeholder="Type here"
-              className="input input-bordered w-full max-w-xs"
+              className="input  input-bordered w-full max-w-s"
             />
           </div>
         </div>

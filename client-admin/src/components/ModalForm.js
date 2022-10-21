@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast, Toaster } from 'react-hot-toast';
+
 import {
   clearProductState,
   createProduct,
@@ -14,10 +15,9 @@ const ModalForm = () => {
   const { product } = useSelector(state => state);
 
   const dispatch = useDispatch();
-  const ref = useRef();
-
-  //get input element
-  const modalElement = ref.current;
+  const inputRef = useRef();
+  const modalElement = inputRef.current;
+  // console.log(inputRef);
 
   const [formInput, setForm] = useState({
     name: '',
@@ -25,9 +25,9 @@ const ModalForm = () => {
     mainImg: '',
     category: '',
     description: '',
-    image: '',
-    image: '',
-    image: '',
+    image1: '',
+    image2: '',
+    image3: '',
   });
 
   const handleChange = e => {
@@ -82,7 +82,7 @@ const ModalForm = () => {
   return (
     <>
       <input
-        ref={ref}
+        ref={inputRef}
         type="checkbox"
         id="my-modal-4"
         className="modal-toggle"
