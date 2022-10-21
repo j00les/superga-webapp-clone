@@ -1,15 +1,53 @@
+import { useState } from 'react';
 import Button from './Button';
 
 const RegisterPage = () => {
+  const [input, setInput] = useState({
+    username: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+    address: '',
+  });
+
+  const handleChange = e => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+    console.log(input);
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:3000/users', {
+        method: 'post',
+        mode: 'cors',
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(input),
+      });
+
+      if (!response.ok) throw new Error("Can't fetch data");
+
+      const data = await response.json();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <h1>Register</h1>
-      <form className="">
+      <form onSubmit={handleSubmit} className="">
         <div id="name-container w-full">
           <div className="flex grow flex-col w-full" id="form-input">
-            Name
+            Username
             <input
-              name="name"
+              value={input.username}
+              onChange={handleChange}
+              name="username"
               type="text"
               placeholder="Type here"
               className="input  input-bordered w-full max-w-s"
@@ -17,60 +55,52 @@ const RegisterPage = () => {
           </div>
         </div>
 
-        <div id="inner-container" className="flex gap-5">
-          <div className="flex flex-col" id="left-side">
-            <div className="flex flex-col" id="form-input">
-              Price
-              <input
-                type="text"
-                name="price"
-                placeholder="Type here"
-                className="input input-bordered w-full max-w-xs"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col" id="right-side">
-            <div className="flex flex-col" id="form-input">
-              Main Image
-              <input
-                type="text"
-                name="mainImg"
-                placeholder="Type here"
-                className="input input-bordered w-full max-w-xs"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col w-full" id="form-input">
-          Category
-          <select
-            name="category"
-            className="select select-bordered uppercase w-full max-w-s"
-          >
-            <option disabled defaultValue>
-              select category
-            </option>
-            <option>Han Solo</option>
-            <option>Greedo</option>
-          </select>
-        </div>
-        <div id="name-container">
-          <div className="flex w-full flex-col" id="form-input">
-            Description
-            <textarea
-              name="description"
-              className="textarea textarea-bordered"
-              placeholder="Description.."
-            ></textarea>
-          </div>
-          <div className="flex w-full flex-col " id="form-input">
-            Image
+        <div className="flex flex-col" id="left-side">
+          <div className="flex flex-col" id="form-input">
+            Email
             <input
+              value={input.email}
+              onChange={handleChange}
               type="text"
+              name="email"
               placeholder="Type here"
-              className="input input-bordered w-full max-w-s"
-              name="image"
+              className="input input-bordered w-full max-w-xs"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col" id="right-side">
+          <div className="flex flex-col" id="form-input">
+            Password
+            <input
+              value={input.password}
+              onChange={handleChange}
+              type="password"
+              name="password"
+              placeholder="Type here"
+              className="input input-bordered w-full max-w-xs"
+            />
+          </div>
+          <div className="flex flex-col" id="form-input">
+            Phone
+            <input
+              value={input.phoneNumber}
+              onChange={handleChange}
+              type="phone"
+              name="phoneNumber"
+              placeholder="Type here"
+              className="input input-bordered w-full max-w-xs"
+            />
+          </div>
+          <div className="flex flex-col" id="form-input">
+            Address
+            <input
+              value={input.address}
+              onChange={handleChange}
+              type="text"
+              name="address"
+              placeholder="Type here"
+              className="input input-bordered w-full max-w-xs"
             />
           </div>
         </div>

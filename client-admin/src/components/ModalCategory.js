@@ -1,20 +1,27 @@
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { createCategory } from '../store/middlewares/category';
+import { createCategory } from '../store/actions/action-category';
 import Button from './Button';
 
 export const ModalCategory = () => {
+  const modalControl = useRef();
   const name = useRef();
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(createCategory(name.current.value));
+    modalControl.current.checked = false;
   };
 
   return (
     <>
-      <input type="checkbox" id="my-modal" className="modal-toggle" />
+      <input
+        ref={modalControl}
+        type="checkbox"
+        id="my-modal"
+        className="modal-toggle"
+      />
       <div className="modal">
         <div className="modal-box">
           <form onSubmit={handleSubmit}>
@@ -30,8 +37,8 @@ export const ModalCategory = () => {
                 />
               </div>
             </div>
-            <Button />
             <Button type={'submit'} />
+            <Button />
           </form>
         </div>
       </div>

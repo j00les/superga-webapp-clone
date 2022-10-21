@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCategory, fetchCategories } from '../store/middlewares/category';
+import {
+  deleteCategory,
+  fetchCategories,
+} from '../store/actions/action-category';
 
 const RowCategory = () => {
   const { category } = useSelector(state => state);
@@ -8,13 +11,11 @@ const RowCategory = () => {
 
   const handleDelete = id => {
     dispatch(deleteCategory(id));
-
     fetchCategories();
   };
 
   useEffect(() => {
     dispatch(fetchCategories());
-    // categories;
   }, []);
 
   return (
@@ -29,7 +30,7 @@ const RowCategory = () => {
             <button
               onClick={e => handleDelete(e.target.id)}
               id={el.id}
-              className="btn btn-danger"
+              className="btn btn-sm btn-error"
             >
               delete
             </button>

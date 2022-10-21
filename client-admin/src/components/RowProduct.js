@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
+
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { useDispatch } from 'react-redux';
-import { deleteProduct, fetchProducts } from '../store/middlewares/product';
+import { deleteProduct, fetchProducts } from '../store/actions/action-product';
 import ModalButton from './ModalButton';
 import { ModalImageButton } from './ModalImageButton';
 
@@ -14,7 +17,6 @@ const RowProduct = ({ products }) => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
-
   return (
     <>
       {products?.map((el, i) => (
@@ -22,7 +24,7 @@ const RowProduct = ({ products }) => {
           <th>{i + 1}</th>
           <td>{el.name}</td>
           <td className="whitespace-normal">{el.description}</td>
-          <td>{el.price}</td>
+          <td>{el.price || <Skeleton />}</td>
           <td>
             <img src={el.mainImg} alt="" />
           </td>

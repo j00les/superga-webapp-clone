@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast, Toaster } from 'react-hot-toast';
-import { clearProductState } from '../store/actions/action-product';
-import { createProduct, updateProduct } from '../store/middlewares/product';
+import {
+  clearProductState,
+  createProduct,
+  updateProduct,
+} from '../store/actions/action-product';
 import Button from './Button';
-import { fetchCategories } from '../store/middlewares/category';
+import { fetchCategories } from '../store/actions/action-category';
 
 const ModalForm = () => {
   const { category } = useSelector(state => state);
@@ -22,6 +25,8 @@ const ModalForm = () => {
     mainImg: '',
     category: '',
     description: '',
+    image: '',
+    image: '',
     image: '',
   });
 
@@ -67,7 +72,9 @@ const ModalForm = () => {
         mainImg: '',
         category: '',
         description: '',
-        image: '',
+        image1: '',
+        image2: '',
+        image3: '',
       });
     }
   }, [product.productById]);
@@ -155,14 +162,36 @@ const ModalForm = () => {
                 ></textarea>
               </div>
               <div className="flex w-full flex-col " id="form-input">
-                Image
+                Image 1
                 <input
                   value={formInput?.image}
                   onChange={handleChange}
                   type="text"
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-s"
-                  name="image"
+                  name="image-1"
+                />
+              </div>
+              <div className="flex w-full flex-col " id="form-input">
+                Image 2
+                <input
+                  value={formInput?.image}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-s"
+                  name="image-2"
+                />
+              </div>
+              <div className="flex w-full flex-col " id="form-input">
+                Image 3
+                <input
+                  value={formInput?.image}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-s"
+                  name="image-3"
                 />
               </div>
             </div>

@@ -1,3 +1,4 @@
+import { Header } from './Header';
 import { ModalCategory } from './ModalCategory';
 import { ModalCategoryButton } from './ModalCategoryButton';
 import RowCategory from './RowCategory';
@@ -5,9 +6,11 @@ import RowCategory from './RowCategory';
 const TableCategory = () => {
   return (
     <>
-      <div>
+      <div className="flex justify-between p-4">
+        <Header view="category" />
         <ModalCategoryButton />
       </div>
+
       <div className="overflow-auto">
         <table className="table w-full">
           <thead>
