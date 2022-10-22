@@ -1,5 +1,3 @@
-// import { FETCH_PRODUCTS } from '../action_types/type-product';
-
 import { FETCH_BY_ID, FETCH_PRODUCTS } from '../action_types/type-product';
 
 const initial = {

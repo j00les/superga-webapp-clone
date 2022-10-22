@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 const NavBar = () => (
   <>
     <div className="navbar text-center bg-white text-neutral-content justify-center p-2">
@@ -8,12 +10,12 @@ const NavBar = () => (
 
     {/* bawah */}
     <div className="navbar bg-black">
-      <div className="navbar-start">
+      <NavLink to="/" className="navbar-start">
         <img
           src="
           https://cdn.shopify.com/s/files/1/0421/7887/1458/files/output-onlinepngtools-removebg-preview_180x.png?v=1613765226"
         />
-      </div>
+      </NavLink>
       <div className="navbar-center gap-2 text-white">
         <span className="uppercase font-bold">new arrivals</span>
         <span className="uppercase font-bold">women</span>

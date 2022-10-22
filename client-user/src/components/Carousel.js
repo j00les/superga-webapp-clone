@@ -13,52 +13,14 @@ const Carousel = props => {
 
   if (props.belongsto === 'products') {
     return (
-      <div style={{ width: '75%' }} className=" mx-auto">
-        <div className="mx-auto w-full my-10 carousel carousel-center  p-4 space-x-4 bg-white rounded-box">
-          <Card products={product.products} />
-          {/* <div className="carousel-item">
-            <img
-              alt=""
-              src="https://placeimg.com/250/180/arch"
-              className="rounded-box"
-            />
+      <div className="mt-10">
+        <h1 className="uppercase text-center text-2xl font-semibold">
+          SHOP NOW
+        </h1>
+        <div style={{ width: '75%' }} className=" mx-auto">
+          <div className="mx-auto w-full mb-10 carousel carousel-center  p-4 space-x-4 bg-white rounded-box">
+            <Card products={product.products} />
           </div>
-          <div className="carousel-item">
-            <img
-              alt=""
-              src="https://placeimg.com/250/180/arch"
-              className="rounded-box"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              alt=""
-              src="https://placeimg.com/250/180/arch"
-              className="rounded-box"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              alt=""
-              src="https://placeimg.com/250/180/arch"
-              className="rounded-box"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              alt=""
-              src="https://placeimg.com/250/180/arch"
-              className="rounded-box"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              alt=""
-              src="https://placeimg.com/250/180/arch"
-              className="rounded-box"
-            />
-          </div>
-        */}
         </div>
       </div>
     );
