@@ -1,4 +1,5 @@
 const { tokenVerify } = require('../helpers/helpers');
+const { User } = require('../models');
 
 const authentication = async (req, res, next) => {
   try {
@@ -9,6 +10,7 @@ const authentication = async (req, res, next) => {
     if (!findUser) throw { name: 'Unauthorized' };
 
     req.user = {
+      role: findUser.role,
       id: findUser.id,
       email: findUser.email,
     };

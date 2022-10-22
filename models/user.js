@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const { passHash } = require('../helpers/helpers');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
