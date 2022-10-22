@@ -25,9 +25,9 @@ const NavBar = () => (
         <span className="uppercase font-bold">sale</span>
       </div>
       <div className="navbar-end">
-        <span class="material-symbols-outlined">search</span>
-        <span class="material-symbols-outlined">shopping_bag</span>
-        <span class="material-symbols-outlined">person</span>
+        <span className="material-symbols-outlined">search</span>
+        <span className="material-symbols-outlined">shopping_bag</span>
+        <span className="material-symbols-outlined">person</span>
       </div>
     </div>
   </>

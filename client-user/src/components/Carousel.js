@@ -1,9 +1,22 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../store/actions/action-product';
+import Card from './Card';
+
 const Carousel = props => {
+  const { product } = useSelector(state => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
+
   if (props.belongsto === 'products') {
     return (
       <div style={{ width: '75%' }} className=" mx-auto">
         <div className="mx-auto w-full my-10 carousel carousel-center  p-4 space-x-4 bg-white rounded-box">
-          <div className="carousel-item">
+          <Card products={product.products} />
+          {/* <div className="carousel-item">
             <img
               alt=""
               src="https://placeimg.com/250/180/arch"
@@ -45,13 +58,7 @@ const Carousel = props => {
               className="rounded-box"
             />
           </div>
-          <div className="carousel-item">
-            <img
-              alt=""
-              src="https://placeimg.com/250/180/arch"
-              className="rounded-box"
-            />
-          </div>
+        */}
         </div>
       </div>
     );
