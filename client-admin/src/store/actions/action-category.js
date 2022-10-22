@@ -1,13 +1,23 @@
 import Swal from 'sweetalert2';
 import {
+  CLEAR_CATEGORY_STATE,
   CREATE_CATEGORY,
   DELETE_CATEGORY,
   FETCH_CATEGORIES,
+  FETCH_CATEGORY_BY_ID,
+  UPDATE_CATEGORY,
 } from '../action_types/type-category';
 
 const categoryLoaded = data => {
   return {
     type: FETCH_CATEGORIES,
+    payload: data,
+  };
+};
+
+const clearCategoryStateCreator = data => {
+  return {
+    type: CLEAR_CATEGORY_STATE,
     payload: data,
   };
 };
@@ -20,6 +30,20 @@ const createCategoryAction = data => {
   };
 };
 
+const updateCategoryCreator = data => {
+  return {
+    type: UPDATE_CATEGORY,
+    payload: data,
+  };
+};
+
+const getCategoryByIdAction = data => {
+  return {
+    type: FETCH_CATEGORY_BY_ID,
+    payload: data,
+  };
+};
+
 const deleteCategoryAction = id => {
   return {
     type: DELETE_CATEGORY,
@@ -28,15 +52,17 @@ const deleteCategoryAction = id => {
 };
 
 const createCategory = data => async dispatch => {
-  const formData = { name: data };
+  const formData = data;
   console.log(formData);
   try {
-    const response = await fetch('http://localhost:3000/categories', {
+    const response = await fetch('http://localhost:3000/admin/categories', {
       method: 'post',
       mode: 'cors',
       credentials: 'same-origin', // include, *same-origin, omit
       headers: {
         'Content-Type': 'application/json',
+
+        access_token: localStorage.getItem('access_token'),
       },
       body: JSON.stringify(formData),
     });
@@ -53,8 +79,11 @@ const createCategory = data => async dispatch => {
 const fetchCategories = () => {
   return async dispatch => {
     try {
-      const response = await fetch('http://localhost:3000/categories', {
+      const response = await fetch('http://localhost:3000/admin/categories', {
         method: 'get',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
       });
 
       if (!response.ok) throw new Error("Can't fetch data");
@@ -62,6 +91,30 @@ const fetchCategories = () => {
       const data = await response.json();
 
       dispatch(categoryLoaded(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+const fetchCategoryById = id => {
+  return async dispatch => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/admin/categories/${id}`,
+        {
+          method: 'get',
+          headers: {
+            access_token: localStorage.getItem('access_token'),
+          },
+        }
+      );
+
+      if (!response.ok) throw new Error("Can't fetch data");
+
+      const data = await response.json();
+
+      dispatch(getCategoryByIdAction(data));
     } catch (err) {
       console.log(err);
     }
@@ -85,14 +138,18 @@ const deleteCategory = id => {
       if (result.isConfirmed) {
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
 
-        const response = await fetch(`http://localhost:3000/categories/${id}`, {
-          method: 'delete',
-          mode: 'cors',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        const response = await fetch(
+          `http://localhost:3000/admin/categories/${id}`,
+          {
+            method: 'delete',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json',
+              access_token: localStorage.getItem('access_token'),
+            },
+          }
+        );
 
         if (!response.ok) throw new Error("Can't fetch data");
 
@@ -104,7 +161,35 @@ const deleteCategory = id => {
   };
 };
 
-export {};
+const updateCategory = (id, data) => {
+  const formData = data;
+  // console.log(formData);
+  return async dispatch => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/admin/categories/${id}`,
+        {
+          method: 'put',
+          mode: 'cors',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            access_token: localStorage.getItem('access_token'),
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) throw new Error("Can't update");
+
+      const data = await response.json();
+
+      dispatch(updateCategoryCreator(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 export {
   deleteCategory,
@@ -113,4 +198,7 @@ export {
   categoryLoaded,
   createCategoryAction,
   deleteCategoryAction,
+  fetchCategoryById,
+  updateCategory,
+  clearCategoryStateCreator,
 };

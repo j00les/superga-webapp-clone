@@ -17,13 +17,13 @@ const ModalForm = () => {
   const dispatch = useDispatch();
   const inputRef = useRef();
   const modalElement = inputRef.current;
-  // console.log(inputRef);
 
   const [formInput, setForm] = useState({
     name: '',
     price: 0,
     mainImg: '',
     category: '',
+    authorId: localStorage.getItem('authorId'),
     description: '',
     image1: '',
     image2: '',
@@ -39,12 +39,12 @@ const ModalForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
     if (Object.keys(product.productById).length > 0) {
       dispatch(updateProduct(product.productById.id, formInput));
       dispatch(clearProductState());
       toast.success('Product successfully updated!');
     } else {
+      console.log(formInput);
       dispatch(createProduct(formInput));
       toast.success('Product successfully created!');
     }
@@ -197,7 +197,11 @@ const ModalForm = () => {
             </div>
             <div className="float float-right mt-5 mr-2">
               <Button type="submit" />
-              <Button handleCancel={handleCancelButton} type="button" />
+              <Button
+                itson="modal"
+                handleCancel={handleCancelButton}
+                type="button"
+              />
             </div>
           </form>
         </label>

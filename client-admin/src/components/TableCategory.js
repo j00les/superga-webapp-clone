@@ -8,7 +8,7 @@ const TableCategory = () => {
     <>
       <div className="flex justify-between p-4">
         <Header view="category" />
-        <ModalCategoryButton />
+        <ModalCategoryButton type="add" />
       </div>
 
       <div className="overflow-auto">

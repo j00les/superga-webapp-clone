@@ -4,6 +4,7 @@ import {
   deleteCategory,
   fetchCategories,
 } from '../store/actions/action-category';
+import { ModalCategoryButton } from './ModalCategoryButton';
 
 const RowCategory = () => {
   const { category } = useSelector(state => state);
@@ -11,7 +12,7 @@ const RowCategory = () => {
 
   const handleDelete = id => {
     dispatch(deleteCategory(id));
-    fetchCategories();
+    // fetchCategories();
   };
 
   useEffect(() => {
@@ -27,6 +28,8 @@ const RowCategory = () => {
           <td>{el.createdAt}</td>
           <td>{el.updatedAt}</td>
           <td>
+            <ModalCategoryButton getId={el.id} type="edit" />
+
             <button
               onClick={e => handleDelete(e.target.id)}
               id={el.id}

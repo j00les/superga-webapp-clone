@@ -22,6 +22,7 @@ export default function productReducer(state = initial, action) {
       };
 
     case CREATE_PRODUCT:
+      // console.log(payload);
       return {
         ...state,
         products: [...state.products, payload],

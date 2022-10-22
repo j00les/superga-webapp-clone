@@ -1,11 +1,26 @@
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 const SideBar = () => {
   const navigate = useNavigate();
 
   const logoutHandler = () => {
-    localStorage.clear();
-    navigate('/');
+    Swal.fire({
+      title: 'Are you sure',
+      text: 'You want to logout?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes please!',
+      cancelButtonText: 'Nope',
+    }).then(result => {
+      if (result.isConfirmed) {
+        localStorage.clear();
+        navigate('/login');
+      }
+    });
   };
+
   return (
     <aside className="w-64 " aria-label="Sidebar">
       <div className="overflow-y-auto h-screen py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">

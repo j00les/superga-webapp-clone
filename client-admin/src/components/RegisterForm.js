@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import Button from './Button';
 import { Header } from './Header';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
   const [input, setInput] = useState({
@@ -11,36 +13,55 @@ const RegisterPage = () => {
     address: '',
   });
 
+  const navigate = useNavigate();
+
+  const [errors, setError] = useState([]);
+
   const handleChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
-    console.log(input);
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
-
     try {
-      const response = await fetch('http://localhost:3000/users', {
+      const response = await fetch('http://localhost:3000/admin/register', {
         method: 'post',
-        mode: 'cors',
-        credentials: 'same-origin', // include, *same-origin, omit
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(input),
       });
 
-      if (!response.ok) throw new Error("Can't fetch data");
-
-      const data = await response.json();
+      if (response.ok) {
+        const toastId = toast.loading('Wait a minute..');
+        toast.success('Register success');
+        toast.dismiss(toastId);
+      } else if (!response.ok) {
+        const err = await response.json();
+        throw err.message;
+      }
+      navigate('/');
     } catch (err) {
-      console.log(err);
+      setError([...err]);
     }
   };
+
+  const renderedErrors = errors.map(el => {
+    return (
+      <>
+        <div className="bg-red-300 ">
+          <span className="text-red-700">{el}</span>
+        </div>
+      </>
+    );
+  });
 
   return (
     <>
       <Header view="register" />
+
+      {errors && <div className="mt-5">{renderedErrors}</div>}
+
       <form onSubmit={handleSubmit} className="my-5">
         <div id="name-container w-full">
           <div className="flex grow flex-col w-full" id="form-input">
@@ -71,7 +92,7 @@ const RegisterPage = () => {
               value={input.password}
               onChange={handleChange}
               name="password"
-              type="text"
+              type="password"
               placeholder="Type here"
               className="input  input-bordered w-full max-w-s"
             />
@@ -82,7 +103,7 @@ const RegisterPage = () => {
               value={input.phoneNumber}
               onChange={handleChange}
               name="phoneNumber"
-              type="text"
+              type="phone"
               placeholder="Type here"
               className="input  input-bordered w-full max-w-s"
             />
@@ -102,9 +123,15 @@ const RegisterPage = () => {
 
         <div className="float float-right mt-5 mr-2">
           <Button type="submit" />
-          <Button type="cancel" />
+          <Link to="/" className=" btn btn-error btn-sm">
+            CANCEL
+          </Link>
         </div>
       </form>
+
+      <Toaster
+        position="top-right" // Used to adapt the animati
+      />
     </>
   );
 };

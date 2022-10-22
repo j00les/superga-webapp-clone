@@ -53,8 +53,11 @@ const deleteProductAction = id => {
 const fetchProducts = () => {
   return async dispatch => {
     try {
-      const response = await fetch('http://localhost:3000/products', {
+      const response = await fetch('http://localhost:3000/admin/products', {
         method: 'get',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
       });
 
       if (!response.ok) throw new Error("Can't fetch data");
@@ -69,14 +72,16 @@ const fetchProducts = () => {
 
 const createProduct = data => {
   const formData = data;
+  console.log(formData);
   return async dispatch => {
     try {
-      const response = await fetch('http://localhost:3000/products', {
+      const response = await fetch('http://localhost:3000/admin/products', {
         method: 'post',
         mode: 'cors',
         credentials: 'same-origin', // include, *same-origin, omit
         headers: {
           'Content-Type': 'application/json',
+          access_token: localStorage.getItem('access_token'),
         },
         body: JSON.stringify(formData),
       });
@@ -94,14 +99,19 @@ const createProduct = data => {
 const getProductById = id => {
   return async dispatch => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${id}`, {
-        method: 'get',
-        mode: 'cors',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        `http://localhost:3000/admin/products/${id}`,
+        {
+          method: 'get',
+          mode: 'cors',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+
+            access_token: localStorage.getItem('access_token'),
+          },
+        }
+      );
 
       if (!response.ok) throw new Error("Can't fetch data");
 
@@ -118,15 +128,19 @@ const updateProduct = (id, data) => {
   console.log(formData);
   return async dispatch => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${id}`, {
-        method: 'put',
-        mode: 'cors',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `http://localhost:3000/admin/products/${id}`,
+        {
+          method: 'put',
+          mode: 'cors',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            access_token: localStorage.getItem('access_token'),
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) throw new Error("Can't fetch data");
 
@@ -162,6 +176,7 @@ const deleteProduct = id => {
           credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
+            access_token: localStorage.getItem('access_token'),
           },
         });
 

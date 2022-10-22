@@ -1,12 +1,45 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
 
 const LoginPage = () => {
-  //programmatic
   const navigate = useNavigate();
+  const [input, setInput] = useState({
+    email: '',
+    password: '',
+  });
 
-  const loginHandler = () => {
-    localStorage.setItem('access_token', '111');
-    navigate('/');
+  const handleChange = e => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3000/admin/login', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(input),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem('access_token', data.access_token);
+        localStorage.setItem('authorId', data.authorId);
+        navigate('/');
+        // const toastId = toast.loading('Wait a minute..');
+        // toast.success('Register success');
+        // toast.dismiss(toastId);
+      } else if (!response.ok) {
+        const err = await response.json();
+        throw err.message;
+      }
+    } catch (err) {
+      console.log(err);
+      // setError([...err]);
+    }
   };
 
   return (
@@ -21,13 +54,15 @@ const LoginPage = () => {
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
+          <form onSubmit={handleSubmit} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
+                onChange={handleChange}
                 type="text"
+                name="email"
                 placeholder="email"
                 className="input input-bordered"
               />
@@ -37,9 +72,11 @@ const LoginPage = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="text"
+                type="password"
+                name="password"
                 placeholder="password"
                 className="input input-bordered"
+                onChange={handleChange}
               />
               <label className="label">
                 <a href="/#" className="label-text-alt link link-hover">
@@ -48,11 +85,9 @@ const LoginPage = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button onClick={loginHandler} className="btn btn-primary">
-                Login
-              </button>
+              <Button type={'submit'} />
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
