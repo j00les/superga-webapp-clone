@@ -1,0 +1,25 @@
+const express = require('express');
+const router = express.Router();
+const AdminController = require('../controllers/adminController');
+const authentication = require('../middlewares/authn');
+// const authz = require('../middlewares/authz');
+
+//admin-side
+
+router.post('/login', AdminController.login);
+router.post('/register', AdminController.register);
+
+router.use(authentication);
+//products
+router.get('/products', AdminController.getAllProduct);
+router.post('/products', AdminController.createProduct);
+router.get('/products/:id', AdminController.getProductById);
+router.put('/products/:id', AdminController.updateProduct);
+
+//category
+router.get('/categories', AdminController.getCategory);
+router.post('/categories', AdminController.createCategory);
+router.get('/categories/:id', AdminController.getCategoryById);
+router.put('/categories/:id', AdminController.updateProduct);
+
+module.exports = router;

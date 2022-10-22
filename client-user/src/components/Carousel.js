@@ -1,55 +1,57 @@
 const Carousel = props => {
   if (props.belongsto === 'products') {
     return (
-      <div className="mx-auto w-1/2 my-10 carousel carousel-center min-w-3/4 p-4 space-x-4 bg-neutral rounded-box">
-        <div className="carousel-item">
-          <img
-            alt=""
-            src="https://placeimg.com/250/180/arch"
-            className="rounded-box"
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            alt=""
-            src="https://placeimg.com/250/180/arch"
-            className="rounded-box"
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            alt=""
-            src="https://placeimg.com/250/180/arch"
-            className="rounded-box"
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            alt=""
-            src="https://placeimg.com/250/180/arch"
-            className="rounded-box"
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            alt=""
-            src="https://placeimg.com/250/180/arch"
-            className="rounded-box"
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            alt=""
-            src="https://placeimg.com/250/180/arch"
-            className="rounded-box"
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            alt=""
-            src="https://placeimg.com/250/180/arch"
-            className="rounded-box"
-          />
+      <div style={{ width: '75%' }} className=" mx-auto">
+        <div className="mx-auto w-full my-10 carousel carousel-center  p-4 space-x-4 bg-white rounded-box">
+          <div className="carousel-item">
+            <img
+              alt=""
+              src="https://placeimg.com/250/180/arch"
+              className="rounded-box"
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              alt=""
+              src="https://placeimg.com/250/180/arch"
+              className="rounded-box"
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              alt=""
+              src="https://placeimg.com/250/180/arch"
+              className="rounded-box"
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              alt=""
+              src="https://placeimg.com/250/180/arch"
+              className="rounded-box"
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              alt=""
+              src="https://placeimg.com/250/180/arch"
+              className="rounded-box"
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              alt=""
+              src="https://placeimg.com/250/180/arch"
+              className="rounded-box"
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              alt=""
+              src="https://placeimg.com/250/180/arch"
+              className="rounded-box"
+            />
+          </div>
         </div>
       </div>
     );
@@ -57,56 +59,55 @@ const Carousel = props => {
     // instagram
     return (
       <>
-        <div className="flex flex-col my-10 gap-4">
-          <h1 className="text-center">follow us on instagram</h1>
-
-          <div className="mx-auto  w-full carousel carousel-center min-w-1/2 p-4 space-x-4 bg-neutral rounded-box">
-            <div className="carousel-item">
+        <div className="flex flex-col my-10 gap-4 ">
+          <h1 className="text-center font-semibold text-3xl">
+            follow us on instagram
+          </h1>
+          <div className="w-full carousel carousel-center p-4 space-x-4 rounded-box bg-white">
+            {/* 1 */}
+            <div className="carousel-item  w-1/6">
               <img
                 alt=""
-                src="https://placeimg.com/250/180/arch"
+                src="https://scontent.cdninstagram.com/v/t51.2885-15/312276405_141539538355726_6764524680350280641_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=ePlvmsLAzBIAX-EYDfb&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AT9DDCGqWnslypAPGkOQMbLizIL1y_kCLyV7tyZ5uOYtnw&oe=63575739"
                 className="rounded-box"
               />
             </div>
-            <div className="carousel-item">
+            {/* 2 */}
+            <div className="carousel-item  w-1/6">
               <img
                 alt=""
-                src="https://placeimg.com/250/180/arch"
+                src="https://scontent.cdninstagram.com/v/t51.2885-15/311682348_1458259707988796_4805877917737685612_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=vRkN4ihRno8AX84s9C5&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AT_d0joqUWE6dAe6IZALhH2npGICTe48Y8hA8BwMwusOsw&oe=6356D695"
                 className="rounded-box"
               />
             </div>
-            <div className="carousel-item">
+            {/* 3 */}
+            <div className="carousel-item  w-1/6">
               <img
                 alt=""
-                src="https://placeimg.com/250/180/arch"
+                src="https://scontent.cdninstagram.com/v/t51.2885-15/311934112_815645696320754_1731811903646356833_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=J7AIeEqMXQ8AX-E2uTF&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AT_8rLWXcrsJVF4TnZAzBXqI4Y4hDVA6BeLATkQfDtiYkg&oe=6357938B"
                 className="rounded-box"
               />
             </div>
-            <div className="carousel-item">
+            {/* 4 */}
+            <div className="carousel-item  w-1/6">
               <img
                 alt=""
-                src="https://placeimg.com/250/180/arch"
+                src="https://scontent.cdninstagram.com/v/t51.2885-15/311684658_794412698496219_8174009375696689672_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=uNnd5T1OnSsAX8wx7H3&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AT-Um36yFapJ6H3SaWHB2yrBnGdWaNeJacg_jna7fbmPaA&oe=6356F91C"
                 className="rounded-box"
               />
             </div>
-            <div className="carousel-item">
+            {/* 5 */}
+            <div className="carousel-item  w-1/6">
               <img
                 alt=""
-                src="https://placeimg.com/250/180/arch"
+                src="https://scontent.cdninstagram.com/v/t51.2885-15/312276405_141539538355726_6764524680350280641_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=ePlvmsLAzBIAX-EYDfb&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AT9DDCGqWnslypAPGkOQMbLizIL1y_kCLyV7tyZ5uOYtnw&oe=63575739"
                 className="rounded-box"
               />
             </div>
-            <div className="carousel-item">
+            <div className="carousel-item  w-1/6">
               <img
                 alt=""
-                src="https://placeimg.com/250/180/arch"
-                className="rounded-box"
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                alt=""
-                src="https://placeimg.com/250/180/arch"
+                src="https://scontent.cdninstagram.com/v/t51.2885-15/311833441_506971881295918_3020265032218938767_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=DTM9nVChTJAAX8pghni&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AT_EYK_tSJhOQ73i-wz3_GxJw2AvDdyMxVgirI-eiYTv_Q&oe=63573ABA"
                 className="rounded-box"
               />
             </div>

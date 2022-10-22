@@ -1,34 +1,35 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast, Toaster } from 'react-hot-toast';
 
 import {
+  clearProductState,
   createProduct,
-  fetchCategories,
-  fetchProducts,
-} from '../store/middlewares';
+  updateProduct,
+} from '../store/actions/action-product';
 import Button from './Button';
-import { toast, Toaster } from 'react-hot-toast';
-import { clearProductState, updateProduct } from '../store/actions/product';
+import { fetchCategories } from '../store/actions/action-category';
 
 const ModalForm = () => {
-  const categories = useSelector(state => state.categories);
-  const dispatch = useDispatch();
-  const ref = useRef();
+  const { category } = useSelector(state => state);
+  const { product } = useSelector(state => state);
 
-  //get input element
-  const modalElement = ref.current;
-  const productById = useSelector(state => state.productById);
+  const dispatch = useDispatch();
+  const inputRef = useRef();
+  const modalElement = inputRef.current;
 
   const [formInput, setForm] = useState({
     name: '',
     price: 0,
     mainImg: '',
     category: '',
+    authorId: localStorage.getItem('authorId'),
     description: '',
-    image: '',
+    image1: '',
+    image2: '',
+    image3: '',
   });
 
-  //ambil value
   const handleChange = e => {
     /*  spread the current state to PRESERVE the previous state
      This way, the previous data is not lost while we update the input state.*/
@@ -36,20 +37,19 @@ const ModalForm = () => {
     setForm({ ...formInput, [e.target.name]: e.target.value });
   };
 
-  const handleCreate = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    dispatch(createProduct(formInput));
-    toast.success('Product successfully created!');
-    modalElement.checked = false;
-    fetchProducts();
-  };
+    if (Object.keys(product.productById).length > 0) {
+      dispatch(updateProduct(product.productById.id, formInput));
+      dispatch(clearProductState());
+      toast.success('Product successfully updated!');
+    } else {
+      console.log(formInput);
+      dispatch(createProduct(formInput));
+      toast.success('Product successfully created!');
+    }
 
-  const handleUpdate = e => {
-    e.preventDefault();
-    dispatch(updateProduct(formInput));
-    toast.success('Product successfully updated!');
     modalElement.checked = false;
-    fetchProducts();
   };
 
   const handleCancelButton = () => {
@@ -63,29 +63,33 @@ const ModalForm = () => {
 
   useEffect(() => {
     //watch product by id dan kondisiin, lantas set form state by product by id
-    // console.log(Object.keys(productById).length);
-
-    if (Object.keys(productById).length > 0) {
-      setForm({ ...productById });
+    if (Object.keys(product.productById).length > 0) {
+      setForm({ ...formInput, ...product.productById });
+    } else {
+      setForm({
+        name: '',
+        price: 0,
+        mainImg: '',
+        category: '',
+        description: '',
+        image1: '',
+        image2: '',
+        image3: '',
+      });
     }
-  }, [productById]);
+  }, [product.productById]);
 
   return (
     <>
       <input
-        ref={ref}
+        ref={inputRef}
         type="checkbox"
         id="my-modal-4"
         className="modal-toggle"
       />
       <label htmlFor="my-modal-4" className={'modal cursor-pointer'}>
         <label className="modal-box w-3/4 relative" htmlFor="">
-          {/* add */}
-          {/* {Object.keys(productById).length === 0 && ( */}
-          <form
-            onSubmit={productById ? handleCreate : handleUpdate}
-            className=""
-          >
+          <form onSubmit={handleSubmit} className="">
             Name
             <div id="name-container w-full">
               <div className="flex grow flex-col w-full" id="form-input">
@@ -139,7 +143,7 @@ const ModalForm = () => {
                 <option hidden={true} value={true}>
                   --select category--
                 </option>
-                {categories?.map((el, i) => (
+                {category?.categories?.map((el, i) => (
                   <option value={el.id} key={i}>
                     {el.name}
                   </option>
@@ -158,20 +162,46 @@ const ModalForm = () => {
                 ></textarea>
               </div>
               <div className="flex w-full flex-col " id="form-input">
-                Image
+                Image 1
                 <input
                   value={formInput?.image}
                   onChange={handleChange}
                   type="text"
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-s"
-                  name="image"
+                  name="image-1"
+                />
+              </div>
+              <div className="flex w-full flex-col " id="form-input">
+                Image 2
+                <input
+                  value={formInput?.image}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-s"
+                  name="image-2"
+                />
+              </div>
+              <div className="flex w-full flex-col " id="form-input">
+                Image 3
+                <input
+                  value={formInput?.image}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-s"
+                  name="image-3"
                 />
               </div>
             </div>
             <div className="float float-right mt-5 mr-2">
               <Button type="submit" />
-              <Button handleCancel={handleCancelButton} type="button" />
+              <Button
+                itson="modal"
+                handleCancel={handleCancelButton}
+                type="button"
+              />
             </div>
           </form>
         </label>

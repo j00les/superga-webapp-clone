@@ -1,17 +1,63 @@
 import Swal from 'sweetalert2';
 import {
-  categoryLoaded,
-  createProductAction,
-  deleteProductAction,
-  getById,
-  productLoaded,
-} from '../actions/product';
+  FETCH_PRODUCTS,
+  CREATE_PRODUCT,
+  PRODUCT_BY_ID,
+  UPDATE_PRODUCT,
+  DELETE_PRODUCT,
+  CLEAR_PRODUCT_STATE,
+} from '../action_types/type-product';
+
+const productLoaded = data => {
+  return {
+    type: FETCH_PRODUCTS,
+    payload: data,
+  };
+};
+
+const clearProductState = () => {
+  return {
+    type: CLEAR_PRODUCT_STATE,
+  };
+};
+
+const createProductAction = data => {
+  console.log(data);
+  return {
+    type: CREATE_PRODUCT,
+    payload: data,
+  };
+};
+
+const getById = data => {
+  return {
+    type: PRODUCT_BY_ID,
+    payload: data,
+  };
+};
+
+const updateProductAction = data => {
+  return {
+    type: UPDATE_PRODUCT,
+    payload: data,
+  };
+};
+
+const deleteProductAction = id => {
+  return {
+    type: DELETE_PRODUCT,
+    payload: id,
+  };
+};
 
 const fetchProducts = () => {
   return async dispatch => {
     try {
-      const response = await fetch('http://localhost:3000/products', {
+      const response = await fetch('http://localhost:3000/admin/products', {
         method: 'get',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
       });
 
       if (!response.ok) throw new Error("Can't fetch data");
@@ -24,34 +70,18 @@ const fetchProducts = () => {
   };
 };
 
-const fetchCategories = () => {
-  return async dispatch => {
-    try {
-      const response = await fetch('http://localhost:3000/categories', {
-        method: 'get',
-      });
-
-      if (!response.ok) throw new Error("Can't fetch data");
-
-      const data = await response.json();
-
-      dispatch(categoryLoaded(data));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-
 const createProduct = data => {
   const formData = data;
+  console.log(formData);
   return async dispatch => {
     try {
-      const response = await fetch('http://localhost:3000/products', {
+      const response = await fetch('http://localhost:3000/admin/products', {
         method: 'post',
         mode: 'cors',
         credentials: 'same-origin', // include, *same-origin, omit
         headers: {
           'Content-Type': 'application/json',
+          access_token: localStorage.getItem('access_token'),
         },
         body: JSON.stringify(formData),
       });
@@ -69,14 +99,19 @@ const createProduct = data => {
 const getProductById = id => {
   return async dispatch => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${id}`, {
-        method: 'get',
-        mode: 'cors',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        `http://localhost:3000/admin/products/${id}`,
+        {
+          method: 'get',
+          mode: 'cors',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+
+            access_token: localStorage.getItem('access_token'),
+          },
+        }
+      );
 
       if (!response.ok) throw new Error("Can't fetch data");
 
@@ -90,22 +125,29 @@ const getProductById = id => {
 
 const updateProduct = (id, data) => {
   const formData = data;
+  console.log(formData);
   return async dispatch => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${id}`, {
-        method: 'put',
-        mode: 'cors',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `http://localhost:3000/admin/products/${id}`,
+        {
+          method: 'put',
+          mode: 'cors',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            access_token: localStorage.getItem('access_token'),
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) throw new Error("Can't fetch data");
 
       const data = await response.json();
-      dispatch(updateProduct(data));
+
+      console.log(data);
+      dispatch(updateProductAction(data));
     } catch (err) {
       console.log(err);
     }
@@ -134,6 +176,7 @@ const deleteProduct = id => {
           credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
+            access_token: localStorage.getItem('access_token'),
           },
         });
 
@@ -151,6 +194,7 @@ export {
   getProductById,
   fetchProducts,
   createProduct,
-  fetchCategories,
   deleteProduct,
+  updateProduct,
+  clearProductState,
 };

@@ -1,15 +1,14 @@
 import {
   FETCH_PRODUCTS,
   CREATE_PRODUCT,
-  FETCH_CATEGORIES,
   PRODUCT_BY_ID,
   DELETE_PRODUCT,
   CLEAR_PRODUCT_STATE,
-} from '../action_types';
+  UPDATE_PRODUCT,
+} from '../action_types/type-product';
 
 const initial = {
   products: [],
-  categories: [],
   productById: {},
 };
 
@@ -22,13 +21,8 @@ export default function productReducer(state = initial, action) {
         products: payload,
       };
 
-    case FETCH_CATEGORIES:
-      return {
-        ...state,
-        categories: payload,
-      };
-
     case CREATE_PRODUCT:
+      // console.log(payload);
       return {
         ...state,
         products: [...state.products, payload],
@@ -48,11 +42,28 @@ export default function productReducer(state = initial, action) {
         productById: payload,
       };
 
+    case UPDATE_PRODUCT:
+      const updated = state.products.map(product => {
+        if (product.id === payload.id) {
+          return {
+            ...product,
+            ...payload,
+          };
+        } else {
+          return product;
+        }
+      });
+      return {
+        ...state,
+        products: updated,
+      };
+
     case CLEAR_PRODUCT_STATE:
       return {
         ...state,
         productById: {},
       };
+
     default:
       return state;
   }
