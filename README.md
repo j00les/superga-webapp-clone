@@ -72,11 +72,11 @@ Target:
 
 Target:
 
-- [ ] Lecture - SQL Advance DQL
-- [ ] Membuat server mengguanakan express.js, postgreSQL dan Sequelize
-- [ ] Menentukan associations antar tables
-- [ ] Lecture - SQL Transaction
-- [ ] Membuat transaction saat membuat entitas baru pada main table. Pastikan ada assosiasi di dalamnya
+- [x] Lecture - SQL Advance DQL
+- [x] Membuat server mengguanakan express.js, postgreSQL dan Sequelize
+- [x] Menentukan associations antar tables
+- [x] Lecture - SQL Transaction
+- [x] Membuat transaction saat membuat entitas baru pada main table. Pastikan ada assosiasi di dalamnya
 
 **Report:**
 
@@ -86,8 +86,8 @@ Target:
 
 Target:
 
-- [ ] LC Simulation
-- [ ] Practice, Practice, Practice
+- [x] LC Simulation
+- [x] Practice, Practice, Practice
 
 **Report:**
 
