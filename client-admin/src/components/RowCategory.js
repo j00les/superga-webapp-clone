@@ -12,7 +12,6 @@ const RowCategory = () => {
 
   const handleDelete = id => {
     dispatch(deleteCategory(id));
-    // fetchCategories();
   };
 
   useEffect(() => {

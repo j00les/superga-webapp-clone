@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast, Toaster } from 'react-hot-toast';
-
 import {
   clearProductState,
   createProduct,
@@ -31,9 +30,6 @@ const ModalForm = () => {
   });
 
   const handleChange = e => {
-    /*  spread the current state to PRESERVE the previous state
-     This way, the previous data is not lost while we update the input state.*/
-
     setForm({ ...formInput, [e.target.name]: e.target.value });
   };
 
@@ -65,6 +61,7 @@ const ModalForm = () => {
     //watch product by id dan kondisiin, lantas set form state by product by id
     if (Object.keys(product.productById).length > 0) {
       setForm({ ...formInput, ...product.productById });
+      console.log(formInput);
     } else {
       setForm({
         name: '',
@@ -164,7 +161,7 @@ const ModalForm = () => {
               <div className="flex w-full flex-col " id="form-input">
                 Image 1
                 <input
-                  value={formInput?.image}
+                  value={formInput?.image1}
                   onChange={handleChange}
                   type="text"
                   placeholder="Type here"
@@ -175,7 +172,7 @@ const ModalForm = () => {
               <div className="flex w-full flex-col " id="form-input">
                 Image 2
                 <input
-                  value={formInput?.image}
+                  value={formInput?.image2}
                   onChange={handleChange}
                   type="text"
                   placeholder="Type here"
@@ -186,7 +183,7 @@ const ModalForm = () => {
               <div className="flex w-full flex-col " id="form-input">
                 Image 3
                 <input
-                  value={formInput?.image}
+                  value={formInput?.image3}
                   onChange={handleChange}
                   type="text"
                   placeholder="Type here"

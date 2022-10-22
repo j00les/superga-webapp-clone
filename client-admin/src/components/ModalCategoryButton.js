@@ -16,6 +16,7 @@ export const ModalCategoryButton = ({ type, getId }) => {
       onClick={e => handleGetById(e)}
       htmlFor="my-modal"
       className="btn btn-primary modal-button btn-sm"
+      type="submit"
     >
       {type === 'edit' ? 'edit' : 'add category'}
     </label>

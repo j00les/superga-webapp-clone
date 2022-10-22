@@ -23,7 +23,6 @@ const clearCategoryStateCreator = data => {
 };
 
 const createCategoryAction = data => {
-  console.log(data);
   return {
     type: CREATE_CATEGORY,
     payload: data,
@@ -38,6 +37,7 @@ const updateCategoryCreator = data => {
 };
 
 const getCategoryByIdAction = data => {
+  console.log(data);
   return {
     type: FETCH_CATEGORY_BY_ID,
     payload: data,
@@ -163,7 +163,6 @@ const deleteCategory = id => {
 
 const updateCategory = (id, data) => {
   const formData = data;
-  // console.log(formData);
   return async dispatch => {
     try {
       const response = await fetch(
