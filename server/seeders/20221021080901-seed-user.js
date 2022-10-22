@@ -17,13 +17,23 @@ module.exports = {
       'Users',
       [
         {
-          email: 'user@mail.com',
-          password: passHash('user123'),
+          email: 'admin@mail.com',
+          password: passHash('admin123'),
+          role: 'admin',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+
+        {
+          email: 'admin2@mail.com',
+          password: passHash('admin123'),
+          role: 'admin',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          email: 'user2@mail.com',
+          email: 'user@mail.com',
+          role: 'user',
           password: passHash('user123'),
           createdAt: new Date(),
           updatedAt: new Date(),

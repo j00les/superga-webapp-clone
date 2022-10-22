@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:d": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all"
+    "db:d": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
+    "db:c": "sequelize db:drop && sequelize db:create"
   },
   "keywords": [],
   "author": "",
