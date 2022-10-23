@@ -17,7 +17,7 @@ module.exports = {
         allowNull: false,
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       price: {
@@ -31,7 +31,7 @@ module.exports = {
       categoryId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Category',
+          model: 'Categories',
           key: 'id',
         },
         onDelete: 'cascade',
