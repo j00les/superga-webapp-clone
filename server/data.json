@@ -2,38 +2,44 @@
   "products": [
     {
       "name": "2750 COTU CLASSIC 901",
-      "description": "Our Classic Superga 2750 Cotu shoe is Fashion's trainer of choice",
+      "description": "Our Classic Superga 2750 Cotu shoe is Fashion's trainer of choice. With an extra strong, fully breathable, pure upper, our timeless shape trainer is a lightweight, simple tennis shoe with our vulcanised sole. In production since 1911, this is the staple shoe with full versatility, and is the very definition of smart casual.",
       "price": 600000,
       "mainImg": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/02-2750-COTUCLASSIC-WHITE_52_300x300.jpg?v=1601291563",
-      "categoryId": 1
+      "categoryId": 1,
+      "authorId": 1
     },
     {
       "name": "2706 OG AHU",
-      "description": "A remodeled construction of the nostalgic OG Superga. Canvas uppers Metal ring eyelets",
+      "description": "A remodeled construction of the nostalgic OG Superga. Canvas uppers Metal ring eyelets Tonal shoelaes New insoles named Plantarco Superga; after the ability to support the natural arch of the foot. Heritage back tab",
       "price": 600000,
       "mainImg": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8054936471887_1_300x300.jpg?v=1650952279",
-      "categoryId": 1
+      "categoryId": 1,
+      "authorId": 1
     },
     {
       "name": "2750 FLORAL PRINT ABI",
       "description": "A remodeled construction of the nostalgic OG Superga. Canvas uppers Metal ring eyelets",
       "price": 600000,
       "mainImg": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2750FLORALPRINTLTBEIGE-LILLA-LTYELLOWFLOWERS_1_300x300.jpg?v=1664559387",
-      "categoryId": 2
+      "categoryId": 2,
+      "authorId": 1
     },
     {
       "name": "2402 MULE AKH",
-      "description": "These cute and casual slip-on Supergas will give anything from jeans to dresses a cool, laid-back vibe.",
+      "description": "These cute and casual slip-on Supergas will give anything from jeans to dresses a cool, laid-back vibe. Their mule silhouette features a lace-up detail on a upper. Casual slip-on sneaker Metal eyelet lace-up closure for an adjustable fit Loop signature tag at side Cushioned footbed provides sustained comfort for all-day wear Natural , crepe-textured outsole offers traction and durability Machine washable",
       "price": 600000,
       "mainImg": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2402MULEPINKISH-FAVORIO_1_300x300.jpg?v=1664558765",
-      "categoryId": 2
+      "categoryId": 2,
+
+      "authorId": 1
     },
     {
       "name": "2709 KIDS HEART PATCH A8C",
-      "description": "It's time to embrace the playful allure of vibrant colours, graphic effects and statement details",
+      "description": "It's time to embrace the playful allure of vibrant colours, graphic effects and statement details. This season sees the timeless allure of the Superga 2709 updated with unexpected rainbow accents.",
       "price": 500000,
       "mainImg": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2709KIDSHEARTPATCHWHITE-MULTICOLORHEART_4_300x300.jpg?v=1664559072",
-      "categoryId": 3
+      "categoryId": 3,
+      "authorId": 1
     }
   ],
   "categories": [
@@ -50,23 +56,68 @@
   "images": [
     {
       "productId": 1,
-      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8052551523059_2_300x300.jpg?v=1649841134"
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/02-2750-COTUCLASSIC-WHITE_54_1024x1024@2x.jpg?v=1604550867"
+    },
+
+    {
+      "productId": 1,
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/02-2750-COTUCLASSIC-WHITE_55_1024x1024@2x.jpg?v=1601346210"
+    },
+    {
+      "productId": 1,
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/02-2750-COTUCLASSIC-WHITE_51.jpg?v=1604550867"
+    },
+
+    {
+      "productId": 2,
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8054936471887_2_1024x1024@2x.jpg?v=1650952280"
     },
     {
       "productId": 2,
-      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8054936471887_2_110x110@2x.jpg?v=1650952280"
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8054936471887_3_1024x1024@2x.jpg?v=1650952279"
+    },
+    {
+      "productId": 2,
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8054936471887_5_1024x1024@2x.jpg?v=1650952280"
+    },
+
+    {
+      "productId": 3,
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2750FLORALPRINTLTBEIGE-LILLA-LTYELLOWFLOWERS_2_1024x1024@2x.jpg?v=1664559387"
     },
     {
       "productId": 3,
-      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2750FLORALPRINTLTBEIGE-LILLA-LTYELLOWFLOWERS_2_300x300.jpg?v=1664559387"
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2750FLORALPRINTLTBEIGE-LILLA-LTYELLOWFLOWERS_3_1024x1024@2x.jpg?v=1664559387"
+    },
+    {
+      "productId": 3,
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2750FLORALPRINTLTBEIGE-LILLA-LTYELLOWFLOWERS_5_1024x1024@2x.jpg?v=1664559387"
+    },
+
+    {
+      "productId": 4,
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2402MULEPINKISH-FAVORIO_2_1024x1024@2x.jpg?v=1664558765"
     },
     {
       "productId": 4,
-      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2402MULEPINKISH-FAVORIO_2_300x300.jpg?v=1664558765"
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2402MULEPINKISH-FAVORIO_3_1024x1024@2x.jpg?v=1664558766"
+    },
+    {
+      "productId": 4,
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2402MULEPINKISH-FAVORIO_6_1024x1024@2x.jpg?v=1664558766"
+    },
+
+    {
+      "productId": 5,
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2709KIDSHEARTPATCHWHITE-MULTICOLORHEART_2_1024x1024@2x.jpg?v=1664559072"
     },
     {
       "productId": 5,
-      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2709KIDSHEARTPATCHWHITE-MULTICOLORHEART_2_300x300.jpg?v=1664559072"
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2709KIDSHEARTPATCHWHITE-MULTICOLORHEART_3_1024x1024@2x.jpg?v=1664559072"
+    },
+    {
+      "productId": 5,
+      "imgUrl": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/2709KIDSHEARTPATCHWHITE-MULTICOLORHEART_5_1024x1024@2x.jpg?v=1664559072"
     }
   ]
 }
