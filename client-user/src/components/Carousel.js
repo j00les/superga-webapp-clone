@@ -1,23 +1,32 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories } from '../store/actions/action-category';
 import { fetchProducts } from '../store/actions/action-product';
 import Card from './Card';
 
 const Carousel = props => {
   const { product } = useSelector(state => state);
+  const { category } = useSelector(state => state);
+
   const dispatch = useDispatch();
+
+  console.log(category);
 
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(fetchCategories());
   }, []);
 
   if (props.belongsto === 'products') {
     return (
       <div className="mt-10">
-        <h1 className="uppercase text-center text-2xl font-semibold">
-          SHOP NOW
-        </h1>
+        <h1 className="uppercase text-center text-2xl font-semibold">SHOP NOW</h1>
         <div style={{ width: '75%' }} className=" mx-auto">
+          <div className="text-center my-4">
+            {category.categories.map(el => {
+              return <button className="mr-2 rounded-md  btn btn-sm btn-primary">{el.name}</button>;
+            })}
+          </div>
           <div className="mx-auto w-full mb-10 carousel carousel-center  p-4 space-x-4 bg-white rounded-box">
             <Card products={product.products} />
           </div>
@@ -29,9 +38,7 @@ const Carousel = props => {
     return (
       <>
         <div className="flex flex-col my-10 gap-4 ">
-          <h1 className="text-center font-semibold text-3xl">
-            follow us on instagram
-          </h1>
+          <h1 className="text-center font-semibold text-3xl">follow us on instagram</h1>
           <div className="w-full carousel carousel-center p-4 space-x-4 rounded-box bg-white">
             {/* 1 */}
             <div className="carousel-item  w-1/6">

@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import {
   FETCH_BY_ID,
   FETCH_PRODUCTS,
@@ -41,7 +42,7 @@ const fetchProducts = () => {
 
       dispatch(fetchCreator(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     }
   };
 };
@@ -59,11 +60,11 @@ const fetchById = id => {
 
       dispatch(fetchByIdCreator(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     } finally {
       setTimeout(() => {
         dispatch(setLoadingFalse());
-      }, 20000);
+      }, 1000);
     }
   };
 };
