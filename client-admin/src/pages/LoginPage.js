@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
+const baseURL = 'https://superga-react-app.herokuapp.com/admin';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const LoginPage = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/admin/login', {
+      const response = await fetch(`${baseURL}/login`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -48,9 +49,8 @@ const LoginPage = () => {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
+            exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

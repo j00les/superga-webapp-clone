@@ -12,6 +12,8 @@ import {
   TLOADING_TRUE,
 } from '../action_types/type-product';
 
+const baseURL = 'https://superga-react-app.herokuapp.com/admin';
+
 const productLoaded = data => {
   return {
     type: FETCH_PRODUCTS,
@@ -81,7 +83,7 @@ const fetchProducts = () => {
   return async dispatch => {
     dispatch(tLoadingTrue());
     try {
-      const response = await fetch('http://localhost:3000/admin/products', {
+      const response = await fetch(`${baseURL}/products`, {
         method: 'get',
         headers: {
           access_token: localStorage.getItem('access_token'),
@@ -104,7 +106,7 @@ const createProduct = data => {
   const formData = data;
   return async dispatch => {
     try {
-      const response = await fetch('http://localhost:3000/admin/products', {
+      const response = await fetch(`${baseURL}/products`, {
         method: 'post',
         mode: 'cors',
         credentials: 'same-origin', // include, *same-origin, omit
@@ -129,7 +131,7 @@ const getProductById = id => {
   return async dispatch => {
     try {
       dispatch(loadingTrue());
-      const response = await fetch(`http://localhost:3000/admin/products/${id}`, {
+      const response = await fetch(`${baseURL}/products/${id}`, {
         method: 'get',
         mode: 'cors',
         credentials: 'same-origin',
@@ -158,7 +160,7 @@ const updateProduct = (id, data) => {
   const formData = data;
   return async dispatch => {
     try {
-      const response = await fetch(`http://localhost:3000/admin/products/${id}`, {
+      const response = await fetch(`${baseURL}/products/${id}`, {
         method: 'put',
         mode: 'cors',
         credentials: 'same-origin',
@@ -197,7 +199,7 @@ const deleteProduct = id => {
       if (result.isConfirmed) {
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
 
-        const response = await fetch(`http://localhost:3000/admin/products/${id}`, {
+        const response = await fetch(`${baseURL}/products/${id}`, {
           method: 'delete',
           mode: 'cors',
           credentials: 'same-origin',
