@@ -46,7 +46,6 @@ export const DetailPage = () => {
           <h1>{loading ? <Skeleton /> : product.productById.name}</h1>
         </div>
 
-
         {loading ? (
           <Skeleton count={2} />
         ) : (
@@ -61,23 +60,9 @@ export const DetailPage = () => {
 
         <div className="desc w-1/2 mx-auto text-xl">
           <p>{loading ? <Skeleton count={5} /> : description}</p>
-
-
-        <div className="price my-8">
-          <p className="text-lg mb-4">{toRupiah(product.productById.price)}</p>
-          <p className="text-xl">
-            Order within 01 hours 22 minutes to receive Sat 22 October - Sun 23 October
-          </p>
         </div>
 
         <div className="desc w-1/2 mx-auto text-xl">
-          <p>
-            The success of the now iconic 2630 silhouette gets a height update, now on a 4cm
-            platform. A modern twist on the classic, these sneakers present a upper with padded
-            collar reinforcement and toe cap. A unique construction that adds an effortlessly cool
-            addition to your daily edit that
-          </p>
-
           <div id="button" className="flex my-8 flex-col justify-evenly gap-3">
             {loading ? <Skeleton height={50} /> : <button className="btn"> add to cart</button>}
 
