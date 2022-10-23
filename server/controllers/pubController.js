@@ -36,6 +36,7 @@ class PubController {
       const { id } = req.params;
       const response = await Product.findOne({
         where: { id },
+        include: Image,
         attributes: {
           exclude: ['createdAt', 'updatedAt'],
         },

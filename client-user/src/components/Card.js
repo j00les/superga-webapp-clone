@@ -10,8 +10,8 @@ export default function Card({ products }) {
 
   return (
     <>
-      {products.map(el => (
-        <Link to={`detail/${el.id}`} className="flex flex-col carousel-item">
+      {products.map((el, i) => (
+        <Link key={i} to={`detail/${el.id}`} className="flex flex-col carousel-item">
           <img alt="" src={el.mainImg} className="rounded-box" />
           <article className="flex flex-col justify-center">
             <span className="font-semibold">{el.name}</span>
