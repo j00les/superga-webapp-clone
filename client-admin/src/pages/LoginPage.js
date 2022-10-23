@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import Button from '../components/Button';
+
+// const baseURL = 'https://superga-react-app.herokuapp.com/admin';
+const baseURL = 'http://localhost:3000/admin';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -16,7 +20,7 @@ const LoginPage = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/admin/login', {
+      const response = await fetch(`${baseURL}/login`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -29,16 +33,12 @@ const LoginPage = () => {
         localStorage.setItem('access_token', data.access_token);
         localStorage.setItem('authorId', data.authorId);
         navigate('/');
-        // const toastId = toast.loading('Wait a minute..');
-        // toast.success('Register success');
-        // toast.dismiss(toastId);
       } else if (!response.ok) {
         const err = await response.json();
         throw err.message;
       }
     } catch (err) {
-      console.log(err);
-      // setError([...err]);
+      Swal.fire('err', 'Invalid email or password');
     }
   };
 
@@ -48,9 +48,8 @@ const LoginPage = () => {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            To have access our admin panel, you must have an account admin account, if you don't
+            know what that is, please kindly contact our customer service.
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

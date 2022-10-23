@@ -4,6 +4,9 @@ import Button from './Button';
 import { Header } from './Header';
 import { Link, useNavigate } from 'react-router-dom';
 
+// const baseURL = 'http://localhost:3000/admin';
+const baseURL = 'https://superga-react-app.herokuapp.com/admin';
+
 const RegisterPage = () => {
   const [input, setInput] = useState({
     username: '',
@@ -24,7 +27,7 @@ const RegisterPage = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/admin/register', {
+      const response = await fetch(`${baseURL}/register`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

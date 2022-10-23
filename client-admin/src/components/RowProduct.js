@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../store/actions/action-product';
 import ModalButton from './ModalButton';
 import { ModalImageButton } from './ModalImageButton';
-import { MutatingDots } from 'react-loader-spinner';
 import { toRupiah } from '../helpers/helper';
 
 const RowProduct = ({ products }) => {

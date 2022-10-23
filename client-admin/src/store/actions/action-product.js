@@ -12,6 +12,9 @@ import {
   TLOADING_TRUE,
 } from '../action_types/type-product';
 
+const baseURL = 'https://superga-react-app.herokuapp.com/admin';
+// const baseURL = 'http://localhost:3000/admin';
+
 const productLoaded = data => {
   return {
     type: FETCH_PRODUCTS,
@@ -81,7 +84,7 @@ const fetchProducts = () => {
   return async dispatch => {
     dispatch(tLoadingTrue());
     try {
-      const response = await fetch('http://localhost:3000/admin/products', {
+      const response = await fetch(`${baseURL}/products`, {
         method: 'get',
         headers: {
           access_token: localStorage.getItem('access_token'),
@@ -93,7 +96,7 @@ const fetchProducts = () => {
 
       dispatch(productLoaded(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     } finally {
       dispatch(tLoadingFalse());
     }
@@ -104,7 +107,7 @@ const createProduct = data => {
   const formData = data;
   return async dispatch => {
     try {
-      const response = await fetch('http://localhost:3000/admin/products', {
+      const response = await fetch(`${baseURL}/products`, {
         method: 'post',
         mode: 'cors',
         credentials: 'same-origin', // include, *same-origin, omit
@@ -115,12 +118,12 @@ const createProduct = data => {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) throw new Error("Can't fetch data");
+      if (!response.ok) throw new Error("Can't create data");
 
       const data = await response.json();
       dispatch(createProductAction(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     }
   };
 };
@@ -129,7 +132,7 @@ const getProductById = id => {
   return async dispatch => {
     try {
       dispatch(loadingTrue());
-      const response = await fetch(`http://localhost:3000/admin/products/${id}`, {
+      const response = await fetch(`${baseURL}/products/${id}`, {
         method: 'get',
         mode: 'cors',
         credentials: 'same-origin',
@@ -145,7 +148,7 @@ const getProductById = id => {
       const data = await response.json();
       dispatch(getById(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     } finally {
       setTimeout(() => {
         dispatch(loadingFalse());
@@ -158,7 +161,7 @@ const updateProduct = (id, data) => {
   const formData = data;
   return async dispatch => {
     try {
-      const response = await fetch(`http://localhost:3000/admin/products/${id}`, {
+      const response = await fetch(`${baseURL}/products/${id}`, {
         method: 'put',
         mode: 'cors',
         credentials: 'same-origin',
@@ -169,19 +172,18 @@ const updateProduct = (id, data) => {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) throw new Error("Can't fetch data");
+      if (!response.ok) throw new Error("Can't update product");
 
       const data = await response.json();
 
       dispatch(updateProductAction(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     }
   };
 };
 
 const deleteProduct = id => {
-  console.log(id);
   return async dispatch => {
     try {
       const result = await Swal.fire({
@@ -197,7 +199,7 @@ const deleteProduct = id => {
       if (result.isConfirmed) {
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
 
-        const response = await fetch(`http://localhost:3000/admin/products/${id}`, {
+        const response = await fetch(`${baseURL}/products/${id}`, {
           method: 'delete',
           mode: 'cors',
           credentials: 'same-origin',
@@ -207,12 +209,12 @@ const deleteProduct = id => {
           },
         });
 
-        if (!response.ok) throw new Error("Can't fetch data");
+        if (!response.ok) throw new Error("Can't delete product");
 
         dispatch(deleteProductAction(id));
       }
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     }
   };
 };

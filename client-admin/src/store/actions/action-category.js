@@ -8,6 +8,8 @@ import {
   UPDATE_CATEGORY,
 } from '../action_types/type-category';
 
+const baseURL = 'https://superga-react-app.herokuapp.com/admin';
+
 const categoryLoaded = data => {
   return {
     type: FETCH_CATEGORIES,
@@ -37,7 +39,6 @@ const updateCategoryCreator = data => {
 };
 
 const getCategoryByIdAction = data => {
-  console.log(data);
   return {
     type: FETCH_CATEGORY_BY_ID,
     payload: data,
@@ -53,9 +54,8 @@ const deleteCategoryAction = id => {
 
 const createCategory = data => async dispatch => {
   const formData = data;
-  console.log(formData);
   try {
-    const response = await fetch('http://localhost:3000/admin/categories', {
+    const response = await fetch(`${baseURL}/categories`, {
       method: 'post',
       mode: 'cors',
       credentials: 'same-origin', // include, *same-origin, omit
@@ -67,32 +67,32 @@ const createCategory = data => async dispatch => {
       body: JSON.stringify(formData),
     });
 
-    if (!response.ok) throw new Error("Can't fetch data");
+    if (!response.ok) throw new Error("Can't create category");
 
     const data = await response.json();
     dispatch(createCategoryAction(data));
   } catch (err) {
-    console.log(err);
+    Swal.fire('error', err);
   }
 };
 
 const fetchCategories = () => {
   return async dispatch => {
     try {
-      const response = await fetch('http://localhost:3000/admin/categories', {
+      const response = await fetch(`${baseURL}/categories`, {
         method: 'get',
         headers: {
           access_token: localStorage.getItem('access_token'),
         },
       });
 
-      if (!response.ok) throw new Error("Can't fetch data");
+      if (!response.ok) throw new Error("Can't fetch category");
 
       const data = await response.json();
 
       dispatch(categoryLoaded(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     }
   };
 };
@@ -100,23 +100,20 @@ const fetchCategories = () => {
 const fetchCategoryById = id => {
   return async dispatch => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/admin/categories/${id}`,
-        {
-          method: 'get',
-          headers: {
-            access_token: localStorage.getItem('access_token'),
-          },
-        }
-      );
+      const response = await fetch(`${baseURL}/categories/${id}`, {
+        method: 'get',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
+      });
 
-      if (!response.ok) throw new Error("Can't fetch data");
+      if (!response.ok) throw new Error('Cant fetch category');
 
       const data = await response.json();
 
       dispatch(getCategoryByIdAction(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     }
   };
 };
@@ -138,25 +135,22 @@ const deleteCategory = id => {
       if (result.isConfirmed) {
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
 
-        const response = await fetch(
-          `http://localhost:3000/admin/categories/${id}`,
-          {
-            method: 'delete',
-            mode: 'cors',
-            credentials: 'same-origin',
-            headers: {
-              'Content-Type': 'application/json',
-              access_token: localStorage.getItem('access_token'),
-            },
-          }
-        );
+        const response = await fetch(`${baseURL}/categories/${id}`, {
+          method: 'delete',
+          mode: 'cors',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            access_token: localStorage.getItem('access_token'),
+          },
+        });
 
         if (!response.ok) throw new Error("Can't fetch data");
 
         dispatch(deleteCategoryAction(id));
       }
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', 'cant delete category!');
     }
   };
 };
@@ -165,19 +159,16 @@ const updateCategory = (id, data) => {
   const formData = data;
   return async dispatch => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/admin/categories/${id}`,
-        {
-          method: 'put',
-          mode: 'cors',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json',
-            access_token: localStorage.getItem('access_token'),
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(`${baseURL}/categories/${id}`, {
+        method: 'put',
+        mode: 'cors',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          access_token: localStorage.getItem('access_token'),
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (!response.ok) throw new Error("Can't update");
 
@@ -185,7 +176,7 @@ const updateCategory = (id, data) => {
 
       dispatch(updateCategoryCreator(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', 'cant update category!');
     }
   };
 };
