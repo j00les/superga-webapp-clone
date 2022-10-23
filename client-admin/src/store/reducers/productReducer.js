@@ -5,11 +5,17 @@ import {
   DELETE_PRODUCT,
   CLEAR_PRODUCT_STATE,
   UPDATE_PRODUCT,
+  LOADING_TRUE,
+  TLOADING_TRUE,
+  LOADING_FALSE,
+  TLOADING_FALSE,
 } from '../action_types/type-product';
 
 const initial = {
   products: [],
   productById: {},
+  loading: false,
+  tableLoading: false,
 };
 
 export default function productReducer(state = initial, action) {
@@ -19,6 +25,30 @@ export default function productReducer(state = initial, action) {
       return {
         ...state,
         products: payload,
+      };
+
+    case TLOADING_TRUE:
+      return {
+        ...state,
+        tableLoading: true,
+      };
+
+    case TLOADING_FALSE:
+      return {
+        ...state,
+        tableLoading: false,
+      };
+
+    case LOADING_TRUE:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case LOADING_FALSE:
+      return {
+        ...state,
+        loading: false,
       };
 
     case CREATE_PRODUCT:

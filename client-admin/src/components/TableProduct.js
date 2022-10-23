@@ -6,17 +6,18 @@ import ModalForm from './ModalForm';
 import { ModalImage } from './ModalImage';
 import RowProduct from './RowProduct';
 import { fetchProducts } from '../store/actions/action-product';
-
 // import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { ThreeCircles } from 'react-loader-spinner';
 
 const TableProduct = () => {
   const dispatch = useDispatch();
   const { product } = useSelector(state => state);
 
+  const tLoading = product.tableLoading;
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
   return (
     <>
       <div className="flex justify-between p-4">
@@ -24,8 +25,24 @@ const TableProduct = () => {
         <ModalButton />
       </div>
 
-      <div className="overflow-scroll">
-        {
+      {tLoading ? (
+        <div className="mx-auto my-auto">
+          <ThreeCircles
+            className="mx-auto"
+            height="100"
+            width="100"
+            color="#788282"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            ariaLabel="three-circles-rotating"
+            outerCircleColor=""
+            innerCircleColor=""
+            middleCircleColor=""
+          />
+        </div>
+      ) : (
+        <div className="overflow-scroll">
           <table className="table w-full">
             <thead>
               <tr>
@@ -45,10 +62,11 @@ const TableProduct = () => {
               <RowProduct products={product.products} />
             </tbody>
           </table>
-        }
-      </div>
+        </div>
+      )}
 
       <ModalForm />
+
       <ModalImage />
     </>
   );

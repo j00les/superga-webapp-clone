@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchById } from '../store/actions/action-product';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export const DetailPage = () => {
   const { id } = useParams();
@@ -83,7 +85,7 @@ export const DetailPage = () => {
       <section className=" w-3/4 mt-8  text-center">
         <div className="title mb-4">
           <h1 className="text-2xl font-semibold uppercase">
-            Superga indonesia
+            {product.isLoading ? <Skeleton /> : 'Superga indonesia'}
           </h1>
           <h1>{product.productById.name}</h1>
         </div>

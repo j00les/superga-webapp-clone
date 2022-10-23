@@ -1,4 +1,9 @@
-import { FETCH_BY_ID, FETCH_PRODUCTS } from '../action_types/type-product';
+import {
+  FETCH_BY_ID,
+  FETCH_PRODUCTS,
+  SET_LOADING_FALSE,
+  SET_LOADING_TRUE,
+} from '../action_types/type-product';
 
 const baseUrl = 'http://localhost:3000/pub';
 
@@ -7,6 +12,14 @@ const fetchCreator = data => {
     type: FETCH_PRODUCTS,
     payload: data,
   };
+};
+
+const setLoadingFalse = () => {
+  return { type: SET_LOADING_FALSE };
+};
+
+const setLoadingTrue = () => {
+  return { type: SET_LOADING_TRUE };
 };
 
 const fetchByIdCreator = data => {
@@ -35,6 +48,7 @@ const fetchProducts = () => {
 
 const fetchById = id => {
   return async dispatch => {
+    dispatch(setLoadingTrue());
     try {
       const response = await fetch(`${baseUrl}/products/${id}`, {
         method: 'get',
@@ -46,6 +60,10 @@ const fetchById = id => {
       dispatch(fetchByIdCreator(data));
     } catch (err) {
       console.log(err);
+    } finally {
+      setTimeout(() => {
+        dispatch(setLoadingFalse());
+      }, 20000);
     }
   };
 };

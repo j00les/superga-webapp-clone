@@ -1,8 +1,14 @@
-import { FETCH_BY_ID, FETCH_PRODUCTS } from '../action_types/type-product';
+import {
+  FETCH_BY_ID,
+  FETCH_PRODUCTS,
+  SET_LOADING_FALSE,
+  SET_LOADING_TRUE,
+} from '../action_types/type-product';
 
 const initial = {
   products: [],
   productById: {},
+  isLoading: false,
 };
 export default function productReducer(state = initial, action) {
   const { type, payload } = action;
@@ -11,6 +17,18 @@ export default function productReducer(state = initial, action) {
       return {
         ...state,
         products: payload,
+      };
+
+    case SET_LOADING_FALSE:
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    case SET_LOADING_TRUE:
+      return {
+        ...state,
+        isLoading: true,
       };
 
     case FETCH_BY_ID:
