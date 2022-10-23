@@ -6,6 +6,10 @@ import {
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
   CLEAR_PRODUCT_STATE,
+  LOADING_TRUE,
+  LOADING_FALSE,
+  TLOADING_FALSE,
+  TLOADING_TRUE,
 } from '../action_types/type-product';
 
 const productLoaded = data => {
@@ -22,7 +26,6 @@ const clearProductState = () => {
 };
 
 const createProductAction = data => {
-  console.log(data);
   return {
     type: CREATE_PRODUCT,
     payload: data,
@@ -50,8 +53,33 @@ const deleteProductAction = id => {
   };
 };
 
+const loadingTrue = () => {
+  return {
+    type: LOADING_TRUE,
+  };
+};
+
+const loadingFalse = () => {
+  return {
+    type: LOADING_FALSE,
+  };
+};
+
+const tLoadingFalse = () => {
+  return {
+    type: TLOADING_FALSE,
+  };
+};
+
+const tLoadingTrue = () => {
+  return {
+    type: TLOADING_TRUE,
+  };
+};
+
 const fetchProducts = () => {
   return async dispatch => {
+    dispatch(tLoadingTrue());
     try {
       const response = await fetch('http://localhost:3000/admin/products', {
         method: 'get',
@@ -66,13 +94,14 @@ const fetchProducts = () => {
       dispatch(productLoaded(data));
     } catch (err) {
       console.log(err);
+    } finally {
+      dispatch(tLoadingFalse());
     }
   };
 };
 
 const createProduct = data => {
   const formData = data;
-  console.log(formData);
   return async dispatch => {
     try {
       const response = await fetch('http://localhost:3000/admin/products', {
@@ -99,19 +128,17 @@ const createProduct = data => {
 const getProductById = id => {
   return async dispatch => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/admin/products/${id}`,
-        {
-          method: 'get',
-          mode: 'cors',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json',
+      dispatch(loadingTrue());
+      const response = await fetch(`http://localhost:3000/admin/products/${id}`, {
+        method: 'get',
+        mode: 'cors',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
 
-            access_token: localStorage.getItem('access_token'),
-          },
-        }
-      );
+          access_token: localStorage.getItem('access_token'),
+        },
+      });
 
       if (!response.ok) throw new Error("Can't fetch data");
 
@@ -119,34 +146,33 @@ const getProductById = id => {
       dispatch(getById(data));
     } catch (err) {
       console.log(err);
+    } finally {
+      setTimeout(() => {
+        dispatch(loadingFalse());
+      }, 1000);
     }
   };
 };
 
 const updateProduct = (id, data) => {
   const formData = data;
-  console.log(formData);
   return async dispatch => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/admin/products/${id}`,
-        {
-          method: 'put',
-          mode: 'cors',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json',
-            access_token: localStorage.getItem('access_token'),
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(`http://localhost:3000/admin/products/${id}`, {
+        method: 'put',
+        mode: 'cors',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          access_token: localStorage.getItem('access_token'),
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (!response.ok) throw new Error("Can't fetch data");
 
       const data = await response.json();
 
-      console.log(data);
       dispatch(updateProductAction(data));
     } catch (err) {
       console.log(err);
@@ -155,6 +181,7 @@ const updateProduct = (id, data) => {
 };
 
 const deleteProduct = id => {
+  console.log(id);
   return async dispatch => {
     try {
       const result = await Swal.fire({
@@ -170,7 +197,7 @@ const deleteProduct = id => {
       if (result.isConfirmed) {
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
 
-        const response = await fetch(`http://localhost:3000/products/${id}`, {
+        const response = await fetch(`http://localhost:3000/admin/products/${id}`, {
           method: 'delete',
           mode: 'cors',
           credentials: 'same-origin',

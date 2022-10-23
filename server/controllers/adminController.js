@@ -1,4 +1,4 @@
-const { passCompare, tokenSign } = require('../helpers/helpers');
+const { passCompare, tokenSign, formatSlug } = require('../helpers/helpers');
 const { User, Product, Image, Category, sequelize } = require('../models');
 
 class AdminController {
@@ -61,12 +61,17 @@ class AdminController {
         name,
         description,
         price,
+        slug,
         mainImg,
         category: categoryId,
+        image1,
+        image2,
+        image3,
       } = req.body;
 
-      const response = await Product.create(
+      const product = await Product.create(
         {
+          slug,
           name,
           description,
           price,
@@ -77,9 +82,21 @@ class AdminController {
         { transaction: t }
       );
 
+      const images = [image1, image2, image3].map(img => {
+        return {
+          imgUrl: img,
+        };
+      });
+
+      images.forEach(el => {
+        return (el.productId = product.id);
+      });
+
+      await Image.bulkCreate(images, { transaction: t });
+
       await t.commit();
 
-      res.status(201).json(response);
+      res.status(201).json(product);
     } catch (err) {
       await t.rollback();
       next(err);
@@ -103,24 +120,63 @@ class AdminController {
   }
 
   static async updateProduct(req, res, next) {
+    const t = await sequelize.transaction();
     try {
-      const { name, description, price, mainImg } = req.body;
       const { id } = req.params;
+      const { id: authorId } = req.user;
 
       const findProduct = Product.findByPk(id);
       if (!findProduct) throw { name: 'Not Found' };
 
-      await Product.update(
-        { name, description, price, mainImg },
+      const {
+        name,
+        description,
+        price,
+        slug,
+        mainImg,
+        category: categoryId,
+        image1,
+        image2,
+        image3,
+      } = req.body;
+
+      const product = await Product.update(
         {
+          slug,
+          name,
+          description,
+          price,
+          mainImg,
+          authorId,
+          categoryId,
+        },
+        {
+          transaction: t,
           where: {
             id,
           },
+          returning: true,
+          plain: true,
         }
       );
-      res.status(200).json({
-        message: 'Product updated successfully',
+
+      const images = [image1, image2, image3].map(img => {
+        if (typeof img === 'string') {
+          return {
+            imgUrl: img,
+          };
+        } else {
+          return img;
+        }
       });
+
+      await Image.bulkCreate(images, {
+        // updateOnDuplicate: ['imgUrl'],
+      });
+
+      await t.commit();
+
+      res.status(200).json(product[1]);
     } catch (err) {
       next(err);
     }
@@ -130,22 +186,28 @@ class AdminController {
     try {
       const { id } = req.params;
 
-      const findProduct = Product.findByPk(id);
+      const findProduct = await Product.findByPk(id);
       if (!findProduct) throw { name: 'Not Found' };
 
-      await Product.delete({ where: { id } });
+      await Product.destroy({ where: { id } });
+
+      res.status(200).json({ message: 'Product deleted successfully' });
     } catch (err) {
       next(err);
     }
   }
-
   static async getProductById(req, res, next) {
     try {
       const { id } = req.params;
       const response = await Product.findOne({
         where: { id },
+
         attributes: {
           exclude: ['createdAt', 'updatedAt'],
+        },
+
+        include: {
+          model: Image,
         },
       });
 
@@ -171,7 +233,6 @@ class AdminController {
   static async createCategory(req, res, next) {
     try {
       const { name } = req.body;
-      console.log(name);
       const response = await Category.create({ name });
 
       res.status(201).json(response);
@@ -187,11 +248,19 @@ class AdminController {
       const findCat = await Category.findByPk(id);
       if (!findCat) throw { name: 'Not Found Category' };
 
-      await Category.update({ name }, { where: { id } });
+      const response = await Category.update(
+        {
+          name,
+        },
 
-      res.status(200).json({
-        message: 'Category updated successfully',
-      });
+        {
+          where: { id },
+          returning: true,
+          plain: true,
+        }
+      );
+
+      res.status(200).json(response[1]);
     } catch (err) {
       next(err);
     }
@@ -201,10 +270,12 @@ class AdminController {
     try {
       const { id } = req.params;
 
-      const findCat = Category.findByPk(id);
+      const findCat = await Category.findByPk(id);
       if (!findCat) throw { name: 'Not Found Category' };
 
-      await Category.delete({ where: { id } });
+      await Category.destroy({ where: { id } });
+
+      res.status(200).json({ message: 'Category deleted successfully' });
     } catch (err) {
       next(err);
     }

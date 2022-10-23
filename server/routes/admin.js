@@ -15,11 +15,14 @@ router.get('/products', AdminController.getAllProduct);
 router.post('/products', AdminController.createProduct);
 router.get('/products/:id', AdminController.getProductById);
 router.put('/products/:id', AdminController.updateProduct);
+router.delete('/products/:id', AdminController.deleteProduct);
 
 //category
 router.get('/categories', AdminController.getCategory);
 router.post('/categories', AdminController.createCategory);
 router.get('/categories/:id', AdminController.getCategoryById);
-router.put('/categories/:id', AdminController.updateProduct);
+router.put('/categories/:id', AdminController.updateCategory);
+
+router.delete('/categories/:id', AdminController.deleteCategory);
 
 module.exports = router;

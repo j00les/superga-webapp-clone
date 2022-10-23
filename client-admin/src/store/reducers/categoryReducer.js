@@ -4,6 +4,7 @@ import {
   DELETE_CATEGORY,
   FETCH_CATEGORIES,
   FETCH_CATEGORY_BY_ID,
+  UPDATE_CATEGORY,
 } from '../action_types/type-category';
 
 const initial = {
@@ -21,10 +22,9 @@ export default function categoryReducer(state = initial, action) {
       };
 
     case FETCH_CATEGORY_BY_ID:
-      console.log(payload);
       return {
         ...state,
-        categeoryById: payload,
+        categoryById: payload,
       };
 
     case CREATE_CATEGORY:
@@ -44,6 +44,22 @@ export default function categoryReducer(state = initial, action) {
       return {
         ...state,
         categories: filteredCat,
+      };
+
+    case UPDATE_CATEGORY:
+      const updated = state.categories.map(el => {
+        if (el.id === payload.id) {
+          return {
+            ...el,
+            ...payload,
+          };
+        } else {
+          return el;
+        }
+      });
+      return {
+        ...state,
+        categories: updated,
       };
 
     default:

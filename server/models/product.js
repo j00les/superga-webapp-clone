@@ -32,10 +32,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: 'Name is required',
+            msg: 'Slug is required',
           },
           notEmpty: {
-            msg: 'Name is required',
+            msg: 'Slug is required',
           },
         },
       },
@@ -85,7 +85,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Product.addHook('beforeCreate', (product, options) => {
-    user.slug = formatSlug(product.name);
+    product.slug = formatSlug(product.name);
   });
 
   return Product;

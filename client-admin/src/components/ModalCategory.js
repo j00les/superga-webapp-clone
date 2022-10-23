@@ -8,15 +8,19 @@ import {
 } from '../store/actions/action-category';
 import Button from './Button';
 
-export const ModalCategory = () => {
+const ModalCategory = () => {
   const modalControl = useRef();
-  // const name = useRef();
   const { category } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const [form, setForm] = useState({
     name: '',
   });
+
+  const handleCancelButton = () => {
+    dispatch(clearCategoryStateCreator());
+    modalControl.current.checked = false;
+  };
 
   const handleOnChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -36,9 +40,7 @@ export const ModalCategory = () => {
 
     modalControl.current.checked = false;
   };
-
   useEffect(() => {
-    //watch product by id dan kondisiin, lantas set form state by product by id
     if (Object.keys(category.categoryById).length > 0) {
       setForm({ ...form, ...category.categoryById });
     } else {
@@ -64,6 +66,7 @@ export const ModalCategory = () => {
               <div className="flex grow flex-col w-full" id="form-input">
                 <input
                   onChange={handleOnChange}
+                  value={form?.name}
                   name="name"
                   type="text"
                   placeholder="Type here"
@@ -72,10 +75,12 @@ export const ModalCategory = () => {
               </div>
             </div>
             <Button type={'submit'} />
-            <Button />
+            <Button type={'button'} handleCancel={handleCancelButton} />
           </form>
         </div>
       </div>
     </>
   );
 };
+
+export default ModalCategory;

@@ -1,5 +1,5 @@
 import { Header } from './Header';
-import { ModalCategory } from './ModalCategory';
+import ModalCategory from './ModalCategory';
 import { ModalCategoryButton } from './ModalCategoryButton';
 import RowCategory from './RowCategory';
 
