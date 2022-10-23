@@ -11,7 +11,6 @@ const ModalForm = () => {
   const { product } = useSelector(state => state);
   const loading = product.loading;
 
-  console.log(loading);
   const dispatch = useDispatch();
   const inputRef = useRef();
   const modalElement = inputRef.current;

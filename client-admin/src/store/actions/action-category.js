@@ -39,7 +39,6 @@ const updateCategoryCreator = data => {
 };
 
 const getCategoryByIdAction = data => {
-  console.log(data);
   return {
     type: FETCH_CATEGORY_BY_ID,
     payload: data,
@@ -55,7 +54,6 @@ const deleteCategoryAction = id => {
 
 const createCategory = data => async dispatch => {
   const formData = data;
-  console.log(formData);
   try {
     const response = await fetch(`${baseURL}/categories`, {
       method: 'post',
@@ -69,12 +67,12 @@ const createCategory = data => async dispatch => {
       body: JSON.stringify(formData),
     });
 
-    if (!response.ok) throw new Error("Can't fetch data");
+    if (!response.ok) throw new Error("Can't create category");
 
     const data = await response.json();
     dispatch(createCategoryAction(data));
   } catch (err) {
-    console.log(err);
+    Swal.fire('error', err);
   }
 };
 
@@ -88,13 +86,13 @@ const fetchCategories = () => {
         },
       });
 
-      if (!response.ok) throw new Error("Can't fetch data");
+      if (!response.ok) throw new Error("Can't fetch category");
 
       const data = await response.json();
 
       dispatch(categoryLoaded(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     }
   };
 };
@@ -109,13 +107,13 @@ const fetchCategoryById = id => {
         },
       });
 
-      if (!response.ok) throw new Error("Can't fetch data");
+      if (!response.ok) throw new Error('Cant fetch category');
 
       const data = await response.json();
 
       dispatch(getCategoryByIdAction(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     }
   };
 };
@@ -152,7 +150,7 @@ const deleteCategory = id => {
         dispatch(deleteCategoryAction(id));
       }
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', 'cant delete category!');
     }
   };
 };
@@ -178,7 +176,7 @@ const updateCategory = (id, data) => {
 
       dispatch(updateCategoryCreator(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', 'cant update category!');
     }
   };
 };

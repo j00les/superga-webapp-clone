@@ -52,12 +52,7 @@ const ModalCategory = () => {
 
   return (
     <>
-      <input
-        ref={modalControl}
-        type="checkbox"
-        id="my-modal"
-        className="modal-toggle"
-      />
+      <input ref={modalControl} type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
           <form onSubmit={handleSubmit}>

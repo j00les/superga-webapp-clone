@@ -3,6 +3,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import Button from './Button';
 import { Header } from './Header';
 import { Link, useNavigate } from 'react-router-dom';
+
+// const baseURL = 'http://localhost:3000/admin';
 const baseURL = 'https://superga-react-app.herokuapp.com/admin';
 
 const RegisterPage = () => {

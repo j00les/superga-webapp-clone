@@ -13,6 +13,7 @@ import {
 } from '../action_types/type-product';
 
 const baseURL = 'https://superga-react-app.herokuapp.com/admin';
+// const baseURL = 'http://localhost:3000/admin';
 
 const productLoaded = data => {
   return {
@@ -95,7 +96,7 @@ const fetchProducts = () => {
 
       dispatch(productLoaded(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     } finally {
       dispatch(tLoadingFalse());
     }
@@ -117,12 +118,12 @@ const createProduct = data => {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) throw new Error("Can't fetch data");
+      if (!response.ok) throw new Error("Can't create data");
 
       const data = await response.json();
       dispatch(createProductAction(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     }
   };
 };
@@ -147,7 +148,7 @@ const getProductById = id => {
       const data = await response.json();
       dispatch(getById(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     } finally {
       setTimeout(() => {
         dispatch(loadingFalse());
@@ -171,19 +172,18 @@ const updateProduct = (id, data) => {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) throw new Error("Can't fetch data");
+      if (!response.ok) throw new Error("Can't update product");
 
       const data = await response.json();
 
       dispatch(updateProductAction(data));
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     }
   };
 };
 
 const deleteProduct = id => {
-  console.log(id);
   return async dispatch => {
     try {
       const result = await Swal.fire({
@@ -209,12 +209,12 @@ const deleteProduct = id => {
           },
         });
 
-        if (!response.ok) throw new Error("Can't fetch data");
+        if (!response.ok) throw new Error("Can't delete product");
 
         dispatch(deleteProductAction(id));
       }
     } catch (err) {
-      console.log(err);
+      Swal.fire('error', err);
     }
   };
 };

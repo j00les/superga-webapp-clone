@@ -4,7 +4,6 @@ import { fetchCategoryById } from '../store/actions/action-category';
 export const ModalCategoryButton = ({ type, getId }) => {
   const dispatch = useDispatch();
   const handleGetById = e => {
-    console.log(e.target.id);
     if (e.target.id) {
       dispatch(fetchCategoryById(e.target.id));
     }

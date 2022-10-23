@@ -1,9 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  deleteCategory,
-  fetchCategories,
-} from '../store/actions/action-category';
+import { deleteCategory, fetchCategories } from '../store/actions/action-category';
 import { ModalCategoryButton } from './ModalCategoryButton';
 
 const RowCategory = () => {
@@ -16,7 +13,7 @@ const RowCategory = () => {
 
   useEffect(() => {
     dispatch(fetchCategories());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
