@@ -7,7 +7,7 @@ export default function App() {
   return (
     <>
       <ReduxProvider store={store}>
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
       </ReduxProvider>
     </>
   );

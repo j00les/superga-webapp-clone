@@ -26,20 +26,31 @@ export const DetailPage = () => {
 
   return (
     <div className="flex  justify-evenly m-8">
-      <div className="carousel w-1/2">
-        {images?.map((el, i) => (
-          <div key={`${i}-cccarou`} id={`slide${i + 1}`} className="carousel-item relative w-full">
-            <img src={el.imgUrl} className="w-full" />
+      <>
+        {loading ? (
+          <div className="mt-8 bg-blue w-1/5">{<Skeleton height={200} />}</div>
+        ) : (
+          <div className="carousel w-1/2">
+            {images?.map((el, i) => (
+              <div
+                key={`${i}-cccarou`}
+                id={`slide${i + 1}`}
+                className="carousel-item relative w-full"
+              >
+                <img src={el.imgUrl} className="w-full" />
 
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <span className="btn btn-circle">❮</span>
-              <span className="btn btn-circle">❯</span>
-            </div>
+                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                  <span className="btn btn-circle">❮</span>
+                  <span className="btn btn-circle">❯</span>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        )}
+      </>
       <section className=" w-3/4 mt-8  text-center">
         <div className="title mb-4">
+          <Skeleton />
           <h1 className="text-2xl font-semibold uppercase">
             {loading ? <Skeleton /> : 'Superga indonesia'}
           </h1>

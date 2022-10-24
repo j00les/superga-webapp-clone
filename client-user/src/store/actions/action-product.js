@@ -6,8 +6,9 @@ import {
   SET_LOADING_TRUE,
 } from '../action_types/type-product';
 
-const baseUrl = 'https://superga-react-app.herokuapp.com/pub';
-// const baseUrl = 'http://localhost:3000/pub';
+// const baseUrl = 'https://superga-react-app.herokuapp.com/pub';
+
+const baseUrl = 'http://localhost:3000/pub';
 
 const fetchCreator = data => {
   return {

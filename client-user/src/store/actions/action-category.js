@@ -1,7 +1,8 @@
 import Swal from 'sweetalert2';
 import { FETCH_CATEGORIES } from '../action_types/type-category';
 
-const baseUrl = 'https://superga-react-app.herokuapp.com/pub';
+// const baseUrl = 'https://superga-react-app.herokuapp.com/pub';
+const baseUrl = 'http://localhost:3000/pub';
 
 const fetchCreator = data => {
   return {
