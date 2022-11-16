@@ -1,6 +1,6 @@
-'use strict';
-const { Model } = require('sequelize');
-const { passHash } = require('../helpers/helpers');
+"use strict";
+const { Model } = require("sequelize");
+const { passHash } = require("../helpers/helpers");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -21,13 +21,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           isEmail: {
-            msg: 'Invalid email format',
+            msg: "Invalid email format",
           },
           notNull: {
-            msg: 'Email is required',
+            msg: "Email is required",
           },
           notEmpty: {
-            msg: 'Email is required',
+            msg: "Email is required",
           },
         },
       },
@@ -37,13 +37,13 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: {
             args: [5],
-            msg: 'Minimum password length is 5',
+            msg: "Minimum password length is 5",
           },
           notNull: {
-            msg: 'Password is required',
+            msg: "Password is required",
           },
           notEmpty: {
-            msg: 'Password is required',
+            msg: "Password is required",
           },
         },
       },
@@ -53,11 +53,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'User',
+      modelName: "User",
     }
   );
 
-  User.addHook('beforeCreate', (user, options) => {
+  User.addHook("beforeCreate", (user, options) => {
     user.password = passHash(user.password);
   });
 

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "db:d": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
+    "db:d": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "db:c": "sequelize db:drop && sequelize db:create"
   },
   "keywords": [],
@@ -19,6 +19,7 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.8.0",
-    "sequelize": "^6.25.3"
+    "sequelize": "^6.25.3",
+    "xendit-node": "^1.21.10"
   }
 }
