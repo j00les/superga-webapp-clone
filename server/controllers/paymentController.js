@@ -17,9 +17,9 @@ module.exports = class PaymentController {
       const category = await Category.findByPk(categoryId);
       const resp = await i.createInvoice({
         externalID: "payment-link-example",
-        amount: 100000,
+        amount: price,
         description: "Invoice Demo #123",
-        successRedirectURL: "http://localhost:7070/",
+        successRedirectURL: "http://localhost:7070/payment-success",
         invoice_duration: 86400,
         customer: {
           given_names: "John",
