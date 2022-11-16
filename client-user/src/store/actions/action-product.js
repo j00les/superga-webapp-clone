@@ -1,14 +1,15 @@
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
+import { product } from "../../apis/axiosInstance";
 import {
   FETCH_BY_ID,
   FETCH_PRODUCTS,
+  PAY_PRODUCT,
   SET_LOADING_FALSE,
   SET_LOADING_TRUE,
-} from '../action_types/type-product';
+} from "../action_types/type-product";
 
 // const baseUrl = 'https://superga-react-app.herokuapp.com/pub';
-
-const baseUrl = 'http://localhost:3000/pub';
+const baseUrl = "http://localhost:3000/pub";
 
 const fetchCreator = data => {
   return {
@@ -32,11 +33,18 @@ const fetchByIdCreator = data => {
   };
 };
 
+const payCreator = data => {
+  return {
+    type: PAY_PRODUCT,
+    payload: data,
+  };
+};
+
 const fetchProducts = () => {
   return async dispatch => {
     try {
       const response = await fetch(`${baseUrl}/products`, {
-        method: 'get',
+        method: "get",
       });
 
       if (!response.ok) throw new Error("Can't fetch data");
@@ -44,7 +52,7 @@ const fetchProducts = () => {
 
       dispatch(fetchCreator(data));
     } catch (err) {
-      Swal.fire('error', err);
+      Swal.fire("error", err);
     }
   };
 };
@@ -54,7 +62,7 @@ const fetchById = id => {
     dispatch(setLoadingTrue());
     try {
       const response = await fetch(`${baseUrl}/products/${id}`, {
-        method: 'get',
+        method: "get",
       });
 
       if (!response.ok) throw new Error("Can't fetch data");
@@ -62,7 +70,7 @@ const fetchById = id => {
 
       dispatch(fetchByIdCreator(data));
     } catch (err) {
-      Swal.fire('error', err);
+      Swal.fire("error", err);
     } finally {
       setTimeout(() => {
         dispatch(setLoadingFalse());
@@ -71,4 +79,17 @@ const fetchById = id => {
   };
 };
 
-export { fetchProducts, fetchById };
+const buyProduct = productDetail => async dispatch => {
+  try {
+    const { data } = await product({
+      method: "post",
+      url: `/pay`,
+      data: { detail: productDetail },
+    });
+    dispatch(payCreator(data));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { fetchProducts, fetchById, buyProduct };

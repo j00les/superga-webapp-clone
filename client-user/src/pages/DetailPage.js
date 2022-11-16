@@ -1,24 +1,37 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { fetchById } from '../store/actions/action-product';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { buyProduct, fetchById } from "../store/actions/action-product";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useState } from "react";
+import { Dna } from "react-loader-spinner";
 
 export const DetailPage = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
   const { product } = useSelector(state => state);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  //state
   const loading = product.isLoading;
   const description = product.productById.description;
   const images = product.productById.Images;
+  //redirect to payment loading
+  const [redirectLoading, setRedirectLoading] = useState(true);
 
   function toRupiah(price) {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
     }).format(price);
   }
+
+  const handlePayment = () => {
+    setRedirectLoading(false);
+    dispatch(buyProduct(product.productById)).then(() => {
+      navigate("/invoice");
+    });
+  };
 
   useEffect(() => {
     dispatch(fetchById(id));
@@ -28,7 +41,7 @@ export const DetailPage = () => {
     <div className="flex  justify-evenly m-8">
       <>
         {loading ? (
-          <div className="mt-8 bg-blue w-1/5">{<Skeleton height={200} />}</div>
+          <div className="bg-blue w-[50%]">{<Skeleton height={800} />}</div>
         ) : (
           <div className="carousel w-1/2">
             {images?.map((el, i) => (
@@ -49,23 +62,40 @@ export const DetailPage = () => {
         )}
       </>
       <section className=" w-3/4 mt-8  text-center">
-        <div className="title mb-4">
-          <Skeleton />
+        <div className="title mx-auto mb-4">
           <h1 className="text-2xl font-semibold uppercase">
-            {loading ? <Skeleton /> : 'Superga indonesia'}
+            {loading ? (
+              <div className="w-[270px] mx-auto">
+                <Skeleton height={40} />
+              </div>
+            ) : (
+              "Superga indonesia"
+            )}
           </h1>
-          <h1>{loading ? <Skeleton /> : product.productById.name}</h1>
+          <h1>
+            {loading ? (
+              <div className="text-center mt-1 w-[100px] mx-auto">
+                <Skeleton height={25} />
+              </div>
+            ) : (
+              product.productById.name
+            )}
+          </h1>
         </div>
 
         {loading ? (
-          <Skeleton count={2} />
+          <div className="text-center w-[100px] mx-auto">
+            <Skeleton height={25} />
+          </div>
         ) : (
           <div className="price my-8">
             <p className="text-lg mb-4">{toRupiah(product.productById.price)}</p>
 
-            <p className="text-xl">
-              Order within 01 hours 22 minutes to receive Sat 22 October - Sun 23 October
-            </p>
+            <div>
+              <p className="text-xl">
+                Order within 01 hours 22 minutes to receive Sat 22 October - Sun 23 October
+              </p>
+            </div>
           </div>
         )}
 
@@ -75,11 +105,33 @@ export const DetailPage = () => {
 
         <div className="desc w-1/2 mx-auto text-xl">
           <div id="button" className="flex my-8 flex-col justify-evenly gap-3">
-            {loading ? <Skeleton height={50} /> : <button className="btn"> add to cart</button>}
+            {loading ? (
+              <Skeleton height={50} />
+            ) : (
+              <button onClick={() => handlePayment()} className="btn">
+                Buy Now
+              </button>
+            )}
 
             {loading ? <Skeleton height={50} /> : <button className="btn">add to wishlist</button>}
           </div>
         </div>
+
+        {!redirectLoading && (
+          <div className="flex-col items-center  w-fit  mx-auto gap-3 ">
+            <p className="text-sm text-center my-auto"> Redirecting...</p>
+            <div className="text-center ml-5">
+              <Dna
+                visible={true}
+                height="40"
+                width="40"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+              />
+            </div>
+          </div>
+        )}
       </section>
     </div>
   );

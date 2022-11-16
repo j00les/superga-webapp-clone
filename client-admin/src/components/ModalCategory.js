@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
-import toast from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 import {
   clearCategoryStateCreator,
   createCategory,
   updateCategory,
-} from '../store/actions/action-category';
-import Button from './Button';
+} from "../store/actions/action-category";
+import Button from "./Button";
 
 const ModalCategory = () => {
   const modalControl = useRef();
@@ -14,7 +14,7 @@ const ModalCategory = () => {
   const dispatch = useDispatch();
 
   const [form, setForm] = useState({
-    name: '',
+    name: "",
   });
 
   const handleCancelButton = () => {
@@ -32,10 +32,10 @@ const ModalCategory = () => {
     if (Object.keys(category.categoryById).length > 0) {
       dispatch(updateCategory(category.categoryById.id, form));
       dispatch(clearCategoryStateCreator());
-      toast.success('Category successfully updated!');
+      toast.success("Category successfully updated!");
     } else {
       dispatch(createCategory(form));
-      toast.success('Category successfully created!');
+      toast.success("Category successfully created!");
     }
 
     modalControl.current.checked = false;
@@ -45,7 +45,7 @@ const ModalCategory = () => {
       setForm({ ...form, ...category.categoryById });
     } else {
       setForm({
-        name: '',
+        name: "",
       });
     }
   }, [category.categoryById]);
@@ -69,8 +69,8 @@ const ModalCategory = () => {
                 />
               </div>
             </div>
-            <Button type={'submit'} />
-            <Button type={'button'} handleCancel={handleCancelButton} />
+            <Button type={"submit"} />
+            <Button type={"button"} handleCancel={handleCancelButton} />
           </form>
         </div>
       </div>

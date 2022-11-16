@@ -1,6 +1,6 @@
-import Banner from '../components/Banner';
-import Carousel from '../components/Carousel';
-import PhotoGrid from '../components/PhotoGrid';
+import Banner from "../components/Banner";
+import Carousel from "../components/Carousel";
+import PhotoGrid from "../components/PhotoGrid";
 
 const LandingPage = () => {
   return (

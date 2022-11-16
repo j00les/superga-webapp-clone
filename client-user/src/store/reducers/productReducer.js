@@ -1,14 +1,16 @@
 import {
   FETCH_BY_ID,
   FETCH_PRODUCTS,
+  PAY_PRODUCT,
   SET_LOADING_FALSE,
   SET_LOADING_TRUE,
-} from '../action_types/type-product';
+} from "../action_types/type-product";
 
 const initial = {
   products: [],
   productById: {},
   isLoading: false,
+  payResponse: {},
 };
 export default function productReducer(state = initial, action) {
   const { type, payload } = action;
@@ -35,6 +37,12 @@ export default function productReducer(state = initial, action) {
       return {
         ...state,
         productById: payload,
+      };
+
+    case PAY_PRODUCT:
+      return {
+        ...state,
+        payResponse: payload,
       };
 
     default:

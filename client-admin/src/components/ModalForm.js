@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast, Toaster } from 'react-hot-toast';
-import { clearProductState, createProduct, updateProduct } from '../store/actions/action-product';
-import Button from './Button';
-import { fetchCategories } from '../store/actions/action-category';
-import Skeleton from 'react-loading-skeleton';
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast, Toaster } from "react-hot-toast";
+import { clearProductState, createProduct, updateProduct } from "../store/actions/action-product";
+import Button from "./Button";
+import { fetchCategories } from "../store/actions/action-category";
+import Skeleton from "react-loading-skeleton";
 
 const ModalForm = () => {
   const { category } = useSelector(state => state);
@@ -16,28 +16,28 @@ const ModalForm = () => {
   const modalElement = inputRef.current;
 
   const [formInput, setForm] = useState({
-    name: '',
+    name: "",
     price: 0,
-    mainImg: '',
-    slug: '',
-    category: '',
-    authorId: localStorage.getItem('authorId'),
-    description: '',
+    mainImg: "",
+    slug: "",
+    category: "",
+    authorId: localStorage.getItem("authorId"),
+    description: "",
     image1: {
-      imgUrl: '',
+      imgUrl: "",
     },
     image2: {
-      imgUrl: '',
+      imgUrl: "",
     },
     image3: {
-      imgUrl: '',
+      imgUrl: "",
     },
   });
 
   const handleChange = e => {
     const name = e.target.name;
 
-    if (name === 'image-1' || 'image-2' || 'image-3') {
+    if (name === "image-1" || "image-2" || "image-3") {
       setForm({
         ...formInput,
         [name]: { ...formInput[name], imgUrl: e.target.value },
@@ -51,10 +51,10 @@ const ModalForm = () => {
     if (Object.keys(product.productById).length > 0) {
       dispatch(updateProduct(product.productById.id, formInput));
       dispatch(clearProductState());
-      toast.success('Product successfully updated!');
+      toast.success("Product successfully updated!");
     } else {
       dispatch(createProduct(formInput));
-      toast.success('Product successfully created!');
+      toast.success("Product successfully created!");
     }
 
     modalElement.checked = false;
@@ -93,20 +93,20 @@ const ModalForm = () => {
       });
     } else {
       setForm({
-        name: '',
+        name: "",
         price: 0,
-        slug: '',
-        mainImg: '',
-        category: '',
-        description: '',
+        slug: "",
+        mainImg: "",
+        category: "",
+        description: "",
         image1: {
-          imgUrl: '',
+          imgUrl: "",
         },
         image2: {
-          imgUrl: '',
+          imgUrl: "",
         },
         image3: {
-          imgUrl: '',
+          imgUrl: "",
         },
       });
     }
@@ -115,10 +115,10 @@ const ModalForm = () => {
   return (
     <>
       <input ref={inputRef} type="checkbox" id="my-modal-4" className="modal-toggle" />
-      <label htmlFor="my-modal-4" className={'modal cursor-pointer'}>
+      <label htmlFor="my-modal-4" className={"modal cursor-pointer"}>
         <label className="modal-box w-3/4 relative" htmlFor="">
           <form onSubmit={handleSubmit} className="">
-            {loading ? <Skeleton /> : 'name'}
+            {loading ? <Skeleton /> : "name"}
             <div id="name-container w-full">
               {loading ? (
                 <Skeleton />
