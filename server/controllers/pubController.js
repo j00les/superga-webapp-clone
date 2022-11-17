@@ -1,11 +1,11 @@
-const { Product, Category, Image } = require('../models');
+const { User, Product, Category, Image } = require("../models");
 
 class PubController {
   static async getAllProduct(req, res, next) {
     try {
       const response = await Product.findAll({
         attributes: {
-          exclude: ['createdAt', 'updatedAt'],
+          exclude: ["createdAt", "updatedAt"],
         },
         include: {
           model: Image,
@@ -21,7 +21,7 @@ class PubController {
     try {
       const response = await Category.findAll({
         attributes: {
-          exclude: ['createdAt', 'updatedAt'],
+          exclude: ["createdAt", "updatedAt"],
         },
       });
 
@@ -38,11 +38,11 @@ class PubController {
         where: { id },
         include: Image,
         attributes: {
-          exclude: ['createdAt', 'updatedAt'],
+          exclude: ["createdAt", "updatedAt"],
         },
       });
 
-      if (!response) throw { name: 'Not Found' };
+      if (!response) throw { name: "Not Found" };
 
       res.status(200).json(response);
     } catch (err) {
@@ -56,17 +56,23 @@ class PubController {
       const response = await Category.findOne({
         where: { id },
         attributes: {
-          exclude: ['createdAt', 'updatedAt'],
+          exclude: ["createdAt", "updatedAt"],
         },
       });
 
-      if (!response) throw { name: 'Not Found' };
+      if (!response) throw { name: "Not Found" };
 
       res.status(200).json(response);
     } catch (err) {
       next(err);
     }
   }
+  // static async login(req, res, next) {
+  //   try {
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 }
 
 module.exports = PubController;

@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { product } from "../../apis/axiosInstance";
+import { admin, pub } from "../../apis/axiosInstance";
 import {
   FETCH_BY_ID,
   FETCH_PRODUCTS,
@@ -81,7 +81,7 @@ const fetchById = id => {
 
 const buyProduct = productDetail => async dispatch => {
   try {
-    const { data } = await product({
+    const { data } = await pub({
       method: "post",
       url: `/pay`,
       data: { detail: productDetail },
@@ -92,4 +92,22 @@ const buyProduct = productDetail => async dispatch => {
   }
 };
 
-export { fetchProducts, fetchById, buyProduct };
+const login = credential => async dispatch => {
+  try {
+    console.log(credential);
+    const { data } = await admin({
+      method: "post",
+      url: "/login",
+      data: {
+        email: credential.email,
+        password: credential.password,
+      },
+    });
+
+    localStorage.setItem("access_token", data.access_token);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { login, fetchProducts, fetchById, buyProduct };

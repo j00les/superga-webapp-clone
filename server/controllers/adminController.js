@@ -29,6 +29,7 @@ class AdminController {
     try {
       const { email, password } = req.body;
 
+      console.log(password)
       const findUser = await User.findOne({ where: { email } });
       // console.log(findUser);
       if (!findUser) throw { name: 'Unauthorized' };

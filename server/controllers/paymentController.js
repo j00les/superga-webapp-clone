@@ -19,7 +19,7 @@ module.exports = class PaymentController {
         externalID: "payment-link-example",
         amount: price,
         description: "Invoice Demo #123",
-        successRedirectURL: "http://localhost:7070/payment-success",
+        successRedirectURL: "http://localhost:7070/",
         invoice_duration: 86400,
         customer: {
           given_names: "John",

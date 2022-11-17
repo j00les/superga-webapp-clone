@@ -2,7 +2,7 @@ import { createBrowserRouter, Route } from "react-router-dom";
 import { DetailPage } from "../pages/DetailPage";
 import { InvoicePage } from "../pages/InvoicePage";
 import LandingPage from "../pages/LandingPage";
-import { PaymentSuccess } from "../pages/PaymentSuccessPage";
+import LoginPage from "../pages/LoginPage";
 import Root from "./Root";
 
 const router = createBrowserRouter([
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/payment-success",
-    element: <PaymentSuccess />,
+    path: "/login",
+    element: <LoginPage />,
   },
 ]);
 
