@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Image.belongsTo(models.Product, { foreignKey: "productId" });
     }
   }
+
   Image.init(
     {
       productId: DataTypes.INTEGER,

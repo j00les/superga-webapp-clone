@@ -67,12 +67,6 @@ class PubController {
       next(err);
     }
   }
-  // static async login(req, res, next) {
-  //   try {
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
 }
 
 module.exports = PubController;

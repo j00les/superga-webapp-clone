@@ -1,0 +1,324 @@
+{
+  "products": [
+    {
+      "name": "2750 KIDS EASYLITE",
+      "description": "A symbol of Italian craftsmanship, a lifestyle icon and a summer must-have reworked into an ultra-lightweight mini-me design. The junior Superga 2750 in Easylite format is characterised by a classic breathable cotton upper, refreshed with lighter foxing around the sole for an even more comfortable fit.",
+      "mainImg": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8054087226923_1.jpg?v=1647501080",
+      "categoryId": 3,
+      "authorId": 1,
+      "images": [
+        {
+          "id": 36728212357376,
+          "created_at": "2022-03-17T14:11:18+07:00",
+          "position": 1,
+          "updated_at": "2022-03-17T14:11:20+07:00",
+          "product_id": 7632357818624,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8054087226923_1.jpg?v=1647501080",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 36728212259072,
+          "created_at": "2022-03-17T14:11:18+07:00",
+          "position": 2,
+          "updated_at": "2022-03-17T14:11:19+07:00",
+          "product_id": 7632357818624,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8054087226923_2.jpg?v=1647501079",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 36728212324608,
+          "created_at": "2022-03-17T14:11:18+07:00",
+          "position": 3,
+          "updated_at": "2022-03-17T14:11:19+07:00",
+          "product_id": 7632357818624,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8054087226923_3.jpg?v=1647501079",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 36728212291840,
+          "created_at": "2022-03-17T14:11:18+07:00",
+          "position": 4,
+          "updated_at": "2022-03-17T14:11:19+07:00",
+          "product_id": 7632357818624,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8054087226923_4.jpg?v=1647501079",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 36728212586752,
+          "created_at": "2022-03-17T14:11:18+07:00",
+          "position": 5,
+          "updated_at": "2022-03-17T14:11:23+07:00",
+          "product_id": 7632357818624,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/8054087226923_5.jpg?v=1647501083",
+          "width": 1050,
+          "height": 1212
+        }
+      ]
+    },
+    {
+      "name": "2750 KIDS EASYLITE",
+      "description": "A symbol of Italian craftsmanship, a lifestyle icon and a summer must-have reworked into an ultra-lightweight mini-me design. The junior Superga 2750 in Easylite format is characterised by a classic breathable cotton upper, refreshed with lighter foxing around the sole for an even more comfortable fit.",
+      "mainImg": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/04-2750-KIDSEASYLITE-BLACKWHITE_51.jpg?v=1627545078",
+      "categoryId": 3,
+      "authorId": 1,
+      "images": [
+        {
+          "id": 30362151977122,
+          "created_at": "2021-07-29T14:51:18+07:00",
+          "position": 1,
+          "updated_at": "2021-07-29T14:51:18+07:00",
+          "product_id": 6963477577890,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/04-2750-KIDSEASYLITE-BLACKWHITE_51.jpg?v=1627545078",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30362151878818,
+          "created_at": "2021-07-29T14:51:17+07:00",
+          "position": 2,
+          "updated_at": "2021-07-29T14:51:18+07:00",
+          "product_id": 6963477577890,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/04-2750-KIDSEASYLITE-BLACKWHITE_52.jpg?v=1627545078",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30362151846050,
+          "created_at": "2021-07-29T14:51:17+07:00",
+          "position": 3,
+          "updated_at": "2021-07-29T14:51:37+07:00",
+          "product_id": 6963477577890,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/04-2750-KIDSEASYLITE-BLACKWHITE_54.jpg?v=1627545097",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30362151911586,
+          "created_at": "2021-07-29T14:51:18+07:00",
+          "position": 4,
+          "updated_at": "2021-07-29T14:51:37+07:00",
+          "product_id": 6963477577890,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/04-2750-KIDSEASYLITE-BLACKWHITE_53.jpg?v=1627545097",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30362151944354,
+          "created_at": "2021-07-29T14:51:18+07:00",
+          "position": 5,
+          "updated_at": "2021-07-29T14:51:18+07:00",
+          "product_id": 6963477577890,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/04-2750-KIDSEASYLITE-BLACKWHITE_5.jpg?v=1627545078",
+          "width": 1050,
+          "height": 1212
+        }
+      ]
+    },
+    {
+      "name": "2750 KIDS STRAPS EASYLITE",
+      "description": "Superga 2750 for kids: upper in extra strong, fully breathable pure cotton, with closure straps. ",
+      "mainImg": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/09-2750kidsstraps-BLUE_52.jpg?v=1626676181",
+      "categoryId": 3,
+      "authorId": 1,
+      "images": [
+        {
+          "id": 30249602220194,
+          "created_at": "2021-07-19T13:28:41+07:00",
+          "position": 1,
+          "updated_at": "2021-07-19T13:29:41+07:00",
+          "product_id": 6939410530466,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/09-2750kidsstraps-BLUE_52.jpg?v=1626676181",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30249602580642,
+          "created_at": "2021-07-19T13:28:42+07:00",
+          "position": 2,
+          "updated_at": "2021-07-19T13:29:41+07:00",
+          "product_id": 6939410530466,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/09-2750kidsstraps-BLUE_54.jpg?v=1626676181",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30249602547874,
+          "created_at": "2021-07-19T13:28:42+07:00",
+          "position": 3,
+          "updated_at": "2021-07-19T13:29:41+07:00",
+          "product_id": 6939410530466,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/09-2750kidsstraps-BLUE_5.jpg?v=1626676181",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30249602318498,
+          "created_at": "2021-07-19T13:28:41+07:00",
+          "position": 4,
+          "updated_at": "2021-07-19T13:29:41+07:00",
+          "product_id": 6939410530466,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/09-2750kidsstraps-BLUE_53.jpg?v=1626676181",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30249602285730,
+          "created_at": "2021-07-19T13:28:41+07:00",
+          "position": 5,
+          "updated_at": "2021-07-19T13:29:41+07:00",
+          "product_id": 6939410530466,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/09-2750kidsstraps-BLUE_51.jpg?v=1626676181",
+          "width": 1050,
+          "height": 1212
+        }
+      ]
+    },
+    {
+      "name": "2750 KIDS STRAPS EASYLITE",
+      "description": "A symbol of Italian craftsmanship, a lifestyle icon and a summer must-have reworked into an ultra-lightweight mini-me design. The junior Superga 2750 in Easylite format is characterised by a classic breathable cotton upper, refreshed with lighter foxing around the sole for an even more comfortable fit.",
+      "mainImg": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/10-2750kidsstraps-GREYSAND_52.jpg?v=1626675338",
+      "categoryId": 3,
+      "authorId": 1,
+      "images": [
+        {
+          "id": 30249507225762,
+          "created_at": "2021-07-19T13:15:00+07:00",
+          "position": 1,
+          "updated_at": "2021-07-19T13:15:38+07:00",
+          "product_id": 6939395719330,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/10-2750kidsstraps-GREYSAND_52.jpg?v=1626675338",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30249507324066,
+          "created_at": "2021-07-19T13:15:00+07:00",
+          "position": 2,
+          "updated_at": "2021-07-19T13:15:38+07:00",
+          "product_id": 6939395719330,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/10-2750kidsstraps-GREYSAND_54.jpg?v=1626675338",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30249507356834,
+          "created_at": "2021-07-19T13:15:00+07:00",
+          "position": 3,
+          "updated_at": "2021-07-19T13:15:38+07:00",
+          "product_id": 6939395719330,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/10-2750kidsstraps-GREYSAND_5.jpg?v=1626675338",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30249507258530,
+          "created_at": "2021-07-19T13:15:00+07:00",
+          "position": 4,
+          "updated_at": "2021-07-19T13:15:38+07:00",
+          "product_id": 6939395719330,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/10-2750kidsstraps-GREYSAND_53.jpg?v=1626675338",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30249507389602,
+          "created_at": "2021-07-19T13:15:01+07:00",
+          "position": 5,
+          "updated_at": "2021-07-19T13:15:38+07:00",
+          "product_id": 6939395719330,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/10-2750kidsstraps-GREYSAND_51.jpg?v=1626675338",
+          "width": 1050,
+          "height": 1212
+        }
+      ]
+    },
+    {
+      "name": "2750 KIDS STRAPS EASYLITE",
+      "description": "Superga 2750 for kids: upper in extra strong, fully breathable pure cotton, with closure straps. ",
+      "mainImg": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/08-2750kidsstraps-NAVY_52.jpg?v=1626426104",
+      "categoryId": 3,
+      "authorId": 1,
+      "images": [
+        {
+          "id": 30217115992226,
+          "created_at": "2021-07-16T16:00:13+07:00",
+          "position": 1,
+          "updated_at": "2021-07-16T16:01:44+07:00",
+          "product_id": 6923418828962,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/08-2750kidsstraps-NAVY_52.jpg?v=1626426104",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30217115697314,
+          "created_at": "2021-07-16T16:00:12+07:00",
+          "position": 2,
+          "updated_at": "2021-07-16T16:01:44+07:00",
+          "product_id": 6923418828962,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/08-2750kidsstraps-NAVY_54.jpg?v=1626426104",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30217115730082,
+          "created_at": "2021-07-16T16:00:12+07:00",
+          "position": 3,
+          "updated_at": "2021-07-16T16:01:44+07:00",
+          "product_id": 6923418828962,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/08-2750kidsstraps-NAVY_5.jpg?v=1626426104",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30217115828386,
+          "created_at": "2021-07-16T16:00:12+07:00",
+          "position": 4,
+          "updated_at": "2021-07-16T16:01:44+07:00",
+          "product_id": 6923418828962,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/08-2750kidsstraps-NAVY_53.jpg?v=1626426104",
+          "width": 1050,
+          "height": 1212
+        },
+        {
+          "id": 30217115599010,
+          "created_at": "2021-07-16T16:00:11+07:00",
+          "position": 5,
+          "updated_at": "2021-07-16T16:01:44+07:00",
+          "product_id": 6923418828962,
+          "variant_ids": [],
+          "src": "https://cdn.shopify.com/s/files/1/0421/7887/1458/products/08-2750kidsstraps-NAVY_51.jpg?v=1626426104",
+          "width": 1050,
+          "height": 1212
+        }
+      ]
+    }
+  ]
+}
