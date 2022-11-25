@@ -2,7 +2,8 @@ const { Category } = require("../models");
 const Xendit = require("xendit-node");
 
 const x = new Xendit({
-  secretKey: "xnd_development_JNqJ5q83Fln5gQUfhcf5x732Gd6qs38114PsWPpePw42RYytVguGuTqNQ",
+  secretKey:
+    "xnd_development_JNqJ5q83Fln5gQUfhcf5x732Gd6qs38114PsWPpePw42RYytVguGuTqNQ",
 });
 
 const { Invoice } = x;
@@ -12,7 +13,6 @@ const i = new Invoice(invoiceSpecificOptions);
 module.exports = class PaymentController {
   static async pay(req, res, next) {
     const { name, price, categoryId } = req.body.detail;
-
     try {
       const category = await Category.findByPk(categoryId);
       const resp = await i.createInvoice({

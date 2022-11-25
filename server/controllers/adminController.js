@@ -1,5 +1,5 @@
-const { passCompare, tokenSign, formatSlug } = require('../helpers/helpers');
-const { User, Product, Image, Category, sequelize } = require('../models');
+const { passCompare, tokenSign } = require("../helpers/helpers");
+const { User, Product, Image, Category, sequelize } = require("../models");
 
 class AdminController {
   //user
@@ -13,7 +13,7 @@ class AdminController {
         password,
         phoneNumber,
         address,
-        role: 'admin',
+        role: "admin",
       });
 
       res.status(201).json({
@@ -29,13 +29,13 @@ class AdminController {
     try {
       const { email, password } = req.body;
 
-      console.log(password)
+      console.log(password);
       const findUser = await User.findOne({ where: { email } });
       // console.log(findUser);
-      if (!findUser) throw { name: 'Unauthorized' };
+      if (!findUser) throw { name: "Unauthorized" };
 
       const isValid = passCompare(password, findUser.password);
-      if (!isValid) throw { name: 'Unauthorized' };
+      if (!isValid) throw { name: "Unauthorized" };
 
       const payload = {
         id: findUser.id,
@@ -83,13 +83,13 @@ class AdminController {
         { transaction: t }
       );
 
-      const images = [image1, image2, image3].map(img => {
+      const images = [image1, image2, image3].map((img) => {
         return {
           imgUrl: img,
         };
       });
 
-      images.forEach(el => {
+      images.forEach((el) => {
         return (el.productId = product.id);
       });
 
@@ -108,7 +108,7 @@ class AdminController {
     try {
       const response = await Product.findAll({
         attributes: {
-          exclude: ['createdAt', 'updatedAt'],
+          exclude: ["createdAt", "updatedAt"],
         },
         include: {
           model: Image,
@@ -127,7 +127,7 @@ class AdminController {
       const { id: authorId } = req.user;
 
       const findProduct = Product.findByPk(id);
-      if (!findProduct) throw { name: 'Not Found' };
+      if (!findProduct) throw { name: "Not Found" };
 
       const {
         name,
@@ -161,8 +161,8 @@ class AdminController {
         }
       );
 
-      const images = [image1, image2, image3].map(img => {
-        if (typeof img === 'string') {
+      const images = [image1, image2, image3].map((img) => {
+        if (typeof img === "string") {
           return {
             imgUrl: img,
           };
@@ -188,11 +188,11 @@ class AdminController {
       const { id } = req.params;
 
       const findProduct = await Product.findByPk(id);
-      if (!findProduct) throw { name: 'Not Found' };
+      if (!findProduct) throw { name: "Not Found" };
 
       await Product.destroy({ where: { id } });
 
-      res.status(200).json({ message: 'Product deleted successfully' });
+      res.status(200).json({ message: "Product deleted successfully" });
     } catch (err) {
       next(err);
     }
@@ -204,7 +204,7 @@ class AdminController {
         where: { id },
 
         attributes: {
-          exclude: ['createdAt', 'updatedAt'],
+          exclude: ["createdAt", "updatedAt"],
         },
 
         include: {
@@ -212,7 +212,7 @@ class AdminController {
         },
       });
 
-      if (!response) throw { name: 'Not Found' };
+      if (!response) throw { name: "Not Found" };
 
       res.status(200).json(response);
     } catch (err) {
@@ -247,7 +247,7 @@ class AdminController {
       const { id } = req.params;
       const { name } = req.body;
       const findCat = await Category.findByPk(id);
-      if (!findCat) throw { name: 'Not Found Category' };
+      if (!findCat) throw { name: "Not Found Category" };
 
       const response = await Category.update(
         {
@@ -272,11 +272,11 @@ class AdminController {
       const { id } = req.params;
 
       const findCat = await Category.findByPk(id);
-      if (!findCat) throw { name: 'Not Found Category' };
+      if (!findCat) throw { name: "Not Found Category" };
 
       await Category.destroy({ where: { id } });
 
-      res.status(200).json({ message: 'Category deleted successfully' });
+      res.status(200).json({ message: "Category deleted successfully" });
     } catch (err) {
       next(err);
     }
@@ -288,11 +288,11 @@ class AdminController {
       const response = await Category.findOne({
         where: { id },
         attributes: {
-          exclude: ['createdAt', 'updatedAt'],
+          exclude: ["createdAt", "updatedAt"],
         },
       });
 
-      if (!response) throw { name: 'Not Found' };
+      if (!response) throw { name: "Not Found" };
 
       res.status(200).json(response);
     } catch (err) {
