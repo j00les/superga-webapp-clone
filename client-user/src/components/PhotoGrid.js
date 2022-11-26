@@ -29,7 +29,7 @@ const PhotoGrid = () => (
         </div>
       </section>
 
-      <div style={{ height: '50rem' }} className="w-full">
+      {/* <div style={{ height: '50rem' }} className="w-full">
         <iframe
           //to autoplay
 
@@ -43,7 +43,7 @@ const PhotoGrid = () => (
           allow="autoplay;loop"
           title="YouTube video player"
         ></iframe>
-      </div>
+      </div> */}
     </div>
   </>
 );

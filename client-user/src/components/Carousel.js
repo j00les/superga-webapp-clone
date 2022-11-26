@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategories } from '../store/actions/action-category';
-import { fetchProducts } from '../store/actions/action-product';
-import Card from './Card';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "../store/actions/category";
+import { fetchProducts } from "../store/actions/product";
+import Card from "./Card";
 
 const Carousel = props => {
   const { product } = useSelector(state => state);
@@ -10,31 +10,28 @@ const Carousel = props => {
 
   const dispatch = useDispatch();
 
-  console.log(category);
-
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchCategories());
-  }, []);
+  }, [dispatch]);
 
-  if (props.belongsto === 'products') {
+  if (props.belongsto === "products") {
     return (
       <div className="mt-10">
         <h1 className="uppercase text-center text-2xl font-semibold">SHOP NOW</h1>
-        <div style={{ width: '75%' }} className=" mx-auto">
+        <div style={{ width: "75%" }} className=" mx-auto">
           <div className="text-center my-4">
             {category.categories.map(el => {
               return <button className="mr-2 rounded-md  btn btn-sm btn-primary">{el.name}</button>;
             })}
           </div>
           <div className="mx-auto w-full mb-10 carousel carousel-center  p-4 space-x-4 bg-white rounded-box">
-            <Card products={product.products} />
+            <Card isLandingPage={true} products={product.products} />
           </div>
         </div>
       </div>
     );
   } else {
-    // instagram
     return (
       <>
         <div className="flex flex-col my-10 gap-4 ">

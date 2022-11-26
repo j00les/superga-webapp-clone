@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../store/actions/action-product";
+import { login } from "../store/actions/product";
 
 export default function LoginPage() {
   const emailRef = useRef(null);
@@ -15,17 +15,15 @@ export default function LoginPage() {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
-            exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In
+            deleniti eaque aut repudiandae et a id nisi.
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form
             onSubmit={e => {
               e.preventDefault();
-              dispatch(
-                login({ email: emailRef.current.value, password: passwordRef.current.value })
-              ).then(() => {
+              dispatch(login({ email: emailRef.current.value, password: passwordRef.current.value })).then(() => {
                 navigate("/");
               });
             }}
@@ -35,23 +33,13 @@ export default function LoginPage() {
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
-              <input
-                ref={emailRef}
-                type="text"
-                placeholder="email"
-                className="input input-bordered"
-              />
+              <input ref={emailRef} type="text" placeholder="email" className="input input-bordered" />
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input
-                ref={passwordRef}
-                type="password"
-                placeholder="password"
-                className="input input-bordered"
-              />
+              <input ref={passwordRef} type="password" placeholder="password" className="input input-bordered" />
               <label className="label">
                 <span className="label-text-alt link link-hover">Forgot password?</span>
               </label>

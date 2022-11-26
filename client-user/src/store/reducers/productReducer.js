@@ -1,10 +1,4 @@
-import {
-  FETCH_BY_ID,
-  FETCH_PRODUCTS,
-  PAY_PRODUCT,
-  SET_LOADING_FALSE,
-  SET_LOADING_TRUE,
-} from "../action_types/type-product";
+import { FETCH_BY_ID, FETCH_PRODUCTS, PAY_PRODUCT, SET_LOADING_FALSE, SET_LOADING_TRUE } from "../types/product";
 
 const initial = {
   products: [],

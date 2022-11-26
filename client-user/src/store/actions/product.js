@@ -1,14 +1,8 @@
 import Swal from "sweetalert2";
 import { admin, pub } from "../../apis/axiosInstance";
-import {
-  FETCH_BY_ID,
-  FETCH_PRODUCTS,
-  PAY_PRODUCT,
-  SET_LOADING_FALSE,
-  SET_LOADING_TRUE,
-} from "../action_types/type-product";
+import { FETCH_BY_ID, FETCH_PRODUCTS, PAY_PRODUCT, SET_LOADING_FALSE, SET_LOADING_TRUE } from "../types/product";
 
-// const baseUrl = 'https://superga-react-app.herokuapp.com/pub';
+// const baseUrl = "https://superga-react-app.herokuapp.com/pub";
 const baseUrl = "http://localhost:3000/pub";
 
 const fetchCreator = data => {
@@ -92,7 +86,7 @@ const buyProduct = productDetail => async dispatch => {
   }
 };
 
-const login = credential => async dispatch => {
+const login = credential => async () => {
   try {
     console.log(credential);
     const { data } = await admin({

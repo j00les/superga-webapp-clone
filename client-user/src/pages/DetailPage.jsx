@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { buyProduct, fetchById } from "../store/actions/action-product";
+import { buyProduct, fetchById } from "../store/actions/product";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useState } from "react";
@@ -12,7 +12,7 @@ export const DetailPage = () => {
   const { product } = useSelector(state => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //state
+
   const loading = product.isLoading;
   const description = product.productById.description;
   const images = product.productById.Images;
@@ -35,7 +35,7 @@ export const DetailPage = () => {
 
   useEffect(() => {
     dispatch(fetchById(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return (
     <div className="flex  justify-evenly m-8">
@@ -45,12 +45,8 @@ export const DetailPage = () => {
         ) : (
           <div className="carousel w-1/2">
             {images?.map((el, i) => (
-              <div
-                key={`${i}-cccarou`}
-                id={`slide${i + 1}`}
-                className="carousel-item relative w-full"
-              >
-                <img src={el.imgUrl} className="w-full" />
+              <div key={`${i}-cccarou`} id={`slide${i + 1}`} className="carousel-item relative w-full">
+                <img alt="product" src={el.imgUrl} className="w-full" />
 
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                   <span className="btn btn-circle">❮</span>
@@ -92,9 +88,7 @@ export const DetailPage = () => {
             <p className="text-lg mb-4">{toRupiah(product.productById.price)}</p>
 
             <div>
-              <p className="text-xl">
-                Order within 01 hours 22 minutes to receive Sat 22 October - Sun 23 October
-              </p>
+              <p className="text-xl">Order within 01 hours 22 minutes to receive Sat 22 October - Sun 23 October</p>
             </div>
           </div>
         )}
