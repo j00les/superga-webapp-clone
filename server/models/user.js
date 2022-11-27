@@ -50,6 +50,7 @@ module.exports = (sequelize, DataTypes) => {
       role: DataTypes.STRING,
       phoneNumber: DataTypes.STRING,
       Address: DataTypes.STRING,
+      resetPasswordToken: DataTypes.STRING,
     },
     {
       sequelize,
