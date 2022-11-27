@@ -7,6 +7,7 @@ router.get("/products", PubController.getAllProduct);
 router.get("/categories", PubController.getAllCategory);
 router.get("/categories/:id", PubController.getCategoryById);
 router.get("/products/:id", PubController.getProductById);
+router.get("/forgot-password", PubController.forgotPassword);
 
 // payment
 router.post("/pay", PaymentController.pay);
