@@ -1,5 +1,6 @@
 const { User, Product, Category, Image } = require("../models");
 const nodemailer = require("nodemailer");
+const { generatePasswordToken } = require("../helpers/helpers");
 
 class PubController {
   static async getAllProduct(req, res, next) {
@@ -68,43 +69,82 @@ class PubController {
       next(err);
     }
   }
-  static async forgotPassword() {
+
+  static async recoverPassword(req, res, next) {
     try {
-      // async..await is not allowed in global scope, must use a wrapper
+      const { email } = req.body;
+      const findUser = await User.findOne({
+        where: {
+          email,
+        },
+      });
 
-      // Generate test SMTP service account from ethereal.email
-      // Only needed if you don't have a real mail account for testing
-      let testAccount = await nodemailer.createTestAccount();
+      if (!findUser) throw { name: "Unauthorized" };
 
-      // create reusable transporter object using the default SMTP transport
-     // let transporter = nodemailer.createTransport({
-      //   host: "smtp-relay.sendinblue.com",
-      //   port: 587,
-      //   secure: false, // true for 465, false for other ports
-      //   auth: {
-      //     user: "nabiel.alif01@gmail.com",
-      //     pass: "PTbvWpIMAkjtU74Q",
-      //   },
-      // });
+      const generatedToken = await User.update(
+        {
+          resetPasswordToken: generatePasswordToken(),
+        },
+        {
+          where: {
+            email: findUser.email,
+          },
+          returning: true,
+        }
+      );
 
-      //smtp dapeeewt
-      // send mail with defined transport object
-      // let info = await transporter.sendMail({
-      //   from: "nabiel.alif01@gmail.com", // sender address
-      //   to: "hawnyi77@gmail.com", // list of receivers
-      //   subject: "Hello ✔", // Subject line
-      //   text: "Hello world?", // plain text body
-      //   html: "<b>Hello world? ngentit</b>", // html body
-      // });
+      const { resetPasswordToken } = generatedToken[1][0];
 
-      // console.log("Message sent: %s", info.messageId);
-      // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+      let resetLink = `http://${req.headers.host}/public/reset-password/${resetPasswordToken}`;
 
-      // Preview only available when sending through an Ethereal account
-      // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-      // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+      let transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: 587,
+        secure: false,
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
+      });
+
+      //send email for user to change their password
+      const info = await transporter.sendMail({
+        from: "nabiel.alif01@gmail.com",
+        to: "hawnyi77@gmail.com",
+        subject: "Password reset request",
+        text: `Hi ${findUser.username} \n Please click on the following link ${resetLink} to reset your password. \n\n If you did not request this, please ignore this email and your password will remain unchanged.\n };`,
+        html: `<p>Hi ${findUser.username} \n Please click on the following link ${resetLink} to reset your password. \n\n If you did not request this, please ignore this email and your password will remain unchanged.\n }</p>`,
+      });
+      console.log(info);
+      res.status(200).json({ message: "Reset password email sent" });
     } catch (error) {
-      console.log(error);
+      next(error);
+    }
+  }
+
+  static async resetPassword(req, res, next) {
+    try {
+      const { token } = req.params;
+      const { password } = req.body;
+      const findUser = await User.findOne({
+        where: {
+          resetPasswordToken: token,
+        },
+      });
+      if (!findUser) throw { name: "Unauthorized" };
+      await User.update(
+        {
+          password,
+        },
+        {
+          where: {
+            resetPasswordToken: token,
+          },
+        }
+      );
+      res.status(200).json({ message: "Password changed" });
+    } catch (error) {
+      next(error);
     }
   }
 }
