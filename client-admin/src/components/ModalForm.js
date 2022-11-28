@@ -1,14 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, Toaster } from "react-hot-toast";
-import { clearProductState, createProduct, updateProduct } from "../store/actions/action-product";
+import {
+  clearProductState,
+  createProduct,
+  updateProduct,
+} from "../store/actions/action-product";
 import Button from "./Button";
 import { fetchCategories } from "../store/actions/action-category";
 import Skeleton from "react-loading-skeleton";
 
 const ModalForm = () => {
-  const { category } = useSelector(state => state);
-  const { product } = useSelector(state => state);
+  const { category } = useSelector((state) => state);
+  const { product } = useSelector((state) => state);
   const loading = product.loading;
 
   const dispatch = useDispatch();
@@ -34,7 +38,7 @@ const ModalForm = () => {
     },
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const name = e.target.name;
 
     if (name === "image-1" || "image-2" || "image-3") {
@@ -46,7 +50,7 @@ const ModalForm = () => {
     setForm({ ...formInput, [name]: e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (Object.keys(product.productById).length > 0) {
       dispatch(updateProduct(product.productById.id, formInput));
@@ -114,7 +118,12 @@ const ModalForm = () => {
 
   return (
     <>
-      <input ref={inputRef} type="checkbox" id="my-modal-4" className="modal-toggle" />
+      <input
+        ref={inputRef}
+        type="checkbox"
+        id="my-modal-4"
+        className="modal-toggle"
+      />
       <label htmlFor="my-modal-4" className={"modal cursor-pointer"}>
         <label className="modal-box w-3/4 relative" htmlFor="">
           <form onSubmit={handleSubmit} className="">
@@ -123,7 +132,7 @@ const ModalForm = () => {
               {loading ? (
                 <Skeleton />
               ) : (
-                <div className="flex grow flex-col w-full" id="form-input">
+                <div className="flex grow flex-col  w-full" id="form-input">
                   <input
                     onChange={handleChange}
                     value={formInput?.name}
@@ -278,7 +287,11 @@ const ModalForm = () => {
             ) : (
               <div className="float float-right mt-5 mr-2">
                 <Button type="submit" />
-                <Button itson="modal" handleCancel={handleCancelButton} type="button" />
+                <Button
+                  itson="modal"
+                  handleCancel={handleCancelButton}
+                  type="button"
+                />
               </div>
             )}
           </form>

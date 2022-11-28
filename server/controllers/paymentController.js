@@ -2,8 +2,7 @@ const { Category } = require("../models");
 const Xendit = require("xendit-node");
 
 const x = new Xendit({
-  secretKey:
-    "xnd_development_JNqJ5q83Fln5gQUfhcf5x732Gd6qs38114PsWPpePw42RYytVguGuTqNQ",
+  secretKey: "xnd_development_JNqJ5q83Fln5gQUfhcf5x732Gd6qs38114PsWPpePw42RYytVguGuTqNQ",
 });
 
 const { Invoice } = x;
@@ -63,8 +62,16 @@ module.exports = class PaymentController {
         ],
       });
       res.status(201).json(resp);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      next(error);
+    }
+  }
+  
+  static async invoiceCallback(req, res, next) {
+    try {
+      res.status(200).json({ message: "Payment succes" });
+    } catch (error) {
+      next(error);
     }
   }
 };

@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const pub = axios.create({
-  baseURL: "http://localhost:3000/pub",
+export const publicURL = axios.create({
+  baseURL: "http://localhost:3002/public",
 });
 
-export const admin = axios.create({
-  baseURL: "http://localhost:3000/admin",
+export const adminURL = axios.create({
+  baseURL: "http://localhost:3002/admin",
 });

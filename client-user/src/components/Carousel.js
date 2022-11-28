@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../store/actions/category";
-import { fetchProducts } from "../store/actions/product";
+import { fetchCategories, fetchProducts } from "../store/actions/product";
 import Card from "./Card";
 
 const Carousel = props => {

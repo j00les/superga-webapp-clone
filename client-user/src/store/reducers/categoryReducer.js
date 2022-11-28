@@ -1,4 +1,4 @@
-import { FETCH_CATEGORIES } from "../types/category";
+import { FETCH_CATEGORIES } from "../actionTypes/category";
 
 const initial = {
   categories: [],

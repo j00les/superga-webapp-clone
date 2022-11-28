@@ -1,6 +1,7 @@
 const { User, Product, Category, Image } = require("../models");
 const nodemailer = require("nodemailer");
 const { generatePasswordToken } = require("../helpers/helpers");
+const SMTPConnection = require("nodemailer/lib/smtp-connection");
 
 class PubController {
   static async getAllProduct(req, res, next) {
@@ -96,7 +97,6 @@ class PubController {
       const { resetPasswordToken } = generatedToken[1][0];
 
       let resetLink = `http://${req.headers.host}/public/reset-password/${resetPasswordToken}`;
-
       let transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,
         port: 587,
@@ -109,13 +109,11 @@ class PubController {
 
       //send email for user to change their password
       const info = await transporter.sendMail({
-        from: "nabiel.alif01@gmail.com",
-        to: "hawnyi77@gmail.com",
+        from: "hawnyi77@gmail.com",
+        to: "nabiel.alif01@gmail.com",
         subject: "Password reset request",
-        text: `Hi ${findUser.username} \n Please click on the following link ${resetLink} to reset your password. \n\n If you did not request this, please ignore this email and your password will remain unchanged.\n };`,
         html: `<p>Hi ${findUser.username} \n Please click on the following link ${resetLink} to reset your password. \n\n If you did not request this, please ignore this email and your password will remain unchanged.\n }</p>`,
       });
-      console.log(info);
       res.status(200).json({ message: "Reset password email sent" });
     } catch (error) {
       next(error);

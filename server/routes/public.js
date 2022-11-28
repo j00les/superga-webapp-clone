@@ -14,13 +14,6 @@ router.get("/reset-password/:token", PubController.resetPassword);
 
 // payment
 router.post("/pay", PaymentController.pay);
-router.post("/invoice-callback", async (req, res, next) => {
-  try {
-    console.log(req.body);
-    res.status(200).json("succcez");
-  } catch (err) {
-    console.log(err);
-  }
-});
+router.post("/invoice-callback", PaymentController.invoiceCallback);
 
 module.exports = router;

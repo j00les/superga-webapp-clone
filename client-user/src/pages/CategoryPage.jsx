@@ -20,10 +20,9 @@ export default function CategoryPage() {
   }, [dispatch]);
 
   return (
-    <section className="border h-[200px] flex bg-blue-400">
+    <section className="border  h-full flex justify-evenly bg-blue-400">
       <div>sidebar</div>
-
-      <div>
+      <div className="grid grid-cols-2 gap-4">
         {category === "women" ? (
           <Card isCategoryPage={true} womenProduct={womenProduct} />
         ) : category === "men" ? (
