@@ -29,7 +29,6 @@ class AdminController {
     try {
       const { email, password } = req.body;
 
-      console.log(password);
       const findUser = await User.findOne({ where: { email } });
       // console.log(findUser);
       if (!findUser) throw { name: "Unauthorized" };
@@ -43,10 +42,12 @@ class AdminController {
       };
 
       const access_token = tokenSign(payload);
+
       res.status(200).json({
         access_token,
         email: findUser.email,
         authorId: findUser.id,
+        username: findUser.username,
       });
     } catch (err) {
       next(err);
@@ -58,17 +59,7 @@ class AdminController {
     const t = await sequelize.transaction();
     try {
       const { id } = req.user;
-      const {
-        name,
-        description,
-        price,
-        slug,
-        mainImg,
-        category: categoryId,
-        image1,
-        image2,
-        image3,
-      } = req.body;
+      const { name, description, price, slug, mainImg, category: categoryId, image1, image2, image3 } = req.body;
 
       const product = await Product.create(
         {
@@ -83,13 +74,13 @@ class AdminController {
         { transaction: t }
       );
 
-      const images = [image1, image2, image3].map((img) => {
+      const images = [image1, image2, image3].map(img => {
         return {
           imgUrl: img,
         };
       });
 
-      images.forEach((el) => {
+      images.forEach(el => {
         return (el.productId = product.id);
       });
 
@@ -129,17 +120,7 @@ class AdminController {
       const findProduct = Product.findByPk(id);
       if (!findProduct) throw { name: "Not Found" };
 
-      const {
-        name,
-        description,
-        price,
-        slug,
-        mainImg,
-        category: categoryId,
-        image1,
-        image2,
-        image3,
-      } = req.body;
+      const { name, description, price, slug, mainImg, category: categoryId, image1, image2, image3 } = req.body;
 
       const product = await Product.update(
         {
@@ -161,7 +142,7 @@ class AdminController {
         }
       );
 
-      const images = [image1, image2, image3].map((img) => {
+      const images = [image1, image2, image3].map(img => {
         if (typeof img === "string") {
           return {
             imgUrl: img,

@@ -11,6 +11,7 @@ const i = new Invoice(invoiceSpecificOptions);
 
 module.exports = class PaymentController {
   static async pay(req, res, next) {
+    console.log(req.user, "check");
     const { name, price, categoryId } = req.body.detail;
     try {
       const category = await Category.findByPk(categoryId);
@@ -66,7 +67,7 @@ module.exports = class PaymentController {
       next(error);
     }
   }
-  
+
   static async invoiceCallback(req, res, next) {
     try {
       res.status(200).json({ message: "Payment succes" });

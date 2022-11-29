@@ -83,6 +83,7 @@ const fetchById = id => {
 
 const buyProduct = productDetail => async dispatch => {
   try {
+    // console.log(productDetail);
     const { data } = await publicURL({
       method: "post",
       url: `/pay`,

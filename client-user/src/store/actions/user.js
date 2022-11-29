@@ -1,8 +1,27 @@
 import { adminURL } from "../../apis/axiosInstance";
+import { SET_ISAUTHENTICATED, SET_ISAUTHENTICATED_FALSE, SET_USER_DATA } from "../actionTypes/user";
 
-export const login = credential => async () => {
+const setIsAuthenticated = () => {
+  return {
+    type: SET_ISAUTHENTICATED,
+  };
+};
+
+export const setIsAuthenticatedFalse = () => {
+  return {
+    type: SET_ISAUTHENTICATED_FALSE,
+  };
+};
+
+const setUserData = userData => {
+  return {
+    type: SET_USER_DATA,
+    payload: userData,
+  };
+};
+
+export const login = credential => async dispatch => {
   try {
-    console.log(credential);
     const { data } = await adminURL({
       method: "post",
       url: "/login",
@@ -13,8 +32,10 @@ export const login = credential => async () => {
     });
 
     localStorage.setItem("access_token", data.access_token);
-  } catch (err) {
-    console.log(err);
+    dispatch(setIsAuthenticated());
+    dispatch(setUserData(data));
+  } catch (error) {
+    throw new Error(error);
   }
 };
 

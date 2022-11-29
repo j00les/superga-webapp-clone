@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Toast } from "../apis/sweetAlert";
 import { register } from "../store/actions/user";
 
 export default function RegisterPage() {
@@ -17,6 +18,10 @@ export default function RegisterPage() {
       register({ username: username.current.value, email: email.current.value, password: password.current.value })
     )
       .then(() => {
+        Toast.fire({
+          icon: "success",
+          title: "Register success",
+        });
         navigate("/");
       })
       .catch(err => console.log(err));
@@ -31,7 +36,7 @@ export default function RegisterPage() {
               <label className="label">
                 <span className="label-text">Username</span>
               </label>
-              <input ref={username} type="text" placeholder="email" className="input input-bordered" />
+              <input ref={username} type="text" placeholder="username" className="input input-bordered" />
             </div>
             <div className="form-control">
               <label className="label">

@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { Toast } from "../apis/sweetAlert";
 import { login } from "../store/actions/user";
 
 export default function LoginPage() {
@@ -12,7 +13,20 @@ export default function LoginPage() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    dispatch(login({ email: email.current.value, password: password.current.value }));
+    dispatch(login({ email: email.current.value, password: password.current.value }))
+      .then(() => {
+        navigate("/");
+        Toast.fire({
+          icon: "success",
+          title: "Login Success",
+        });
+      })
+      .catch(() => {
+        Toast.fire({
+          icon: "error",
+          title: "Check your email/password",
+        });
+      });
   };
 
   return (
@@ -40,6 +54,7 @@ export default function LoginPage() {
                 <span className="label-text-alt link link-hover">Forgot password?</span>
               </label>
             </div>
+
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
               <p>
