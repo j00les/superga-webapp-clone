@@ -12,11 +12,7 @@ export default function Card({
   const landingPageCard = (
     <>
       {products?.map((el, i) => (
-        <Link
-          key={i}
-          to={`detail/${el.id}`}
-          className="flex flex-col carousel-item"
-        >
+        <Link key={i} to={`detail/${el.id}`} className="flex flex-col carousel-item">
           <img alt="" src={el.mainImg} className="rounded-box" />
           <article className="flex flex-col justify-center">
             <span className="text-center font-semibold">{el.name}</span>
@@ -31,11 +27,7 @@ export default function Card({
     <>
       {womenProduct
         ? womenProduct?.map((el, i) => (
-            <Link
-              key={i}
-              to={`/detail/${el.id}`}
-              className="flex flex-col carousel-item"
-            >
+            <Link key={i} to={`/detail/${el.id}`} className="flex flex-col carousel-item">
               <img alt="" src={el.mainImg} className="rounded-box" />
               <article className="flex flex-col justify-center">
                 <span className="text-center font-semibold">{el.name}</span>
@@ -45,11 +37,7 @@ export default function Card({
           ))
         : menProduct
         ? menProduct?.map((el, i) => (
-            <Link
-              key={i}
-              to={`/detail/${el.id}`}
-              className="flex flex-col carousel-item"
-            >
+            <Link key={i} to={`/detail/${el.id}`} className="flex flex-col carousel-item">
               <img alt="" src={el.mainImg} className="rounded-box" />
               <article className="flex flex-col justify-center">
                 <span className="text-center font-semibold">{el.name}</span>
@@ -58,11 +46,7 @@ export default function Card({
             </Link>
           ))
         : kidsProduct?.map((el, i) => (
-            <Link
-              key={i}
-              to={`/detail/${el.id}`}
-              className="flex flex-col carousel-item"
-            >
+            <Link key={i} to={`/detail/${el.id}`} className="flex flex-col  carousel-item">
               <img alt="" src={el.mainImg} className="rounded-box" />
               <article className="flex flex-col justify-center">
                 <span className="text-center font-semibold">{el.name}</span>

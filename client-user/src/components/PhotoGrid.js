@@ -32,6 +32,7 @@ const PhotoGrid = () => (
       {/* <div style={{ height: '50rem' }} className="w-full">
         <iframe
           //to autoplay
+          //ini video
 
           // src="https://www.youtube.com/embed/dF0Ki9OGWjI?autoplay=1"
           className="w-full h-full"
