@@ -1,7 +1,6 @@
 import Swal from "sweetalert2";
 import { adminURL, publicURL } from "../../apis/axiosInstance";
 import { FETCH_CATEGORIES } from "../actionTypes/category";
-
 import { FETCH_BY_ID, FETCH_PRODUCTS, PAY_PRODUCT, SET_LOADING_FALSE, SET_LOADING_TRUE } from "../actionTypes/product";
 // const baseUrl = "https://superga-react-app.herokuapp.com/pub";
 const baseUrl = "http://localhost:3002/public";

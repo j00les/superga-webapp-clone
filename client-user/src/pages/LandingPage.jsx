@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import Banner from "../components/Banner";
+import { Banner } from "../components/Banner";
 import Carousel from "../components/Carousel";
 import PhotoGrid from "../components/PhotoGrid";
 

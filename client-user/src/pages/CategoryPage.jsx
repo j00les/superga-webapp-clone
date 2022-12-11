@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Card from "../components/Card";
+import { Card } from "../components/Card";
 import { filterProduct } from "../helpers/helpers";
 import { fetchProducts } from "../store/actions/product";
 

@@ -1,14 +1,24 @@
 import { Link } from "react-router-dom";
 import { toRupiah } from "../helpers/helpers";
+import { Product } from "models";
 
-export default function Card({
+interface Props {
+  products: Product[];
+  isLandingPage: Boolean;
+  isCategoryPage: Boolean;
+  womenProduct: Product[];
+  menProduct: Product[];
+  kidsProduct: Product[];
+}
+
+export const Card: React.FC<Props> = ({
   products,
   isLandingPage,
   isCategoryPage,
   womenProduct,
   menProduct,
   kidsProduct,
-}) {
+}) => {
   const landingPageCard = (
     <>
       {products?.map((el, i) => (
@@ -63,4 +73,4 @@ export default function Card({
       {isCategoryPage && categoryCard}
     </>
   );
-}
+};
