@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "models";
+import { fetchProducts } from "store/actions/product";
 
 interface ProductState {
   products: Product[];
@@ -24,10 +25,18 @@ const initialState: ProductState = {
   isLoading: false,
   payResponse: {},
 };
-export const productSlice = createSlice({
+
+const productSlice = createSlice({
   name: "Products",
   initialState,
-  reducers: {
-    fetchProducts: (state, action: PayloadAction<Product>) => {},
+  reducers: {},
+
+  extraReducers(builder) {
+    console.log(fetchProducts);
+    builder.addCase(fetchProducts.fulfilled, (state, action) => {
+      state.products = action.payload;
+    });
   },
 });
+
+export default productSlice.reducer;

@@ -1,22 +1,26 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories, fetchProducts } from "../store/actions/product";
+// import { fetchCategories, fetchProducts } from "../store/actions/product";
 
 import { Product } from "models";
 import { Card } from "./Card";
+import { useAppDispatch, useAppSelector } from "hooks/hooks";
+import { fetchProducts } from "store/actions/product";
 
-export const Carousel: React.FC<{ products?: Boolean }> = ({ products }) => {
+export const Carousel: React.FC<{ productCarousel?: Boolean }> = ({ productCarousel }) => {
   // console.log(products, "yeye");
-  // const { product }: { product: Product[] } = useSelector(state => state);
+  const { products } = useAppSelector(state => state);
   // const { category } = useSelector(state => state);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  // console.log(products.products);
 
   useEffect(() => {
-    // dispatch(fetchProducts());
+    dispatch(fetchProducts());
+
     // dispatch(fetchCategories());
   }, [dispatch]);
 
-  if (products) {
+  if (productCarousel) {
     return (
       <div className="mt-10">
         <h1 className="uppercase text-center text-2xl font-semibold">SHOP NOW</h1>
@@ -31,7 +35,7 @@ export const Carousel: React.FC<{ products?: Boolean }> = ({ products }) => {
             })}
           </div> */}
           <div className="mx-auto w-full mb-10 carousel carousel-center  p-4 space-x-4 bg-white rounded-box">
-            {/* <Card isLandingPage={true} products={product.products} /> */}
+            <Card isLandingPage={true} products={products.products} />
           </div>
         </div>
       </div>

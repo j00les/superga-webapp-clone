@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { setIsAuthenticatedFalse } from "../store/actions/user";
+// import { setIsAuthenticatedFalse } from "../store/actions/user";
 
 const NavBar = () => {
   const { user } = useSelector(state => state);
   const dispatch = useDispatch();
 
-  function handleLogout() {
-    dispatch(setIsAuthenticatedFalse());
-    localStorage.clear();
-  }
+  // function handleLogout() {
+  //   dispatch(setIsAuthenticatedFalse());
+  //   localStorage.clear();
+  // }
 
   return (
     <>
@@ -37,7 +37,7 @@ const NavBar = () => {
             <span className="material-symbols-outlined">shopping_bag</span>
           </div>
 
-          {user.isAuthenticated ? (
+          {/* {user.isAuthenticated ? (
             <div className="flex gap-2 items-center">
               <p>Halo, {user.userData.name}</p>
               <button className="p-1 rounded-md bg-red-400" onClick={() => handleLogout()}>
@@ -48,7 +48,7 @@ const NavBar = () => {
             <NavLink to="/login" className="material-symbols-outlined">
               person
             </NavLink>
-          )}
+          )} */}
         </div>
       </div>
     </>

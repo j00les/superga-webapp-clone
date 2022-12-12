@@ -8,7 +8,7 @@ const LandingPage = () => {
   return (
     <>
       <Banner />
-      <Carousel products />
+      <Carousel productCarousel />
       <PhotoGrid />
       <Carousel instagram />
     </>

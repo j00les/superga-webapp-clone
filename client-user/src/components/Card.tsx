@@ -4,11 +4,11 @@ import { Product } from "models";
 
 interface Props {
   products: Product[];
-  isLandingPage: Boolean;
-  isCategoryPage: Boolean;
-  womenProduct: Product[];
-  menProduct: Product[];
-  kidsProduct: Product[];
+  isLandingPage: boolean;
+  isCategoryPage?: boolean;
+  womenProduct?: Product[];
+  menProduct?: Product[];
+  kidsProduct?: Product[];
 }
 
 export const Card: React.FC<Props> = ({
