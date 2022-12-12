@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Toast } from "../apis/sweetAlert";
-import { register } from "../store/actions/user";
+// import { register } from "../store/actions/user";
 
 export default function RegisterPage() {
   const username = useRef(null);
@@ -11,27 +11,27 @@ export default function RegisterPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  // const handleSubmit = e => {
+  //   e.preventDefault();
 
-    dispatch(
-      register({ username: username.current.value, email: email.current.value, password: password.current.value })
-    )
-      .then(() => {
-        Toast.fire({
-          icon: "success",
-          title: "Register success",
-        });
-        navigate("/");
-      })
-      .catch(err => console.log(err));
-  };
+  //   dispatch(
+  //     register({ username: username.current.value, email: email.current.value, password: password.current.value })
+  //   )
+  //     .then(() => {
+  //       Toast.fire({
+  //         icon: "success",
+  //         title: "Register success",
+  //       });
+  //       navigate("/");
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onSubmit={e => handleSubmit(e)} className="card-body">
+          {/* <form onSubmit={e => handleSubmit(e)} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Username</span>
@@ -53,7 +53,7 @@ export default function RegisterPage() {
             <div className="form-control mt-6">
               <button className="btn btn-primary">Register</button>
             </div>
-          </form>
+          </form> */}
         </div>
       </div>
     </div>

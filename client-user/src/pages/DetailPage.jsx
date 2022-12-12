@@ -26,16 +26,16 @@ export const DetailPage = () => {
     }).format(price);
   }
 
-  const handlePayment = () => {
-    setRedirectLoading(false);
-    dispatch(buyProduct(product.productById)).then(() => {
-      navigate("/invoice");
-    });
-  };
+  // const handlePayment = () => {
+  //   setRedirectLoading(false);
+  //   dispatch(buyProduct(product.productById)).then(() => {
+  //     navigate("/invoice");
+  //   });
+  // };
 
-  useEffect(() => {
-    dispatch(fetchById(id));
-  }, [dispatch, id]);
+  // useEffect(() => {
+  //   dispatch(fetchById(id));
+  // }, [dispatch, id]);
 
   return (
     <div className="flex  justify-evenly m-8">
@@ -97,7 +97,7 @@ export const DetailPage = () => {
           <p>{loading ? <Skeleton count={5} /> : description}</p>
         </div>
 
-        <div className="desc w-1/2 mx-auto text-xl">
+        {/* <div className="desc w-1/2 mx-auto text-xl">
           <div id="button" className="flex my-8 flex-col justify-evenly gap-3">
             {loading ? (
               <Skeleton height={50} />
@@ -109,7 +109,7 @@ export const DetailPage = () => {
 
             {loading ? <Skeleton height={50} /> : <button className="btn">add to wishlist</button>}
           </div>
-        </div>
+        </div> */}
 
         {!redirectLoading && (
           <div className="flex-col items-center  w-fit  mx-auto gap-3 ">
