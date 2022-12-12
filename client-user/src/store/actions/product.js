@@ -12,7 +12,7 @@ const fetchCreator = data => {
   };
 };
 
-const fetchCategoryCreator = data => {
+const fetchCategoproryCreator = data => {
   return {
     type: FETCH_CATEGORIES,
     payload: data,
