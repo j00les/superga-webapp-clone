@@ -2,7 +2,7 @@ import { createBrowserRouter, redirect } from "react-router-dom";
 import { CategoryPage } from "../pages/CategoryPage";
 import { DetailPage } from "../pages/DetailPage";
 import { InvoicePage } from "../pages/InvoicePage";
-import LandingPage from "../pages/LandingPage";
+import { LandingPage } from "../pages/LandingPage";
 import { LoginPage } from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import { Root } from "./Root";

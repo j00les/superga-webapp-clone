@@ -1,16 +1,14 @@
-import { useSelector } from "react-redux";
 import { Banner } from "../components/Banner";
 import { Carousel } from "../components/Carousel";
 import PhotoGrid from "../components/PhotoGrid";
 
 export const LandingPage: React.FC = () => {
-  // const state = useSelector(state => state.user);
   return (
     <>
       <Banner />
       <Carousel productCarousel />
       <PhotoGrid />
-      <Carousel instagram />
+      <Carousel instagramCarousel />
     </>
   );
 };

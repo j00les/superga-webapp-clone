@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { fetchCategories, fetchProducts } from "../store/actions/product";
 
 import { Product } from "models";
 import { Card } from "./Card";
 import { useAppDispatch, useAppSelector } from "hooks/hooks";
 import { fetchProducts } from "store/actions/product";
 
-export const Carousel: React.FC<{ productCarousel?: Boolean }> = ({ productCarousel }) => {
+export const Carousel: React.FC<{ productCarousel?: Boolean; instagramCarousel?: Boolean }> = ({
+  instagramCarousel,
+  productCarousel,
+}) => {
   // console.log(products, "yeye");
   const { products } = useAppSelector(state => state);
   // const { category } = useSelector(state => state);
