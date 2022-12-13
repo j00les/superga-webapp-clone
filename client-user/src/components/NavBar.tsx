@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 // import { setIsAuthenticatedFalse } from "../store/actions/user";
 
-const NavBar = () => {
-  const { user } = useSelector(state => state);
+export const NavBar: React.FC = () => {
+  // const { user } = useSelector(state => state);
   const dispatch = useDispatch();
 
   // function handleLogout() {
@@ -54,5 +54,3 @@ const NavBar = () => {
     </>
   );
 };
-
-export default NavBar;

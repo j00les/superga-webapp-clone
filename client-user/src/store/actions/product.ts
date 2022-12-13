@@ -1,23 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { adminURL, publicURL } from "../../apis/axiosInstance";
-// const baseUrl = "https://superga-react-app.herokuapp.com/pub";
-
-// export const fetchProducts = () => {
-//   return async dispatch => {
-//     try {
-//       const response = await fetch(`${baseUrl}/products`, {
-//         method: "get",
-//       });
-
-//       if (!response.ok) throw new Error("Can't fetch data");
-//       const data = await response.json();
-
-//       dispatch(fetchCreator(data));
-//     } catch (err) {
-//       Swal.fire("error", err);
-//     }
-//   };
-// };
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
   try {
@@ -25,7 +7,6 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
       url: "/products",
       method: "GET",
     });
-
     return data;
   } catch (error) {
     throw error;

@@ -1,4 +1,4 @@
-const Footer = () => (
+export const Footer: React.FC = () => (
   <footer className="footer p-10 bg-neutral text-neutral-content">
     <div>
       <span className="footer-title">About Superga</span>
@@ -22,5 +22,3 @@ const Footer = () => (
     </div>
   </footer>
 );
-
-export default Footer;

@@ -1,16 +1,17 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
-import CategoryPage from "../pages/CategoryPage";
+import { CategoryPage } from "../pages/CategoryPage";
 import { DetailPage } from "../pages/DetailPage";
 import { InvoicePage } from "../pages/InvoicePage";
 import LandingPage from "../pages/LandingPage";
-import LoginPage from "../pages/LoginPage";
+import { LoginPage } from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
-import Root from "./Root";
+import { Root } from "./Root";
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+
     children: [
       { path: "/", element: <LandingPage /> },
       { path: "detail/:id", element: <DetailPage /> },
@@ -41,5 +42,3 @@ const router = createBrowserRouter([
     element: <InvoicePage />,
   },
 ]);
-
-export default router;

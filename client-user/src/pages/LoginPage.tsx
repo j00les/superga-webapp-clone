@@ -1,39 +1,44 @@
-import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "hooks/hooks";
+import { FormEvent, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Toast } from "../apis/sweetAlert";
-// import { login } from "../store/actions/user";
+import { login } from "../store/actions/user";
 
-export default function LoginPage() {
-  const email = useRef(null);
-  const password = useRef(null);
-  const dispatch = useDispatch();
+export const LoginPage: React.FC = () => {
+  const email = useRef<HTMLInputElement>(null);
+  const password = useRef<HTMLInputElement>(null);
+
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-
-  //   dispatch(login({ email: email.current.value, password: password.current.value }))
-  //     .then(() => {
-  //       navigate("/");
-  //       Toast.fire({
-  //         icon: "success",
-  //         title: "Login Success",
-  //       });
-  //     })
-  //     .catch(() => {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: "Check your email/password",
-  //       });
-  //     });
-  // };
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      await dispatch(
+        login({
+          email: email.current!.value,
+          password: password.current!.value,
+        })
+      )
+      .unwrap();
+      navigate("/");
+      Toast.fire({
+        icon: "success",
+        title: "Login Success",
+      });
+    } catch (error) {
+      Toast.fire({
+        icon: "error",
+        title: "Check your email/password",
+      });
+    }
+  };
 
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          {/* <form
+          <form
             onSubmit={e => {
               handleSubmit(e);
             }}
@@ -49,7 +54,12 @@ export default function LoginPage() {
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input ref={password} type="password" placeholder="password" className="input input-bordered" />
+              <input
+                ref={password}
+                type="password"
+                placeholder="password"
+                className="input input-bordered"
+              />
               <label className="label">
                 <span className="label-text-alt link link-hover">Forgot password?</span>
               </label>
@@ -61,9 +71,9 @@ export default function LoginPage() {
                 don't have an account? <Link to="/register">Register</Link>
               </p>
             </div>
-          </form> */}
+          </form>
         </div>
       </div>
     </div>
   );
-}
+};

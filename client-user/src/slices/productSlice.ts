@@ -27,12 +27,11 @@ const initialState: ProductState = {
 };
 
 const productSlice = createSlice({
-  name: "Products",
+  name: "products",
   initialState,
   reducers: {},
 
   extraReducers(builder) {
-    console.log(fetchProducts);
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.products = action.payload;
     });

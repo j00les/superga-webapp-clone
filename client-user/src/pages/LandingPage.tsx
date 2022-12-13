@@ -3,8 +3,8 @@ import { Banner } from "../components/Banner";
 import { Carousel } from "../components/Carousel";
 import PhotoGrid from "../components/PhotoGrid";
 
-const LandingPage = () => {
-  const state = useSelector(state => state.user);
+export const LandingPage: React.FC = () => {
+  // const state = useSelector(state => state.user);
   return (
     <>
       <Banner />
@@ -14,5 +14,3 @@ const LandingPage = () => {
     </>
   );
 };
-
-export default LandingPage;
