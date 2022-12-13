@@ -45,7 +45,11 @@ export const DetailPage = () => {
         ) : (
           <div className="carousel w-1/2">
             {images?.map((el, i) => (
-              <div key={`${i}-cccarou`} id={`slide${i + 1}`} className="carousel-item relative w-full">
+              <div
+                key={`${i}-cccarou`}
+                id={`slide${i + 1}`}
+                className="carousel-item relative w-full"
+              >
                 <img alt="product" src={el.imgUrl} className="w-full" />
 
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -88,7 +92,9 @@ export const DetailPage = () => {
             <p className="text-lg mb-4">{toRupiah(product.productById.price)}</p>
 
             <div>
-              <p className="text-xl">Order within 01 hours 22 minutes to receive Sat 22 October - Sun 23 October</p>
+              <p className="text-xl">
+                Order within 01 hours 22 minutes to receive Sat 22 October - Sun 23 October
+              </p>
             </div>
           </div>
         )}

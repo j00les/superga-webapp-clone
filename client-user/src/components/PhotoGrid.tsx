@@ -1,4 +1,4 @@
-const PhotoGrid = () => (
+export const PhotoGrid: React.FC = () => (
   <>
     <div className="flex flex-col gap-10">
       <section className="grid grid-cols-2 w-3/4 mx-auto gap-x-6">
@@ -48,4 +48,3 @@ const PhotoGrid = () => (
     </div>
   </>
 );
-export default PhotoGrid;
