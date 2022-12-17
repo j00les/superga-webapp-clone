@@ -1,11 +1,11 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { adminURL, publicURL } from "../../apis/axiosInstance";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { adminURL, publicURL } from '../../apis/axiosInstance';
 
-export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
+export const fetchProducts = createAsyncThunk('products/fetchAll', async () => {
   try {
     const { data } = await publicURL({
-      url: "/products",
-      method: "GET",
+      url: '/products',
+      method: 'GET',
     });
     return data;
   } catch (error) {
@@ -13,27 +13,39 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
   }
 });
 
-// const fetchById = id => {
-//   return async dispatch => {
-//     dispatch(setLoadingTrue());
-//     try {
-//       const response = await fetch(`${baseUrl}/products/${id}`, {
-//         method: "get",
-//       });
-
-//       if (!response.ok) throw new Error("Can't fetch data");
-//       const data = await response.json();
-
-//       dispatch(fetchByIdCreator(data));
-//     } catch (err) {
-//       Swal.fire("error", err);
-//     } finally {
-//       setTimeout(() => {
-//         dispatch(setLoadingFalse());
-//       }, 1000);
-//     }
-//   };
-// };
+export const fetchById = createAsyncThunk('products/fetchById', async (id: string | undefined) => {
+  // return async (dispatch) => {
+  //   dispatch(setLoadingTrue());
+  //   try {
+  //     const response = await fetch(`${baseUrl}/products/${id}`, {
+  //       method: 'get',
+  //     });
+  //     if (!response.ok) throw new Error("Can't fetch data");
+  //     const data = await response.json();
+  //     dispatch(fetchByIdCreator(data));
+  //   } catch (err) {
+  //     Swal.fire('error', err);
+  //   } finally {
+  //     setTimeout(() => {
+  //       dispatch(setLoadingFalse());
+  //     }, 1000);
+  //   }
+  // };
+  try {
+    console.log(id, 'ye');
+    const { data } = await publicURL({
+      url: `/products/${id}`,
+      method: 'GET',
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  } finally {
+    //  setTimeout(() => {
+    //    dispatch(setLoadingFalse());
+    //  }, 1000);
+  }
+});
 
 // const buyProduct = productDetail => async dispatch => {
 //   try {

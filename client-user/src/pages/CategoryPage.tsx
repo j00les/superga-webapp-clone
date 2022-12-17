@@ -1,14 +1,15 @@
-import React, { useMemo } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Card } from "../components/Card";
-import { filterProduct } from "../helpers/helpers";
-import { fetchProducts } from "../store/actions/product";
+import React, {useMemo} from "react";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useParams} from "react-router-dom";
+import {Card} from "../components/Card";
+import {filterProduct} from "../helpers/helpers";
+import {fetchProducts} from "../store/actions/product";
+
 
 export const CategoryPage: React.FC = () => {
   const dispatch = useDispatch();
-  const { category } = useParams();
+  const {category} = useParams();
   // const { products } = useSelector(state => state.product);
 
   //--basically caching the data, so the function wont be calculated (called) again if there's no changes

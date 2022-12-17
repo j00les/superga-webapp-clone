@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Product } from "models";
-import { fetchProducts } from "store/actions/product";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Product } from 'models';
+import { fetchById, fetchProducts } from 'store/actions/product';
 
 interface ProductState {
   products: Product[];
@@ -13,11 +13,11 @@ const initialState: ProductState = {
   products: [],
   productById: {
     id: 0,
-    name: "",
-    slug: "",
-    description: "",
+    name: '',
+    slug: '',
+    description: '',
     price: 0,
-    mainImg: "",
+    mainImg: '',
     categoryId: 0,
     authorId: 0,
     Images: [],
@@ -27,13 +27,18 @@ const initialState: ProductState = {
 };
 
 const productSlice = createSlice({
-  name: "products",
+  name: 'products',
   initialState,
   reducers: {},
 
   extraReducers(builder) {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.products = action.payload;
+    });
+
+    builder.addCase(fetchById.fulfilled, (state, action) => {
+      console.log(action);
+      //state.productById = action.payload;
     });
   },
 });

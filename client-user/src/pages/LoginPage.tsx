@@ -1,8 +1,8 @@
-import { useAppDispatch } from "hooks/hooks";
-import { FormEvent, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Toast } from "../apis/sweetAlert";
-import { login } from "../store/actions/user";
+import { useAppDispatch } from 'hooks/hooks';
+import { FormEvent, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Toast } from '../apis/sweetAlert';
+import { login } from '../store/actions/user';
 
 export const LoginPage: React.FC = () => {
   const email = useRef<HTMLInputElement>(null);
@@ -19,17 +19,16 @@ export const LoginPage: React.FC = () => {
           email: email.current!.value,
           password: password.current!.value,
         })
-      )
-      .unwrap();
-      navigate("/");
+      ).unwrap();
+      navigate('/');
       Toast.fire({
-        icon: "success",
-        title: "Login Success",
+        icon: 'success',
+        title: 'Login Success',
       });
     } catch (error) {
       Toast.fire({
-        icon: "error",
-        title: "Check your email/password",
+        icon: 'error',
+        title: 'Check your email/password',
       });
     }
   };
@@ -39,7 +38,7 @@ export const LoginPage: React.FC = () => {
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form
-            onSubmit={e => {
+            onSubmit={(e) => {
               handleSubmit(e);
             }}
             className="card-body"

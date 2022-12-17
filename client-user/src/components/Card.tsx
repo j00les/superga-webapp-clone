@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { toRupiah } from "../helpers/helpers";
-import { Product } from "models";
+import { Link } from 'react-router-dom';
+import { toRupiah } from '../helpers/helpers';
+import { Product } from 'models';
 
 interface Props {
   products: Product[];

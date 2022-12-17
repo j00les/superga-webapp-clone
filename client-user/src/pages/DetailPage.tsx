@@ -1,35 +1,37 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { buyProduct, fetchById } from '../store/actions/product';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useState } from 'react';
 import { Dna } from 'react-loader-spinner';
 import { toRupiah } from 'helpers/helpers';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { fetchById } from 'store/actions/product';
 
 export const DetailPage: React.FC = () => {
   const { id } = useParams();
-  const { product } = useSelector((state) => state);
-  const dispatch = useDispatch();
+  const { products } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const loading = product.isLoading;
-  const description = product.productById.description;
-  const images = product.productById.Images;
+  const loading = products.isLoading;
+  const description = products.productById.description;
+  const images = products.productById.Images;
   //redirect to payment loading
   const [redirectLoading, setRedirectLoading] = useState(true);
 
   const handlePayment = () => {
     setRedirectLoading(false);
-    //  dispatch(buyProduct(product.productById)).then(() => {
+    //  dispatch(buyProduct(products.productById)).then(() => {
     //    navigate('/invoice');
     //  });
   };
 
-  //  useEffect(() => {
-  //    dispatch(fetchById(id));
-  //  }, [dispatch, id]);
+  useEffect(() => {
+    //console.log(typeof id);
+    dispatch(fetchById(id));
+  }, [dispatch, id]);
 
   return (
     <div className="flex  justify-evenly m-8">
@@ -44,7 +46,7 @@ export const DetailPage: React.FC = () => {
                 id={`slide${i + 1}`}
                 className="carousel-item relative w-full"
               >
-                <img alt="product" src={el.imgUrl} className="w-full" />
+                <img alt="products" src={el.imgUrl} className="w-full" />
 
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                   <span className="btn btn-circle">❮</span>
@@ -72,7 +74,7 @@ export const DetailPage: React.FC = () => {
                 <Skeleton height={25} />
               </div>
             ) : (
-              product.productById.name
+              products.productById.name
             )}
           </h1>
         </div>
@@ -83,7 +85,7 @@ export const DetailPage: React.FC = () => {
           </div>
         ) : (
           <div className="price my-8">
-            <p className="text-lg mb-4">{toRupiah(product.productById.price)}</p>
+            <p className="text-lg mb-4">{toRupiah(products.productById.price)}</p>
 
             <div>
               <p className="text-xl">
