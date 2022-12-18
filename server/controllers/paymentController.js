@@ -1,18 +1,18 @@
-const { Category } = require("../models");
+const {Category} = require("../models");
 const Xendit = require("xendit-node");
 
 const x = new Xendit({
   secretKey: "xnd_development_JNqJ5q83Fln5gQUfhcf5x732Gd6qs38114PsWPpePw42RYytVguGuTqNQ",
 });
 
-const { Invoice } = x;
+const {Invoice} = x;
 const invoiceSpecificOptions = {};
 const i = new Invoice(invoiceSpecificOptions);
 
 module.exports = class PaymentController {
   static async pay(req, res, next) {
     console.log(req.user, "check");
-    const { name, price, categoryId } = req.body.detail;
+    const {name, price, categoryId} = req.body.detail;
     try {
       const category = await Category.findByPk(categoryId);
       const resp = await i.createInvoice({
@@ -70,7 +70,7 @@ module.exports = class PaymentController {
 
   static async invoiceCallback(req, res, next) {
     try {
-      res.status(200).json({ message: "Payment succes" });
+      res.status(200).json({message: "Payment succes"});
     } catch (error) {
       next(error);
     }

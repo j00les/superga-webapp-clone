@@ -12,6 +12,7 @@ import { fetchById } from 'store/actions/product';
 export const DetailPage: React.FC = () => {
   const { id } = useParams();
   const { products } = useAppSelector((state) => state);
+  const [image, setImage] = useState('');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -28,9 +29,20 @@ export const DetailPage: React.FC = () => {
     //  });
   };
 
+  const fetchByIdHandler = async () => {
+    try {
+      await dispatch(fetchById(id)).unwrap();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const setImageUrl = (url: string) => {
+    setImage(url);
+  };
+
   useEffect(() => {
-    //console.log(typeof id);
-    dispatch(fetchById(id));
+    fetchByIdHandler();
   }, [dispatch, id]);
 
   return (
@@ -39,25 +51,35 @@ export const DetailPage: React.FC = () => {
         {loading ? (
           <div className="bg-blue w-[50%]">{<Skeleton height={800} />}</div>
         ) : (
-          <div className="carousel w-1/2">
-            {images?.map((el, i) => (
-              <div
-                key={`${i}-cccarou`}
-                id={`slide${i + 1}`}
-                className="carousel-item relative w-full"
-              >
-                <img alt="products" src={el.imgUrl} className="w-full" />
-
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                  <span className="btn btn-circle">❮</span>
-                  <span className="btn btn-circle">❯</span>
-                </div>
+          <>
+            <div className="flex">
+              <div className="flex flex-col bg-red-500">
+                {images?.map((el, i) => {
+                  return (
+                    <div
+                      key={i + 2}
+                      onClick={() => setImageUrl(el.imgUrl)}
+                      className="border bg-red-400 max-w-[7rem]"
+                    >
+                      <img src={el.imgUrl} />
+                    </div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
+            </div>
+            <div className="w-1/2 flex gap-20">
+              <div className="carousel-item relative max-w-full max-h-[30rem]">
+                <img
+                  alt="products"
+                  src={image ? image : images[0]?.imgUrl}
+                  className="w-full hover:scale-[1.2]"
+                />
+              </div>
+            </div>
+          </>
         )}
       </>
-      <section className=" w-3/4 mt-8  text-center">
+      <section className=" w-1/2 mt-8  text-center">
         <div className="title mx-auto mb-4">
           <h1 className="text-2xl font-semibold uppercase">
             {loading ? (
@@ -84,13 +106,19 @@ export const DetailPage: React.FC = () => {
             <Skeleton height={25} />
           </div>
         ) : (
-          <div className="price my-8">
+          <div className="price my-8 border">
             <p className="text-lg mb-4">{toRupiah(products.productById.price)}</p>
 
             <div>
               <p className="text-xl">
                 Order within 01 hours 22 minutes to receive Sat 22 October - Sun 23 October
               </p>
+              <section className="flex ml-20 mt-[2rem]  border">
+                <div>Size:</div>
+                <span className="border border-solid border-red-400 w-fit">isi</span>
+                <span className="border border-solid border-red-400 w-fit">isi</span>
+                <span className="border border-solid border-red-400 w-fit">isi</span>
+              </section>
             </div>
           </div>
         )}

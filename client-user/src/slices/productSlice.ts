@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product } from 'models';
 import { fetchById, fetchProducts } from 'store/actions/product';
+import { setTimeout } from 'timers';
 
 interface ProductState {
   products: Product[];
@@ -36,10 +37,14 @@ const productSlice = createSlice({
       state.products = action.payload;
     });
 
-    builder.addCase(fetchById.fulfilled, (state, action) => {
-      console.log(action);
-      //state.productById = action.payload;
-    });
+    builder
+      .addCase(fetchById.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.productById = action.payload;
+      });
   },
 });
 
