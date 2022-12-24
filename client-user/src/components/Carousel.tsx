@@ -1,17 +1,17 @@
-import {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import {Product} from "models";
-import {Card} from "./Card";
-import {useAppDispatch, useAppSelector} from "hooks/hooks";
-import {fetchProducts} from "store/actions/product";
+import { Product } from "models";
+import { Card } from "./Card";
+import { useAppDispatch, useAppSelector } from "hooks/hooks";
+import { fetchProducts } from "store/actions/product";
 
-export const Carousel: React.FC<{productCarousel?: Boolean; instagramCarousel?: Boolean}> = ({
-  instagramCarousel,
-  productCarousel,
-}) => {
+export const Carousel: React.FC<{
+  productCarousel?: Boolean;
+  instagramCarousel?: Boolean;
+}> = ({ instagramCarousel, productCarousel }) => {
   // console.log(products, "yeye");
-  const {products} = useAppSelector(state => state);
+  const { products } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const Carousel: React.FC<{productCarousel?: Boolean; instagramCarousel?: 
     return (
       <div className="mt-10">
         <h1 className="uppercase text-center text-2xl font-semibold">SHOP</h1>
-        <div style={{width: "75%"}} className=" mx-auto">
+        <div style={{ width: "75%" }} className=" mx-auto">
           <div className="mx-auto w-full mb-10 carousel carousel-center p-4 space-x-4 bg-white rounded-box">
             <Card isLandingPage={true} products={products.products} />
           </div>
