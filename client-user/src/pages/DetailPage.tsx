@@ -13,9 +13,11 @@ export const DetailPage: React.FC = () => {
   const { id } = useParams();
   const { products } = useAppSelector((state) => state);
   const [image, setImage] = useState("");
+  const [tab, setTab] = useState("description");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const size = [36, 37, 38, 39, 40, 41, 42, 43, 44];
+  const shippingDesc = "";
 
   const loading = products.isLoading;
   const description = products.productById.description;
@@ -47,40 +49,42 @@ export const DetailPage: React.FC = () => {
   }, [dispatch, id]);
 
   return (
-    <div className="flex justify-evenly m-8" id="detail-page">
+    <div className="flex m-8 justify-evenly border" id="detail-page">
       <>
         {loading ? (
           <div className="bg-blue w-[50%]">{<Skeleton height={800} />}</div>
         ) : (
           <>
             <div className="flex">
-              <div className="flex flex-col">
-                {images?.map((el, i) => {
-                  return (
-                    <div
-                      key={i + 2}
-                      onClick={() => setImageUrl(el.imgUrl)}
-                      className=" bg-red-400 max-w-[7rem]"
-                    >
-                      <img src={el.imgUrl} />
-                    </div>
-                  );
-                })}
+              <div className="gap-2">
+                <div className="flex flex-col gap-2">
+                  {images?.map((el, i) => {
+                    return (
+                      <div
+                        key={i + 2}
+                        onClick={() => setImageUrl(el.imgUrl)}
+                        className="max-w-[7rem] border border-solid border-red-400 border-2px"
+                      >
+                        <img src={el.imgUrl} />
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-            <div className="w-1/2 flex gap-20">
-              <div className="carousel-item relative max-w-full max-h-[30rem]">
-                <img
-                  alt="products"
-                  src={image ? image : images[0]?.imgUrl}
-                  className="w-full"
-                />
+              <div className="ml-[1rem]">
+                <div className="carousel-item relative w-[60vh] max-h-[30rem]">
+                  <img
+                    alt="products"
+                    src={image ? image : images[0]?.imgUrl}
+                    className="w-full"
+                  />
+                </div>
               </div>
             </div>
           </>
         )}
       </>
-      <section className="w-1/2 mt-8  text-center">
+      <section className="w-1/2 mt-8 border  text-center">
         <div className="title mx-auto mb-4">
           <h1 className="text-2xl font-semibold uppercase">
             {loading ? (
@@ -152,8 +156,62 @@ export const DetailPage: React.FC = () => {
             )}
           </div>
         </div>
-        <div className="desc w-1/2 mx-auto text-md">
-          <p>{loading ? <Skeleton count={5} /> : description}</p>
+        <div className="mx-auto text-md border">
+          <div id="tab" className="flex gap-2">
+            <span
+              onClick={() => setTab("description")}
+              className="border-b cursor-pointer"
+            >
+              Description
+            </span>
+            <span
+              onClick={() => setTab("sizing")}
+              className="border-b cursor-pointer"
+            >
+              Sizing
+            </span>
+            <span
+              onClick={() => setTab("shipping")}
+              className="border-b cursor-pointer"
+            >
+              Shipping
+            </span>
+            <span
+              onClick={() => setTab("returns")}
+              className="border-b cursor-pointer"
+            >
+              Returns
+            </span>
+          </div>
+          <div className="border w-full">
+            {tab === "description" && description}
+            {tab === "sizing" && <p>sizing</p>}
+            {tab === "shipping" && (
+              <p>
+                We are very pleased to inform you that we ship to all across
+                Indonesia. We have five different shipping methods that you are
+                free to choose. Please note that the orders generally take 1­-2
+                business days to process in the warehouse before shipping. JNE
+                Next Day You can expect your order to arrive the next day after
+                we place them for delivery (Jakarta Area) and 2 business days
+                (Outside Jakarta) when placed before 2 p.m Indonesia Western
+                Time JNE Regular You can expect your order to arrive 1-2
+                business days when placed before 2 p.m Indonesia Western Time
+                Sameday Delivery Your order will be delivered on the same day as
+                your order but order after 12:00 will be processed the next day.
+                Sicepat Regular You can expect your order to arrive 1-2 business
+                days when placed before 2 p.m Indonesia Western Time Sicepat
+                Best You can expect your order to arrive 1 business days when
+                placed before 2 p.m Indonesia Western Time
+              </p>
+            )}
+            {tab === "returns" && (
+              <p>
+                Please contact to the email info@superga.id or Whatsapp number
+                0819-1177-7707 for confirmation
+              </p>
+            )}
+          </div>
         </div>
         {!redirectLoading && (
           <div className="flex-col items-center  w-fit  mx-auto gap-3 ">
