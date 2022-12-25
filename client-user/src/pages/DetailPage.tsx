@@ -49,7 +49,7 @@ export const DetailPage: React.FC = () => {
   }, [dispatch, id]);
 
   return (
-    <div className="flex m-8 justify-evenly border" id="detail-page">
+    <div className="flex m-8 justify-evenly" id="detail-page">
       <>
         {loading ? (
           <div className="bg-blue w-[50%]">{<Skeleton height={800} />}</div>
@@ -72,7 +72,7 @@ export const DetailPage: React.FC = () => {
                 </div>
               </div>
               <div className="ml-[1rem]">
-                <div className="carousel-item relative w-[60vh] max-h-[30rem]">
+                <div className="relative w-[30rem] max-h-[30rem]">
                   <img
                     alt="products"
                     src={image ? image : images[0]?.imgUrl}
@@ -84,7 +84,7 @@ export const DetailPage: React.FC = () => {
           </>
         )}
       </>
-      <section className="w-1/2 mt-8 border  text-center">
+      <section className="w-1/2 mt-8 text-center">
         <div className="title mx-auto mb-4">
           <h1 className="text-2xl font-semibold uppercase">
             {loading ? (
@@ -116,46 +116,54 @@ export const DetailPage: React.FC = () => {
               {toRupiah(products.productById.price)}
             </p>
 
-            <div>
+            <div className="flex flex-col">
               <p className="text-md">
-                Order within 01 hours 22 minutes to receive Sat 22 October - Sun
-                23 October
+                Order within 01 hours 22 minutes to receive{" "}
+                <span className="text-green-400">
+                  Sat 22 October - Sun 23 October
+                </span>
               </p>
-              <section className="flex ml-20 mt-[2rem]   flex-col gap-2">
+
+              <section className="flex flex-col gap-2 mt-10">
                 <span className="self-start">Size:</span>
                 <div className="flex gap-2">
                   {size.map((el) => (
-                    <span className="border pointer p-1 border-solid  w-fit">
-                      {el}
-                    </span>
+                    <span className=" pointer p-1 border w-fit">{el}</span>
                   ))}
                 </div>
               </section>
+              <div id="button" className="flex my-8 gap-3 w-1/2 items-center">
+                <div className="w-fit flex flex-col mb-[1.4rem]">
+                  <label className="text-xs self-start mb-2">Quantity :</label>
+                  <input
+                    className="p-3
+           w-20"
+                    type="number"
+                  />
+                </div>
+
+                {loading ? (
+                  <Skeleton height={50} />
+                ) : (
+                  <button className="btn bg-[#606060] w-[400px]">
+                    add to wishlist
+                  </button>
+                )}
+                {loading ? (
+                  <Skeleton height={50} />
+                ) : (
+                  <button
+                    onClick={() => handlePayment()}
+                    className="btn bg-[#606060] w-[200px]"
+                  >
+                    Buy Now
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         )}
 
-        <div className="desc w-1/2 mx-auto">
-          <div id="button" className="flex my-8  justify-evenly gap-3 w-1/2">
-            <label className="ml-[20rem]">
-              <span className="text-md ">Quantity</span>
-              <input className="p-2" type="number" />
-            </label>
-
-            {loading ? (
-              <Skeleton height={50} />
-            ) : (
-              <button className="btn">add to wishlist</button>
-            )}
-            {loading ? (
-              <Skeleton height={50} />
-            ) : (
-              <button onClick={() => handlePayment()} className="btn">
-                Buy Now
-              </button>
-            )}
-          </div>
-        </div>
         <div className="mx-auto text-md border">
           <div id="tab" className="flex gap-2">
             <span
@@ -164,12 +172,7 @@ export const DetailPage: React.FC = () => {
             >
               Description
             </span>
-            <span
-              onClick={() => setTab("sizing")}
-              className="border-b cursor-pointer"
-            >
-              Sizing
-            </span>
+
             <span
               onClick={() => setTab("shipping")}
               className="border-b cursor-pointer"
@@ -187,26 +190,32 @@ export const DetailPage: React.FC = () => {
             {tab === "description" && description}
             {tab === "sizing" && <p>sizing</p>}
             {tab === "shipping" && (
-              <p>
+              <p className="w-[45rem] text-left">
                 We are very pleased to inform you that we ship to all across
-                Indonesia. We have five different shipping methods that you are
-                free to choose. Please note that the orders generally take 1­-2
-                business days to process in the warehouse before shipping. JNE
-                Next Day You can expect your order to arrive the next day after
-                we place them for delivery (Jakarta Area) and 2 business days
-                (Outside Jakarta) when placed before 2 p.m Indonesia Western
-                Time JNE Regular You can expect your order to arrive 1-2
+                Indonesia.
+                <br></br>
+                We have five different shipping methods that you are free to
+                choose. Please note that the orders generally take 1­-2 business
+                days to process in the warehouse before shipping. <br></br>
+                <br></br> JNE Next Day You can expect your order to arrive the
+                next day after we place them for delivery (Jakarta Area) and 2
+                business days (Outside Jakarta) when placed before 2 p.m
+                Indonesia Western Time.
+                <br />
+                <br /> JNE Regular You can expect your order to arrive 1-2
                 business days when placed before 2 p.m Indonesia Western Time
                 Sameday Delivery Your order will be delivered on the same day as
                 your order but order after 12:00 will be processed the next day.
+                <br />
+                <br />
                 Sicepat Regular You can expect your order to arrive 1-2 business
-                days when placed before 2 p.m Indonesia Western Time Sicepat
-                Best You can expect your order to arrive 1 business days when
-                placed before 2 p.m Indonesia Western Time
+                days when placed before 2 p.m Indonesia Western Time <br />
+                <br /> Sicepat Best You can expect your order to arrive 1
+                business days when placed before 2 p.m Indonesia Western Time
               </p>
             )}
             {tab === "returns" && (
-              <p>
+              <p className="text-left">
                 Please contact to the email info@superga.id or Whatsapp number
                 0819-1177-7707 for confirmation
               </p>
