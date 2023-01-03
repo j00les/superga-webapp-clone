@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -49,7 +48,7 @@ export const DetailPage: React.FC = () => {
   }, [dispatch, id]);
 
   return (
-    <div className="flex m-8 justify-evenly" id="detail-page">
+    <div className="flex m-8 justify-evenly h-[100vh]" id="detail-page">
       <>
         {loading ? (
           <div className="bg-blue w-[50%]">{<Skeleton height={800} />}</div>
@@ -164,7 +163,7 @@ export const DetailPage: React.FC = () => {
           </div>
         )}
 
-        <div className="mx-auto text-md border">
+        <div className="mx-auto text-md">
           <div id="tab" className="flex gap-2">
             <span
               onClick={() => setTab("description")}
@@ -172,6 +171,7 @@ export const DetailPage: React.FC = () => {
             >
               Description
             </span>
+            <p></p>
 
             <span
               onClick={() => setTab("shipping")}

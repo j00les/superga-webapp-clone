@@ -8,7 +8,7 @@ export function toRupiah(price: number) {
 }
 
 export function filterProduct(product: Product[], categoryId: number) {
-  const filteredData = product.filter(el => {
+  const filteredData = product.filter((el) => {
     return el.categoryId === categoryId;
   });
   return filteredData;

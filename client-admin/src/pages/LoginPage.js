@@ -1,44 +1,44 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import Button from '../components/Button';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import Button from "../components/Button";
 
 // const baseURL = 'https://superga-react-app.herokuapp.com/admin';
-const baseURL = 'http://localhost:3000/admin';
+const baseURL = "http://localhost:3000/admin";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch(`${baseURL}/login`, {
-        method: 'post',
+        method: "post",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(input),
       });
 
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem('access_token', data.access_token);
-        localStorage.setItem('authorId', data.authorId);
-        navigate('/');
+        localStorage.setItem("access_token", data.access_token);
+        localStorage.setItem("authorId", data.authorId);
+        navigate("/");
       } else if (!response.ok) {
         const err = await response.json();
         throw err.message;
       }
     } catch (err) {
-      Swal.fire('err', 'Invalid email or password');
+      Swal.fire("err", "Invalid email or password");
     }
   };
 
@@ -48,8 +48,9 @@ const LoginPage = () => {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
           <p className="py-6">
-            To have access our admin panel, you must have an account admin account, if you don't
-            know what that is, please kindly contact our customer service.
+            To have access our admin panel, you must have an account admin
+            account, if you don't know what that is, please kindly contact our
+            customer service.
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -84,7 +85,7 @@ const LoginPage = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <Button type={'submit'} />
+              <Button type={"submit"} />
             </div>
           </form>
         </div>
