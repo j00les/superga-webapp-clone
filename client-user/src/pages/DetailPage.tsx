@@ -48,7 +48,7 @@ export const DetailPage: React.FC = () => {
   }, [dispatch, id]);
 
   return (
-    <div className="flex m-8 justify-evenly h-[100vh]" id="detail-page">
+    <div className="flex m-8 justify-evenly h-[100]" id="detail-page">
       <>
         {loading ? (
           <div className="bg-blue w-[50%]">{<Skeleton height={800} />}</div>
@@ -62,7 +62,7 @@ export const DetailPage: React.FC = () => {
                       <div
                         key={i + 2}
                         onClick={() => setImageUrl(el.imgUrl)}
-                        className="max-w-[7rem] border border-solid border-red-400 border-2px"
+                        className="max-w-[7rem]"
                       >
                         <img src={el.imgUrl} />
                       </div>

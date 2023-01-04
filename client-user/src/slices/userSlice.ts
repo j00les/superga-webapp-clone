@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { login } from "store/actions/user";
 
 interface UserState {
   isAuthenticated: Boolean;
   userData: {
-    name: string;
-    email: string;
+    name: String;
+    email: String;
   };
 }
 
@@ -20,6 +20,7 @@ const initialState: UserState = {
 const userSlice = createSlice({
   name: "users",
   initialState,
+
   reducers: {},
 
   extraReducers(builder) {

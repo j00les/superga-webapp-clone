@@ -23,7 +23,7 @@ export const fetchById = createAsyncThunk(
     //       method: 'get',
     //     });
     //     if (!response.ok) throw new Error("Can't fetch data");
-    //     const data = await response.json();
+    //     onst data = await response.json();
     //     dispatch(fetchByIdCreator(data));
     //   } catch (err) {
     //     Swal.fire('error', err);

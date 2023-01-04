@@ -1,15 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "hooks/hooks";
 import { NavLink } from "react-router-dom";
-// import { setIsAuthenticatedFalse } from "../store/actions/user";
 
 export const NavBar: React.FC = () => {
-  // const { user } = useSelector(state => state);
-  const dispatch = useDispatch();
+  // const { users } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
 
   // function handleLogout() {
   //   dispatch(setIsAuthenticatedFalse());
   //   localStorage.clear();
   // }
+
+  // dispatch(setIsAuthenticatedFalse());
 
   return (
     <>
@@ -36,19 +37,19 @@ export const NavBar: React.FC = () => {
           <div className="mr-3 mt-1">
             <span className="material-symbols-outlined">shopping_bag</span>
           </div>
-
-          {/* {user.isAuthenticated ? (
+          {/*
+      *
+          {users.isAuthenticated ? (
             <div className="flex gap-2 items-center">
-              <p>Halo, {user.userData.name}</p>
-              <button className="p-1 rounded-md bg-red-400" onClick={() => handleLogout()}>
-                Logout
-              </button>
+              <p>Halo, {users.userData.name}</p>
+              <button className="p-1 rounded-md bg-red-400">Logout</button>
             </div>
           ) : (
             <NavLink to="/login" className="material-symbols-outlined">
               person
             </NavLink>
-          )} */}
+          )}
+      */}
         </div>
       </div>
     </>
