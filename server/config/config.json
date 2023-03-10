@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "pc",
+    "username": "postgres",
     "password": "postgres",
     "database": "superga-webapp",
     "host": "127.0.0.1",
