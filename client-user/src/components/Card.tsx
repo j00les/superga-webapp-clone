@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
-import { toRupiah } from "../helpers/helpers";
-import { Product } from "models";
+import { Link } from 'react-router-dom'
+import { toRupiah } from '../helpers/helpers'
+import { type Product } from 'models'
 
 interface Props {
-  products: Product[];
-  isLandingPage: boolean;
-  isCategoryPage?: boolean;
-  womenProduct?: Product[];
-  menProduct?: Product[];
-  kidsProduct?: Product[];
+  products: Product[]
+  isLandingPage: boolean
+  isCategoryPage?: boolean
+  womenProduct?: Product[]
+  menProduct?: Product[]
+  kidsProduct?: Product[]
 }
 
 export const Card: React.FC<Props> = ({
@@ -17,7 +17,7 @@ export const Card: React.FC<Props> = ({
   isCategoryPage,
   womenProduct,
   menProduct,
-  kidsProduct,
+  kidsProduct
 }) => {
   const landingPageCard = (
     <>
@@ -35,11 +35,11 @@ export const Card: React.FC<Props> = ({
         </Link>
       ))}
     </>
-  );
+  )
 
   const categoryCard = (
     <>
-      {womenProduct
+      {(womenProduct != null)
         ? womenProduct?.map((el, i) => (
             <Link
               key={i}
@@ -52,9 +52,9 @@ export const Card: React.FC<Props> = ({
                 <span className="text-center">{toRupiah(el.price)}</span>
               </article>
             </Link>
-          ))
-        : menProduct
-        ? menProduct?.map((el, i) => (
+        ))
+        : (menProduct != null)
+            ? menProduct?.map((el, i) => (
             <Link
               key={i}
               to={`/detail/${el.id}`}
@@ -66,8 +66,8 @@ export const Card: React.FC<Props> = ({
                 <span className="text-center">{toRupiah(el.price)}</span>
               </article>
             </Link>
-          ))
-        : kidsProduct?.map((el, i) => (
+            ))
+            : kidsProduct?.map((el, i) => (
             <Link
               key={i}
               to={`/detail/${el.id}`}
@@ -79,14 +79,14 @@ export const Card: React.FC<Props> = ({
                 <span className="text-center">{toRupiah(el.price)}</span>
               </article>
             </Link>
-          ))}
+            ))}
     </>
-  );
+  )
 
   return (
     <>
       {isLandingPage && landingPageCard}
       {isCategoryPage && categoryCard}
     </>
-  );
-};
+  )
+}

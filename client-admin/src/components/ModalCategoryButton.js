@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux';
-import { fetchCategoryById } from '../store/actions/action-category';
+import {useDispatch} from 'react-redux';
+import {fetchCategoryById} from '../store/actions/action-category';
 
-export const ModalCategoryButton = ({ type, getId }) => {
+export const ModalCategoryButton = ({type, getId}) => {
   const dispatch = useDispatch();
   const handleGetById = e => {
     if (e.target.id) {

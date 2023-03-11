@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from "hooks/hooks";
-import { NavLink } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from 'hooks/hooks'
+import { NavLink } from 'react-router-dom'
 
 export const NavBar: React.FC = () => {
   // const { users } = useAppSelector((state) => state);
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   // function handleLogout() {
   //   dispatch(setIsAuthenticatedFalse());
@@ -53,5 +53,5 @@ export const NavBar: React.FC = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}

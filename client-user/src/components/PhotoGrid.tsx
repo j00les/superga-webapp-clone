@@ -47,4 +47,4 @@ export const PhotoGrid: React.FC = () => (
       </div> */}
     </div>
   </>
-);
+)
