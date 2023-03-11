@@ -1,34 +1,34 @@
-import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { login } from 'store/actions/user'
+import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { login } from "store/actions/user";
 
 interface UserState {
-  isAuthenticated: boolean
+  isAuthenticated: Boolean;
   userData: {
-    name: string
-    email: string
-  }
+    name: String;
+    email: String;
+  };
 }
 
 const initialState: UserState = {
   isAuthenticated: false,
   userData: {
-    name: '',
-    email: ''
-  }
-}
+    name: "",
+    email: "",
+  },
+};
 
 const userSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState,
 
   reducers: {},
 
-  extraReducers (builder) {
+  extraReducers(builder) {
     builder.addCase(login.fulfilled, (state, action) => {
-      state.userData = action.payload
-      state.isAuthenticated = true
-    })
-  }
-})
+      state.userData = action.payload;
+      state.isAuthenticated = true;
+    });
+  },
+});
 
-export default userSlice.reducer
+export default userSlice.reducer;

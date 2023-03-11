@@ -1,20 +1,20 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { adminURL, publicURL } from '../../apis/axiosInstance'
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { adminURL, publicURL } from "../../apis/axiosInstance";
 
-export const fetchProducts = createAsyncThunk('products/fetchAll', async () => {
+export const fetchProducts = createAsyncThunk("products/fetchAll", async () => {
   try {
     const { data } = await publicURL({
-      url: '/products',
-      method: 'GET'
-    })
-    return data
+      url: "/products",
+      method: "GET",
+    });
+    return data;
   } catch (error) {
-    throw error
+    throw error;
   }
-})
+});
 
 export const fetchById = createAsyncThunk(
-  'products/fetchById',
+  "products/fetchById",
   async (id: string | undefined) => {
     // return async (dispatch) => {
     //   dispatch(setLoadingTrue());
@@ -34,21 +34,21 @@ export const fetchById = createAsyncThunk(
     //   }
     // };
     try {
-      console.log(id, 'ye')
+      console.log(id, "ye");
       const { data } = await publicURL({
         url: `/products/${id}`,
-        method: 'GET'
-      })
-      return data
+        method: "GET",
+      });
+      return data;
     } catch (error) {
-      throw error
+      throw error;
     } finally {
       //  setTimeout(() => {
       //    dispatch(setLoadingFalse());
       //  }, 1000);
     }
   }
-)
+);
 
 // const buyProduct = productDetail => async dispatch => {
 //   try {

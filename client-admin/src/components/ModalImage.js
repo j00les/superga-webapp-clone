@@ -1,9 +1,9 @@
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export const ModalImage = () => {
-  const {product} = useSelector(state => state);
+  const { product } = useSelector(state => state);
   const loading = product.loading;
   const images = product?.productById?.Images;
 
